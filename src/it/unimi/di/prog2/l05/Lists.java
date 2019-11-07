@@ -12,8 +12,8 @@ public class Lists {
   /**
    * Removes the duplicate elements from a list.
    *
-   * <p>Remsoves all duplicate elements from <code>v</code>; uses {@link Object#equals(Object)} to determine
-   * duplicates. The order of remaining elements may change.
+   * <p>Remsoves all duplicate elements from <code>v</code>; uses {@link Object#equals(Object)} to
+   * determine duplicates. The order of remaining elements may change.
    *
    * @param v a list, its elements must be not <code>null</code>; it will be modified in place.
    */
