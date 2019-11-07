@@ -17,7 +17,8 @@ public class Polys {
    */
   public static Poly diff(Poly p) throws NullPointerException {
     Poly q = new Poly();
-    for (int i = 1; i <= p.degree(); i++) q = q.add(new Poly(p.coeff(i) * i, i - 1));
+    for (int i = 1; i <= p.degree(); i++)
+      q = q.add(new Poly(p.coeff(i) * i, i - 1));
     return q;
   }
 }

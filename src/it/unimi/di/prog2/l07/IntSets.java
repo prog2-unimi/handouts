@@ -17,7 +17,8 @@ public class IntSets {
    */
   public static IntSet getElements(int[] a) throws NullPointerException {
     IntSet s = new IntSet();
-    for (int i = 0; i < a.length; i++) s.insert(a[i]);
+    for (int i = 0; i < a.length; i++)
+      s.insert(a[i]);
     return s;
   }
 }

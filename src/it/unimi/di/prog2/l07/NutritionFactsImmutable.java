@@ -26,8 +26,8 @@ public class NutritionFactsImmutable {
     this(servingSize, servings, calories, fat, sodium, 0);
   }
 
-  public NutritionFactsImmutable(
-      int servingSize, int servings, int calories, int fat, int sodium, int carbohydrate) {
+  public NutritionFactsImmutable(int servingSize, int servings, int calories, int fat, int sodium,
+      int carbohydrate) {
     this.servingSize = servingSize;
     this.servings = servings;
     this.calories = calories;

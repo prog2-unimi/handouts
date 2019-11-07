@@ -11,8 +11,10 @@ public class ComputeFactorial {
 
     while (scanner.hasNextInt()) {
       int n = scanner.nextInt();
-      if (n >= 0) System.out.printf("%d! = %d\n", n, Num.fact(n));
-      else System.err.println("input not positive");
+      if (n >= 0)
+        System.out.printf("%d! = %d\n", n, Num.fact(n));
+      else
+        System.err.println("input not positive");
     }
   }
 }

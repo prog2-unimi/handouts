@@ -19,7 +19,8 @@ public class OldStyleComputeFactorial {
         out.print(n);
         out.print("! = ");
         out.println(Num.fact(n));
-      } else err.println("input not positive");
+      } else
+        err.println("input not positive");
     } catch (Exception e) {
       err.println("bad input");
     }

@@ -3,7 +3,8 @@ package it.unimi.di.prog2.l07;
 /**
  * {@code IntSet}s are mutable, unbounded sets of integers.
  *
- * <p>A typical IntSet is \( S = \{x_1, \ldots, x_n \} \).
+ * <p>
+ * A typical IntSet is \( S = \{x_1, \ldots, x_n \} \).
  */
 public class IntSet {
 
@@ -12,7 +13,8 @@ public class IntSet {
   /**
    * Initializes this set to be empty.
    *
-   * <p>Builds the set \( S = \varnothing \).
+   * <p>
+   * Builds the set \( S = \varnothing \).
    */
   public IntSet() {}
 
@@ -21,7 +23,8 @@ public class IntSet {
   /**
    * Adds the given element to this set.
    *
-   * <p>This method modifies the object, that is: \( S' = S \cup \{ x \} \).
+   * <p>
+   * This method modifies the object, that is: \( S' = S \cup \{ x \} \).
    *
    * @param x the element to be added.
    */
@@ -30,7 +33,8 @@ public class IntSet {
   /**
    * Removes the given element from this set.
    *
-   * <p>This method modifies the object, that is: \( S' = S \setminus \{ x \} \).
+   * <p>
+   * This method modifies the object, that is: \( S' = S \setminus \{ x \} \).
    *
    * @param x the element to be removed.
    */
@@ -39,7 +43,8 @@ public class IntSet {
   /**
    * Tells if the given element is in this set.
    *
-   * <p>Answers the question \( x\in S \).
+   * <p>
+   * Answers the question \( x\in S \).
    *
    * @param x the element to look for.
    * @return whether the given element belongs to this set, or not.
@@ -51,7 +56,8 @@ public class IntSet {
   /**
    * Returns the cardinality of this set.
    *
-   * <p>Responds with \( |S| \).
+   * <p>
+   * Responds with \( |S| \).
    *
    * @return the size of this set.
    */
