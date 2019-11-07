@@ -37,4 +37,4 @@ assieme al tasto `c` o `d`). In fine, se volete **generare la documentazione** 
 
     javadoc -d docs -private src/it/unimi/di/prog2/*/*.java
 
-e quindi aprite nel *browser* il documento `docs/index.html`.
+e quindi aprite nel *browser* il documento `docs/index.html`; è disponibile una [versione precompilata della documentazione](https://prog2-unimi.github.io/handouts/).
