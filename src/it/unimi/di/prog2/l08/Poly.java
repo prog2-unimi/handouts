@@ -16,10 +16,10 @@ public class Poly implements Cloneable {
   /**
    * The array of coefficients, the {@code trms[i]} is the coefficient of \( x^i \).
    */
-  private int[] trms;
+  private final int[] trms;
 
   /** The degree of the polynomial. */
-  private int deg;
+  private final int deg;
 
   // Constructors
 
