@@ -26,9 +26,9 @@ di questo repository usando il link in questa frase, oppure il bottone verde
 
 Una volta ottenuto e scompattato l'archivio, portatevi nella cartella che avrete così ottenuto; per **compilare** i file usate il comando
 
-    javac -d dist src/it/unimi/di/prog2/*/*.java
+    javac -encoding UTF-8 -d dist src/it/unimi/di/prog2/*/*.java
 
-quindi per **eseguire** una classe invocate la JVM con il *classpath* corrispondente a `dist`, la directory dove avete compilato i file. Ad esmepio, per eseguire la *classe* `ComputeFactorial` del *pacchetto* `it.unimi.di.prog2.l04` usate il comando
+quindi per **eseguire** una classe invocate la JVM con il *classpath* corrispondente a `dist`, la directory dove avete compilato i file. Ad esempio, per eseguire la *classe* `ComputeFactorial` del *pacchetto* `it.unimi.di.prog2.l04` usate il comando
 
     java -cp dist it.unimi.di.prog2.l04.ComputeFactorial
 
