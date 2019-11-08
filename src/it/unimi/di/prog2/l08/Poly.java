@@ -39,26 +39,22 @@ public class Poly implements Cloneable {
   public Poly(int c, int n) throws NegativeExponentException {
     if (n < 0)
       throw new NegativeExponentException("Can't create a monomial with negative exponent");
-    if (c == 0) {
-      trms = new int[1];
+    if (c == 0)
       deg = 0;
-      return;
-    }
-    trms = new int[n + 1];
-    for (int i = 0; i < n; i++)
-      trms[i] = 0;
-    trms[n] = c;
-    deg = n;
+    else
+      deg = n;
+    trms = new int[deg + 1];
+    trms[deg] = c;
   }
 
   /**
-   * Initializes a polynomial of given degree.
+   * Initializes a polynomial of given degree (with all coefficients equal to 0).
    *
    * @param n the degree.
    */
   private Poly(int n) {
-    trms = new int[n + 1];
     deg = n;
+    trms = new int[deg + 1];
   }
 
   // Methods
@@ -135,7 +131,6 @@ public class Poly implements Cloneable {
     if ((q.deg == 0 && q.trms[0] == 0) || (deg == 0 && trms[0] == 0))
       return new Poly();
     Poly r = new Poly(deg + q.deg);
-    r.trms[deg + q.deg] = 0; // prepare to compute coefficients
     for (int i = 0; i <= deg; i++)
       for (int j = 0; j <= q.deg; j++)
         r.trms[i + j] = r.trms[i + j] + trms[i] * q.trms[j];
