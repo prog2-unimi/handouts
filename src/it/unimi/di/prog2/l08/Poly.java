@@ -161,7 +161,7 @@ public class Poly implements Cloneable {
    */
   public Poly minus() {
     Poly r = new Poly(deg);
-    for (int i = 0; i < deg; i++)
+    for (int i = 0; i <= deg; i++)
       r.trms[i] = -trms[i];
     return r;
   }
