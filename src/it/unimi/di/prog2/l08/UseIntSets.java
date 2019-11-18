@@ -8,7 +8,7 @@ public class UseIntSets {
     int[] a = new int[args.length];
     int i = 0;
     for (String s : args)
-      a[i++] = Integer.valueOf(s);
+      a[i++] = Integer.parseInt(s);
     IntSet S = IntSets.getElements(a);
     System.out.println(S);
   }

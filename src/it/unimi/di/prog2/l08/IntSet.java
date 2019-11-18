@@ -22,6 +22,7 @@ public class IntSet {
   /**
    * Initializes this set to be empty.
    *
+   * <p>
    * Builds the set \( S = \varnothing \).
    */
   public IntSet() {
@@ -134,5 +135,4 @@ public class IntSet {
   public IntSet clone() {
     return new IntSet(this);
   }
-
 }

@@ -1,7 +1,7 @@
 package it.unimi.di.prog2.l08;
 
-import java.util.Arrays;
 import it.unimi.di.prog2.l07.NegativeExponentException;
+import java.util.Arrays;
 
 /**
  * {@code Poly}s are immutable polynomials with integer coefficients.
@@ -13,9 +13,7 @@ public class Poly implements Cloneable {
 
   // Fields
 
-  /**
-   * The array of coefficients, the {@code trms[i]} is the coefficient of \( x^i \).
-   */
+  /** The array of coefficients, the {@code trms[i]} is the coefficient of \( x^i \). */
   private final int[] trms;
 
   /** The degree of the polynomial. */
@@ -187,5 +185,4 @@ public class Poly implements Cloneable {
     result = 31 * result + Arrays.hashCode(trms);
     return result;
   }
-
 }
