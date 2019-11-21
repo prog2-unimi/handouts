@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -114,7 +114,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <!-- ======== START OF CLASS DATA ======== -->
 <main role="main">
 <div class="header">
-<div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html">it.unimi.di.prog2.l11</a></div>
+<div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html">it.unimi.di.prog2.l12</a></div>
 <h2 title="Class IntSet" class="title">Class IntSet</h2>
 </div>
 <div class="contentContainer">
@@ -122,7 +122,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">java.lang.Object</a></li>
 <li>
 <ul class="inheritance">
-<li>it.unimi.di.prog2.l11.IntSet</li>
+<li>it.unimi.di.prog2.l12.IntSet</li>
 </ul>
 </li>
 </ul>
@@ -132,6 +132,10 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dl>
 <dt>All Implemented Interfaces:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang" class="externalLink">Iterable</a>&lt;<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Integer.html?is-external=true" title="class or interface in java.lang" class="externalLink">Integer</a>&gt;</code></dd>
+</dl>
+<dl>
+<dt>Direct Known Subclasses:</dt>
+<dd><code><a href="MaxIntSet.html" title="class in it.unimi.di.prog2.l12">MaxIntSet</a></code></dd>
 </dl>
 <hr>
 <pre>public class <span class="typeNameLabel">IntSet</span>
@@ -163,7 +167,7 @@ implements <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>private class&nbsp;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="IntSet.ElementsIterator.html" title="class in it.unimi.di.prog2.l11">IntSet.ElementsIterator</a></span></code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="IntSet.ElementsIterator.html" title="class in it.unimi.di.prog2.l12">IntSet.ElementsIterator</a></span></code></th>
 <td class="colLast">
 <div class="block">Iterates over the element of the <code>IntSet</code>.</div>
 </td>
@@ -220,7 +224,7 @@ implements <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>private </code></td>
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(it.unimi.di.prog2.l11.IntSet)">IntSet</a></span>&#8203;(<a href="IntSet.html" title="class in it.unimi.di.prog2.l11">IntSet</a>&nbsp;other)</code></th>
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(it.unimi.di.prog2.l12.IntSet)">IntSet</a></span>&#8203;(<a href="IntSet.html" title="class in it.unimi.di.prog2.l12">IntSet</a>&nbsp;other)</code></th>
 <td class="colLast">
 <div class="block">A <em>copy constructor</em>, provided to implement <a href="#clone()"><code>clone()</code></a>.</div>
 </td>
@@ -251,7 +255,7 @@ implements <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base
 </td>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><code><a href="IntSet.html" title="class in it.unimi.di.prog2.l11">IntSet</a></code></td>
+<td class="colFirst"><code><a href="IntSet.html" title="class in it.unimi.di.prog2.l12">IntSet</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#clone()">clone</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
@@ -296,13 +300,25 @@ implements <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base
 </td>
 </tr>
 <tr id="i8" class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#repok()">repok</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#size()">size</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns the cardinality of this set.</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i10" class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#subset(it.unimi.di.prog2.l12.IntSet)">subset</a></span>&#8203;(<a href="IntSet.html" title="class in it.unimi.di.prog2.l12">IntSet</a>&nbsp;s)</code></th>
+<td class="colLast">
+<div class="block">Tells if a given set is a subset of this set.</div>
+</td>
+</tr>
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toString()">toString</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
@@ -371,13 +387,13 @@ implements <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base
  Builds the set \( S = \varnothing \).</div>
 </li>
 </ul>
-<a id="&lt;init&gt;(it.unimi.di.prog2.l11.IntSet)">
+<a id="&lt;init&gt;(it.unimi.di.prog2.l12.IntSet)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>IntSet</h4>
-<pre>private&nbsp;IntSet&#8203;(<a href="IntSet.html" title="class in it.unimi.di.prog2.l11">IntSet</a>&nbsp;other)</pre>
+<pre>private&nbsp;IntSet&#8203;(<a href="IntSet.html" title="class in it.unimi.di.prog2.l12">IntSet</a>&nbsp;other)</pre>
 <div class="block">A <em>copy constructor</em>, provided to implement <a href="#clone()"><code>clone()</code></a>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -499,6 +515,31 @@ implements <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base
 </dl>
 </li>
 </ul>
+<a id="subset(it.unimi.di.prog2.l12.IntSet)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>subset</h4>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;subset&#8203;(<a href="IntSet.html" title="class in it.unimi.di.prog2.l12">IntSet</a>&nbsp;s)</pre>
+<div class="block">Tells if a given set is a subset of this set.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>s</code> - the set to check.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>whether the given set is a subset of this set, or <code>false</code> if it is <code>null</code>.</dd>
+</dl>
+</li>
+</ul>
+<a id="repok()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>repok</h4>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;repok()</pre>
+</li>
+</ul>
 <a id="toString()">
 <!--   -->
 </a>
@@ -518,7 +559,7 @@ implements <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base
 <ul class="blockList">
 <li class="blockList">
 <h4>clone</h4>
-<pre class="methodSignature">public&nbsp;<a href="IntSet.html" title="class in it.unimi.di.prog2.l11">IntSet</a>&nbsp;clone()</pre>
+<pre class="methodSignature">public&nbsp;<a href="IntSet.html" title="class in it.unimi.di.prog2.l12">IntSet</a>&nbsp;clone()</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#clone()" title="class or interface in java.lang" class="externalLink">clone</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a></code></dd>

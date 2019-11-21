@@ -2,7 +2,7 @@
 <!-- NewPage -->
 <html lang="en">
 <head>
-<title>IntSet (drafts API)</title>
+<title>MaxIntSet (drafts API)</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="dc.created" content="2019-11-21">
 <link rel="stylesheet" type="text/css" href="../../../../../stylesheet.css" title="Style">
@@ -20,13 +20,13 @@
 <script type="text/javascript"><!--
     try {
         if (location.href.indexOf('is-external=true') == -1) {
-            parent.document.title="IntSet (drafts API)";
+            parent.document.title="MaxIntSet (drafts API)";
         }
     }
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -87,7 +87,7 @@ loadScripts(document, 'script');</script>
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li><a href="#nested.class.summary">Nested</a>&nbsp;|&nbsp;</li>
+<li>Nested&nbsp;|&nbsp;</li>
 <li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
@@ -114,15 +114,20 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <!-- ======== START OF CLASS DATA ======== -->
 <main role="main">
 <div class="header">
-<div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html">it.unimi.di.prog2.l11</a></div>
-<h2 title="Class IntSet" class="title">Class IntSet</h2>
+<div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html">it.unimi.di.prog2.l12</a></div>
+<h2 title="Class MaxIntSet" class="title">Class MaxIntSet</h2>
 </div>
 <div class="contentContainer">
 <ul class="inheritance">
 <li><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">java.lang.Object</a></li>
 <li>
 <ul class="inheritance">
-<li>it.unimi.di.prog2.l11.IntSet</li>
+<li><a href="IntSet.html" title="class in it.unimi.di.prog2.l12">it.unimi.di.prog2.l12.IntSet</a></li>
+<li>
+<ul class="inheritance">
+<li>it.unimi.di.prog2.l12.MaxIntSet</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -134,44 +139,16 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd><code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang" class="externalLink">Iterable</a>&lt;<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Integer.html?is-external=true" title="class or interface in java.lang" class="externalLink">Integer</a>&gt;</code></dd>
 </dl>
 <hr>
-<pre>public class <span class="typeNameLabel">IntSet</span>
-extends <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a>
-implements <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang" class="externalLink">Iterable</a>&lt;<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Integer.html?is-external=true" title="class or interface in java.lang" class="externalLink">Integer</a>&gt;</pre>
-<div class="block"><code>IntSet</code>s are mutable, unbounded sets of integers.
-
- <p>
- A typical IntSet is \( S = \{x_1, \ldots, x_n \} \).</div>
+<pre>public class <span class="typeNameLabel">MaxIntSet</span>
+extends <a href="IntSet.html" title="class in it.unimi.di.prog2.l12">IntSet</a></pre>
+<div class="block"><code>MaxIntSet</code> is a subtype of <a href="IntSet.html" title="class in it.unimi.di.prog2.l12"><code>IntSet</code></a> with an additional method,
+ <a href="#max()"><code>max()</code></a>, to determine the maximum element of the set.</div>
 </li>
 </ul>
 </div>
 <div class="summary">
 <ul class="blockList">
 <li class="blockList">
-<!-- ======== NESTED CLASS SUMMARY ======== -->
-<section role="region">
-<ul class="blockList">
-<li class="blockList"><a id="nested.class.summary">
-<!--   -->
-</a>
-<h3>Nested Class Summary</h3>
-<table class="memberSummary">
-<caption><span>Nested Classes</span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colSecond" scope="col">Class</th>
-<th class="colLast" scope="col">Description</th>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>private class&nbsp;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="IntSet.ElementsIterator.html" title="class in it.unimi.di.prog2.l11">IntSet.ElementsIterator</a></span></code></th>
-<td class="colLast">
-<div class="block">Iterates over the element of the <code>IntSet</code>.</div>
-</td>
-</tr>
-</table>
-</li>
-</ul>
-</section>
 <!-- =========== FIELD SUMMARY =========== -->
 <section role="region">
 <ul class="blockList">
@@ -187,10 +164,10 @@ implements <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>private <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/List.html?is-external=true" title="class or interface in java.util" class="externalLink">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Integer.html?is-external=true" title="class or interface in java.lang" class="externalLink">Integer</a>&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#els">els</a></span></code></th>
+<td class="colFirst"><code>private int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#biggest">biggest</a></span></code></th>
 <td class="colLast">
-<div class="block">The <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/List.html?is-external=true" title="class or interface in java.util" class="externalLink"><code>List</code></a> containing this set elements.</div>
+<div class="block">The biggest element, if set is not empty</div>
 </td>
 </tr>
 </table>
@@ -207,22 +184,13 @@ implements <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base
 <table class="memberSummary">
 <caption><span>Constructors</span><span class="tabEnd">&nbsp;</span></caption>
 <tr>
-<th class="colFirst" scope="col">Modifier</th>
-<th class="colSecond" scope="col">Constructor</th>
+<th class="colFirst" scope="col">Constructor</th>
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>&nbsp;</code></td>
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E()">IntSet</a></span>()</code></th>
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E()">MaxIntSet</a></span>()</code></th>
 <td class="colLast">
-<div class="block">Initializes this set to be empty.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>private </code></td>
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(it.unimi.di.prog2.l11.IntSet)">IntSet</a></span>&#8203;(<a href="IntSet.html" title="class in it.unimi.di.prog2.l11">IntSet</a>&nbsp;other)</code></th>
-<td class="colLast">
-<div class="block">A <em>copy constructor</em>, provided to implement <a href="#clone()"><code>clone()</code></a>.</div>
+<div class="block">Construct an empty <code>MaxIntSet</code>.</div>
 </td>
 </tr>
 </table>
@@ -244,70 +212,44 @@ implements <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code>int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#choose()">choose</a></span>()</code></th>
-<td class="colLast">
-<div class="block">Returns an element chosen at random from this set.</div>
-</td>
-</tr>
-<tr id="i1" class="rowColor">
-<td class="colFirst"><code><a href="IntSet.html" title="class in it.unimi.di.prog2.l11">IntSet</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#clone()">clone</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr id="i2" class="altColor">
-<td class="colFirst"><code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Iterator.html?is-external=true" title="class or interface in java.util" class="externalLink">Iterator</a>&lt;<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Integer.html?is-external=true" title="class or interface in java.lang" class="externalLink">Integer</a>&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#elements()">elements</a></span>()</code></th>
-<td class="colLast">
-<div class="block">Returns an iterator on the elements of this <code>IntSet</code>.</div>
-</td>
-</tr>
-<tr id="i3" class="rowColor">
-<td class="colFirst"><code>private int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getIndex(int)">getIndex</a></span>&#8203;(int&nbsp;x)</code></th>
-<td class="colLast">
-<div class="block">Looks for a given element in this set.</div>
-</td>
-</tr>
-<tr id="i4" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#insert(int)">insert</a></span>&#8203;(int&nbsp;x)</code></th>
 <td class="colLast">
 <div class="block">Adds the given element to this set.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
-<td class="colFirst"><code>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isIn(int)">isIn</a></span>&#8203;(int&nbsp;x)</code></th>
+<tr id="i1" class="rowColor">
+<td class="colFirst"><code>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#max()">max</a></span>()</code></th>
 <td class="colLast">
-<div class="block">Tells if the given element is in this set.</div>
+<div class="block">Returns the maximum value in the set, or rises <a href="../l07/EmptyException.html" title="class in it.unimi.di.prog2.l07"><code>EmptyException</code></a> otherwise.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
-<td class="colFirst"><code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Iterator.html?is-external=true" title="class or interface in java.util" class="externalLink">Iterator</a>&lt;<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Integer.html?is-external=true" title="class or interface in java.lang" class="externalLink">Integer</a>&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#iterator()">iterator</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr id="i7" class="rowColor">
+<tr id="i2" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#remove(int)">remove</a></span>&#8203;(int&nbsp;x)</code></th>
 <td class="colLast">
 <div class="block">Removes the given element from this set.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
-<td class="colFirst"><code>int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#size()">size</a></span>()</code></th>
-<td class="colLast">
-<div class="block">Returns the cardinality of this set.</div>
-</td>
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#repOk()">repOk</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toString()">toString</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 </table>
+<ul class="blockList">
+<li class="blockList"><a id="methods.inherited.from.class.it.unimi.di.prog2.l12.IntSet">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;it.unimi.di.prog2.l12.<a href="IntSet.html" title="class in it.unimi.di.prog2.l12">IntSet</a></h3>
+<code><a href="IntSet.html#choose()">choose</a>, <a href="IntSet.html#clone()">clone</a>, <a href="IntSet.html#elements()">elements</a>, <a href="IntSet.html#isIn(int)">isIn</a>, <a href="IntSet.html#iterator()">iterator</a>, <a href="IntSet.html#repok()">repok</a>, <a href="IntSet.html#size()">size</a>, <a href="IntSet.html#subset(it.unimi.di.prog2.l12.IntSet)">subset</a></code></li>
+</ul>
 <ul class="blockList">
 <li class="blockList"><a id="methods.inherited.from.class.java.lang.Object">
 <!--   -->
@@ -338,14 +280,14 @@ implements <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base
 <!--   -->
 </a>
 <h3>Field Detail</h3>
-<a id="els">
+<a id="biggest">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>els</h4>
-<pre>private final&nbsp;<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/List.html?is-external=true" title="class or interface in java.util" class="externalLink">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Integer.html?is-external=true" title="class or interface in java.lang" class="externalLink">Integer</a>&gt; els</pre>
-<div class="block">The <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/List.html?is-external=true" title="class or interface in java.util" class="externalLink"><code>List</code></a> containing this set elements.</div>
+<h4>biggest</h4>
+<pre>private&nbsp;int biggest</pre>
+<div class="block">The biggest element, if set is not empty</div>
 </li>
 </ul>
 </li>
@@ -361,28 +303,11 @@ implements <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base
 <a id="&lt;init&gt;()">
 <!--   -->
 </a>
-<ul class="blockList">
-<li class="blockList">
-<h4>IntSet</h4>
-<pre>public&nbsp;IntSet()</pre>
-<div class="block">Initializes this set to be empty.
-
- <p>
- Builds the set \( S = \varnothing \).</div>
-</li>
-</ul>
-<a id="&lt;init&gt;(it.unimi.di.prog2.l11.IntSet)">
-<!--   -->
-</a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>IntSet</h4>
-<pre>private&nbsp;IntSet&#8203;(<a href="IntSet.html" title="class in it.unimi.di.prog2.l11">IntSet</a>&nbsp;other)</pre>
-<div class="block">A <em>copy constructor</em>, provided to implement <a href="#clone()"><code>clone()</code></a>.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>other</code> - the <code>IntSet</code> to copy from.</dd>
-</dl>
+<h4>MaxIntSet</h4>
+<pre>public&nbsp;MaxIntSet()</pre>
+<div class="block">Construct an empty <code>MaxIntSet</code>.</div>
 </li>
 </ul>
 </li>
@@ -395,23 +320,6 @@ implements <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a id="getIndex(int)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getIndex</h4>
-<pre class="methodSignature">private&nbsp;int&nbsp;getIndex&#8203;(int&nbsp;x)</pre>
-<div class="block">Looks for a given element in this set.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>x</code> - the element to look for.</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>the index where <code>x</code> appears in <code>els</code> if the element belongs to this set, or
-         -1</dd>
-</dl>
-</li>
-</ul>
 <a id="insert(int)">
 <!--   -->
 </a>
@@ -419,11 +327,14 @@ implements <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base
 <li class="blockList">
 <h4>insert</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;insert&#8203;(int&nbsp;x)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="IntSet.html#insert(int)">IntSet</a></code></span></div>
 <div class="block">Adds the given element to this set.
 
  <p>
  This method modifies the object, that is: \( S' = S \cup \{ x \} \).</div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="IntSet.html#insert(int)">insert</a></code>&nbsp;in class&nbsp;<code><a href="IntSet.html" title="class in it.unimi.di.prog2.l12">IntSet</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>x</code> - the element to be added.</dd>
 </dl>
@@ -436,119 +347,55 @@ implements <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base
 <li class="blockList">
 <h4>remove</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;remove&#8203;(int&nbsp;x)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="IntSet.html#remove(int)">IntSet</a></code></span></div>
 <div class="block">Removes the given element from this set.
 
  <p>
  This method modifies the object, that is: \( S' = S \setminus \{ x \} \).</div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="IntSet.html#remove(int)">remove</a></code>&nbsp;in class&nbsp;<code><a href="IntSet.html" title="class in it.unimi.di.prog2.l12">IntSet</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>x</code> - the element to be removed.</dd>
 </dl>
 </li>
 </ul>
-<a id="isIn(int)">
+<a id="max()">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>isIn</h4>
-<pre class="methodSignature">public&nbsp;boolean&nbsp;isIn&#8203;(int&nbsp;x)</pre>
-<div class="block">Tells if the given element is in this set.
-
- <p>
- Answers the question \( x\in S \).</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>x</code> - the element to look for.</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>whether the given element belongs to this set, or not.</dd>
-</dl>
-</li>
-</ul>
-<a id="size()">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>size</h4>
-<pre class="methodSignature">public&nbsp;int&nbsp;size()</pre>
-<div class="block">Returns the cardinality of this set.
-
- <p>
- Responds with \( |S| \).</div>
+<h4>max</h4>
+<pre class="methodSignature">public&nbsp;int&nbsp;max()
+        throws <a href="../l07/EmptyException.html" title="class in it.unimi.di.prog2.l07">EmptyException</a></pre>
+<div class="block">Returns the maximum value in the set, or rises <a href="../l07/EmptyException.html" title="class in it.unimi.di.prog2.l07"><code>EmptyException</code></a> otherwise.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>the size of this set.</dd>
-</dl>
-</li>
-</ul>
-<a id="choose()">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>choose</h4>
-<pre class="methodSignature">public&nbsp;int&nbsp;choose()
-           throws <a href="../l07/EmptyException.html" title="class in it.unimi.di.prog2.l07">EmptyException</a></pre>
-<div class="block">Returns an element chosen at random from this set.</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>an arbitrary element from this set.</dd>
+<dd>the maximum value in the set.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="../l07/EmptyException.html" title="class in it.unimi.di.prog2.l07">EmptyException</a></code> - if this set is empty.</dd>
+<dd><code><a href="../l07/EmptyException.html" title="class in it.unimi.di.prog2.l07">EmptyException</a></code> - if the set is empty.</dd>
 </dl>
+</li>
+</ul>
+<a id="repOk()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>repOk</h4>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;repOk()</pre>
 </li>
 </ul>
 <a id="toString()">
 <!--   -->
 </a>
-<ul class="blockList">
+<ul class="blockListLast">
 <li class="blockList">
 <h4>toString</h4>
 <pre class="methodSignature">public&nbsp;<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;toString()</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#toString()" title="class or interface in java.lang" class="externalLink">toString</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a></code></dd>
-</dl>
-</li>
-</ul>
-<a id="clone()">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>clone</h4>
-<pre class="methodSignature">public&nbsp;<a href="IntSet.html" title="class in it.unimi.di.prog2.l11">IntSet</a>&nbsp;clone()</pre>
-<dl>
-<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#clone()" title="class or interface in java.lang" class="externalLink">clone</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a></code></dd>
-</dl>
-</li>
-</ul>
-<a id="elements()">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>elements</h4>
-<pre class="methodSignature">public&nbsp;<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Iterator.html?is-external=true" title="class or interface in java.util" class="externalLink">Iterator</a>&lt;<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Integer.html?is-external=true" title="class or interface in java.lang" class="externalLink">Integer</a>&gt;&nbsp;elements()</pre>
-<div class="block">Returns an iterator on the elements of this <code>IntSet</code>.</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>the iterator on set elements.</dd>
-</dl>
-</li>
-</ul>
-<a id="iterator()">
-<!--   -->
-</a>
-<ul class="blockListLast">
-<li class="blockList">
-<h4>iterator</h4>
-<pre class="methodSignature">public&nbsp;<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Iterator.html?is-external=true" title="class or interface in java.util" class="externalLink">Iterator</a>&lt;<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Integer.html?is-external=true" title="class or interface in java.lang" class="externalLink">Integer</a>&gt;&nbsp;iterator()</pre>
-<dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Iterable.html?is-external=true#iterator()" title="class or interface in java.lang" class="externalLink">iterator</a></code>&nbsp;in interface&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang" class="externalLink">Iterable</a>&lt;<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Integer.html?is-external=true" title="class or interface in java.lang" class="externalLink">Integer</a>&gt;</code></dd>
+<dd><code><a href="IntSet.html#toString()">toString</a></code>&nbsp;in class&nbsp;<code><a href="IntSet.html" title="class in it.unimi.di.prog2.l12">IntSet</a></code></dd>
 </dl>
 </li>
 </ul>
@@ -604,7 +451,7 @@ implements <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li><a href="#nested.class.summary">Nested</a>&nbsp;|&nbsp;</li>
+<li>Nested&nbsp;|&nbsp;</li>
 <li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>

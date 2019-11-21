@@ -1,4 +1,4 @@
-package it.unimi.di.prog2.l11;
+package it.unimi.di.prog2.l12;
 
 import it.unimi.di.prog2.l07.EmptyException;
 import java.util.ArrayList;
@@ -121,6 +121,29 @@ public class IntSet implements Iterable<Integer> {
     if (els.size() == 0)
       throw new EmptyException("Can't choose from an empty set");
     return els.get(els.size() - 1);
+  }
+
+  /**
+   * Tells if a given set is a subset of this set.
+   *
+   * @param s the set to check.
+   * @return whether the given set is a subset of this set, or {@code false} if it is {@code null}.
+   */
+  public boolean subset(IntSet s) {
+    if (s == null)
+      return false;
+    for (int i = 0; i < els.size(); i++)
+      if (!s.isIn(els.get(i)))
+        return false;
+    return true;
+  }
+
+  public boolean repok() {
+    for (int i = 0; i < els.size(); i++)
+      for (int j = i + 1; j < els.size(); j++)
+        if (els.get(i).equals(els.get(j)))
+          return false;
+    return true;
   }
 
   @Override
