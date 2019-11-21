@@ -13,6 +13,5 @@ public class UseIntSets {
       sum += e;
     }
     System.out.println("Sum is " + sum);
-
   }
 }

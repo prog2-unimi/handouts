@@ -140,9 +140,7 @@ public class IntSet implements Iterable<Integer> {
 
   // New stuff, related to lecture 11 (Iteration)
 
-  /**
-   * Iterates over the element of the {@code IntSet}.
-   */
+  /** Iterates over the element of the {@code IntSet}. */
   private class ElementsIterator implements Iterator<Integer> {
 
     private int current = 0;
@@ -160,7 +158,6 @@ public class IntSet implements Iterable<Integer> {
         throw new NoSuchElementException();
       }
     }
-
   }
 
   /**
@@ -176,5 +173,4 @@ public class IntSet implements Iterable<Integer> {
   public Iterator<Integer> iterator() {
     return new ElementsIterator();
   }
-
 }

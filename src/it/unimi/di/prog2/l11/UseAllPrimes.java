@@ -19,6 +19,4 @@ public class UseAllPrimes {
   public static void main(String[] args) {
     printPrimes(Integer.parseInt(args[0]));
   }
-
-
 }

@@ -6,6 +6,8 @@ import java.util.List;
 
 public class Num {
 
+  private Num() {}
+
   public static Iterator<Integer> allPrimes() {
     return new PrimesGen();
   }
@@ -43,5 +45,4 @@ public class Num {
         }
     }
   } // end PrimesGen
-
 }
