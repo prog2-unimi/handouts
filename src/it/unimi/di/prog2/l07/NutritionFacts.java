@@ -1,6 +1,7 @@
 package it.unimi.di.prog2.l07;
 
 /** See EJ 2.1 for a discussion of this class. */
+@SuppressWarnings("unused")
 public class NutritionFacts {
 
   private final int servingSize;
