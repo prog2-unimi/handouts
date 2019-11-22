@@ -139,6 +139,8 @@ public class IntSet implements Iterable<Integer> {
   }
 
   public boolean repok() {
+    if (els == null)
+      return false;
     for (int i = 0; i < els.size(); i++)
       for (int j = i + 1; j < els.size(); j++)
         if (els.get(i).equals(els.get(j)))

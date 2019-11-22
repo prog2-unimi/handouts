@@ -27,7 +27,7 @@ public class MaxIntSet extends IntSet {
   }
 
   @Override
-  public void remove(int x) {
+  public void remove(final int x) {
     super.remove(x);
     if (size() == 0 || x < biggest)
       return;
@@ -72,12 +72,9 @@ public class MaxIntSet extends IntSet {
   @Override
   public String toString() {
     if (size() == 0)
-      return "MaxIntSet: {}";
-    Iterator<Integer> g = elements();
-    String s = "MaxIntSet: {" + g.next();
-    while (g.hasNext())
-      s = s + ", " + g.next();
-    return s + "}, max = " + biggest;
+      return "Max" + super.toString();
+    else
+      return "Max" + super.toString() + ", max = " + biggest;
   }
 
 }
