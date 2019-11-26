@@ -1,5 +1,11 @@
 package it.unimi.di.prog2.l13;
 
+/**
+ * {@code Poly}s are immutable polynomials with integer coefficients.
+ *
+ * <p>
+ * A typical {@code Poly} is \( p = c_0 + c_1 x + c_2 x^2 + \cdots + c_n x^n \).
+ */
 public interface Poly extends Iterable<Poly.Term> {
 
   @SuppressWarnings("serial")

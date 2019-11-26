@@ -141,10 +141,6 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <hr>
 <pre>public class <span class="typeNameLabel">SparsePoly</span>
 extends <a href="AbstractPoly.html" title="class in it.unimi.di.prog2.l13">AbstractPoly</a></pre>
-<div class="block"><code>SparsePoly</code>s are immutable <em>sparse</em> polynomials with integer coefficients.
-
- <p>
- A typical <code>SparsePoly</code> is \( p = c_0 + c_1 x + c_2 x^2 + \cdots + c_n x^n \).</div>
 </li>
 </ul>
 </div>
@@ -184,9 +180,9 @@ extends <a href="AbstractPoly.html" title="class in it.unimi.di.prog2.l13">Abstr
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>private <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/List.html?is-external=true" title="class or interface in java.util" class="externalLink">List</a>&lt;<a href="Poly.Term.html" title="class in it.unimi.di.prog2.l13">Poly.Term</a>&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#trms">trms</a></span></code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#terms">terms</a></span></code></th>
 <td class="colLast">
-<div class="block">The list of terms.</div>
+<div class="block">The list of terms, it is kept in increasing degree order.</div>
 </td>
 </tr>
 </table>
@@ -269,7 +265,7 @@ extends <a href="AbstractPoly.html" title="class in it.unimi.di.prog2.l13">Abstr
 <td class="colFirst"><code>private int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#findByDegree(int)">findByDegree</a></span>&#8203;(int&nbsp;degree)</code></th>
 <td class="colLast">
-<div class="block">Finds the index of a term of given degree</div>
+<div class="block">Finds the index of a term of given degree.</div>
 </td>
 </tr>
 <tr id="i4" class="altColor">
@@ -341,14 +337,14 @@ extends <a href="AbstractPoly.html" title="class in it.unimi.di.prog2.l13">Abstr
 <!--   -->
 </a>
 <h3>Field Detail</h3>
-<a id="trms">
+<a id="terms">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>trms</h4>
-<pre>private final&nbsp;<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/List.html?is-external=true" title="class or interface in java.util" class="externalLink">List</a>&lt;<a href="Poly.Term.html" title="class in it.unimi.di.prog2.l13">Poly.Term</a>&gt; trms</pre>
-<div class="block">The list of terms.</div>
+<h4>terms</h4>
+<pre>private final&nbsp;<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/List.html?is-external=true" title="class or interface in java.util" class="externalLink">List</a>&lt;<a href="Poly.Term.html" title="class in it.unimi.di.prog2.l13">Poly.Term</a>&gt; terms</pre>
+<div class="block">The list of terms, it is kept in increasing degree order.</div>
 </li>
 </ul>
 </li>
@@ -407,7 +403,7 @@ extends <a href="AbstractPoly.html" title="class in it.unimi.di.prog2.l13">Abstr
 <li class="blockList">
 <h4>findByDegree</h4>
 <pre class="methodSignature">private&nbsp;int&nbsp;findByDegree&#8203;(int&nbsp;degree)</pre>
-<div class="block">Finds the index of a term of given degree</div>
+<div class="block">Finds the index of a term of given degree.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>degree</code> - the degree.</dd>

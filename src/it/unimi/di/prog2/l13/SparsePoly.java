@@ -1,24 +1,18 @@
 package it.unimi.di.prog2.l13;
 
-import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
-/**
- * {@code SparsePoly}s are immutable <em>sparse</em> polynomials with integer coefficients.
- *
- * <p>
- * A typical {@code SparsePoly} is \( p = c_0 + c_1 x + c_2 x^2 + \cdots + c_n x^n \).
- */
 public class SparsePoly extends AbstractPoly {
 
-  /** The list of terms. */
-  private final List<Term> trms;
+  /** The list of terms, it is kept in increasing degree order. */
+  private final List<Term> terms;
 
   /** Initializes this to be the zero polynomial, that is \( p = 0 \). */
   public SparsePoly() {
     super(0);
-    trms = new ArrayList<>();
+    terms = new LinkedList<>();
   }
 
   /**
@@ -30,22 +24,26 @@ public class SparsePoly extends AbstractPoly {
    */
   public SparsePoly(int coeff, int degree) throws NegativeExponentException {
     this();
-    trms.add(new Term(coeff, degree));
+    terms.add(new Term(coeff, degree));
     this.degree = degree;
   }
 
   // Methods
 
   /**
-   * Finds the index of a term of given degree
+   * Finds the index of a term of given degree.
    *
    * @param degree the degree.
    * @return the index of a term of given degree, or -1 if none is present.
    */
   private int findByDegree(int degree) {
-    for (int i = 0; i < trms.size(); i++)
-      if (trms.get(i).degree == degree)
+    for (int i = 0; i < terms.size(); i++) {
+      int d = terms.get(i).degree;
+      if (d > degree)
+        return -1;
+      else if (d == degree)
         return i;
+    }
     return -1;
   }
 
@@ -57,11 +55,11 @@ public class SparsePoly extends AbstractPoly {
   private void add(Poly.Term t) {
     int i = findByDegree(t.degree);
     if (i != -1) {
-      int c = trms.get(i).coeff + t.coeff;
+      int c = terms.get(i).coeff + t.coeff;
       if (c != 0)
-        trms.set(i, new Poly.Term(c, t.degree));
+        terms.set(i, new Poly.Term(c, t.degree));
       else {
-        trms.remove(i);
+        terms.remove(i);
         int newDegree = 0;
         for (Poly.Term u : this)
           if (u.degree > newDegree)
@@ -69,10 +67,10 @@ public class SparsePoly extends AbstractPoly {
         degree = newDegree;
       }
     } else {
-      for (i = 0; i < trms.size(); i++)
-        if (trms.get(i).degree > t.degree)
+      for (i = 0; i < terms.size(); i++)
+        if (terms.get(i).degree > t.degree)
           break;
-      trms.add(i, t);
+      terms.add(i, t);
       if (t.degree > degree)
         degree = t.degree;
     }
@@ -82,7 +80,7 @@ public class SparsePoly extends AbstractPoly {
   public int coeff(int degree) {
     int i = findByDegree(degree);
     if (i != -1)
-      return trms.get(i).coeff;
+      return terms.get(i).coeff;
     return 0;
   }
 
@@ -91,8 +89,8 @@ public class SparsePoly extends AbstractPoly {
     if (q == null)
       throw new NullPointerException();
     SparsePoly result = new SparsePoly();
-    for (int i = 0; i < trms.size(); i++)
-      result.trms.add(trms.get(i));
+    for (int i = 0; i < terms.size(); i++)
+      result.terms.add(terms.get(i));
     for (Poly.Term t : q)
       result.add(t);
     return result;
@@ -103,8 +101,8 @@ public class SparsePoly extends AbstractPoly {
     if (q == null)
       throw new NullPointerException();
     SparsePoly result = new SparsePoly();
-    for (int i = 0; i < trms.size(); i++) {
-      Poly.Term ti = trms.get(i);
+    for (int i = 0; i < terms.size(); i++) {
+      Poly.Term ti = terms.get(i);
       for (Poly.Term qj : q)
         result.add(new Poly.Term(ti.coeff * qj.coeff, ti.degree + qj.degree));
     }
@@ -115,13 +113,13 @@ public class SparsePoly extends AbstractPoly {
   public SparsePoly minus() {
     SparsePoly result = new SparsePoly();
     for (Poly.Term t : this)
-      result.trms.add(new Poly.Term(-t.coeff, t.degree));
+      result.terms.add(new Poly.Term(-t.coeff, t.degree));
     return result;
   }
 
   @Override
   public Iterator<Term> iterator() {
-    return trms.iterator();
+    return terms.iterator();
   }
 
   @Override
