@@ -1,6 +1,7 @@
 package it.unimi.di.prog2.l13;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class DensePoly extends AbstractPoly {
 
@@ -51,7 +52,7 @@ public class DensePoly extends AbstractPoly {
     int newdeg = degree > q.degree() ? degree : q.degree();
     if (degree == q.degree()) // decrease according to trailing zeros
       for (int k = degree; k > 0; k--)
-        if (coeffs[k] + q.coeff(k) != 0)
+        if (coeffs[k] == -q.coeff(k))
           break;
         else
           newdeg--;
@@ -100,6 +101,8 @@ public class DensePoly extends AbstractPoly {
 
       @Override
       public Term next() {
+        if (!hasNext())
+          throw new NoSuchElementException();
         while (coeffs[i] == 0)
           i++;
         final int j = i;

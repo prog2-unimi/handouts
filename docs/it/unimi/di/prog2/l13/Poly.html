@@ -164,7 +164,9 @@ extends <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/ja
 <tr class="rowColor">
 <td class="colFirst"><code>static class&nbsp;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="Poly.Term.html" title="class in it.unimi.di.prog2.l13">Poly.Term</a></span></code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">HOMEWORK</div>
+</td>
 </tr>
 </table>
 </li>
@@ -270,22 +272,6 @@ extends <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/ja
 </dl>
 </li>
 </ul>
-<a id="coeff(int)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>coeff</h4>
-<pre class="methodSignature">default&nbsp;int&nbsp;coeff&#8203;(int&nbsp;degree)</pre>
-<div class="block">Returns the coefficient of the term of given exponent.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>degree</code> - the exponent of the term to consider.</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>the coefficient of the considered term.</dd>
-</dl>
-</li>
-</ul>
 <a id="add(it.unimi.di.prog2.l13.Poly)">
 <!--   -->
 </a>
@@ -304,6 +290,23 @@ extends <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/ja
 <dd>the sum among this and the given polynomial.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang" class="externalLink">NullPointerException</a></code> - if <code>q</code> is <code>null</code>.</dd>
+</dl>
+</li>
+</ul>
+<a id="minus()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>minus</h4>
+<pre class="methodSignature"><a href="Poly.html" title="interface in it.unimi.di.prog2.l13">Poly</a>&nbsp;minus()</pre>
+<div class="block">Returns the negated polynomial.
+
+ <p>
+ If \( p \) is this polynomial, returns \( -p \).</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>this polynomial multiplied by \( -1 \).</dd>
 </dl>
 </li>
 </ul>
@@ -328,6 +331,22 @@ extends <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/ja
 </dl>
 </li>
 </ul>
+<a id="coeff(int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>coeff</h4>
+<pre class="methodSignature">default&nbsp;int&nbsp;coeff&#8203;(int&nbsp;degree)</pre>
+<div class="block">Returns the coefficient of the term of given exponent.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>degree</code> - the exponent of the term to consider.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the coefficient of the considered term.</dd>
+</dl>
+</li>
+</ul>
 <a id="sub(it.unimi.di.prog2.l13.Poly)">
 <!--   -->
 </a>
@@ -346,23 +365,6 @@ extends <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/ja
 <dd>the subtraction among this and the given polynomial.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang" class="externalLink">NullPointerException</a></code> - if <code>q</code> is <code>null</code>.</dd>
-</dl>
-</li>
-</ul>
-<a id="minus()">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>minus</h4>
-<pre class="methodSignature"><a href="Poly.html" title="interface in it.unimi.di.prog2.l13">Poly</a>&nbsp;minus()</pre>
-<div class="block">Returns the negated polynomial.
-
- <p>
- If \( p \) is this polynomial, returns \( -p \).</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>this polynomial multiplied by \( -1 \).</dd>
 </dl>
 </li>
 </ul>

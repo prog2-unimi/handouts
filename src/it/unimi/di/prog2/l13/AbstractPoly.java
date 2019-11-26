@@ -5,6 +5,7 @@ import java.util.Iterator;
 public abstract class AbstractPoly implements Poly {
   protected int degree;
 
+  /** HOMEWORK */
   protected AbstractPoly(final int degree) {
     if (degree < 0)
       throw new NegativeExponentException();
@@ -23,7 +24,7 @@ public abstract class AbstractPoly implements Poly {
     if (!(other instanceof Poly))
       return false;
     Poly q = (Poly) other;
-    if (degree() != q.degree())
+    if (degree != q.degree())
       return false;
     for (Poly.Term t : this)
       if (q.coeff(t.degree) != t.coeff)

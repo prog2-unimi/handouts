@@ -4,7 +4,9 @@ package it.unimi.di.prog2.l13;
  * {@code SortedIntSet}s are mutable, unbounded, and ordered, sets of integers.
  *
  * <p>
- * A typical IntSet is \( S = \{x_1, \ldots, x_n \} \).
+ * A typical IntSet is \( S = \{x_1, \ldots, x_n \} \). The iteration on this set returns its
+ * elements in increasing order.
+ *
  */
 public interface SortedIntSet extends IntSet {
 

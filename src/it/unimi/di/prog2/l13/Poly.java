@@ -19,9 +19,15 @@ public interface Poly extends Iterable<Poly.Term> {
     }
   }
 
+  /**
+   * HOMEWORK
+   */
   public static class Term {
+
+    /** HOMEWORK */
     final int coeff, degree;
 
+    /** HOMEWORK */
     public Term(final int coeff, final int degree) {
       if (degree < 0)
         throw new NegativeExponentException();
@@ -36,7 +42,42 @@ public interface Poly extends Iterable<Poly.Term> {
    * @return the largest exponent with a non-zero coefficient; returns 0 if this is the zero {@code
    *     Poly}.
    */
+
   public int degree();
+
+  /**
+   * Performs polynomial addition.
+   *
+   * <p>
+   * If \( p \) is this polynomial, returns \( p + q \).
+   *
+   * @param q the polynomial to add to this one.
+   * @return the sum among this and the given polynomial.
+   * @throws NullPointerException if {@code q} is {@code null}.
+   */
+  public Poly add(Poly q);
+
+  /**
+   * Returns the negated polynomial.
+   *
+   * <p>
+   * If \( p \) is this polynomial, returns \( -p \).
+   *
+   * @return this polynomial multiplied by \( -1 \).
+   */
+  public Poly minus();
+
+  /**
+   * Performs polynomial multiplication.
+   *
+   * <p>
+   * If \( p \) is this polynomial, returns \( p q \).
+   *
+   * @param q the polynomial to multiply by this one.
+   * @return the product among this and the given polynomial.
+   * @throws NullPointerException if {@code q} is {@code null}.
+   */
+  public Poly mul(Poly q);
 
   /**
    * Returns the coefficient of the term of given exponent.
@@ -52,30 +93,6 @@ public interface Poly extends Iterable<Poly.Term> {
   }
 
   /**
-   * Performs polynomial addition.
-   *
-   * <p>
-   * If \( p \) is this polynomial, returns \( p + q \).
-   *
-   * @param q the polynomial to add to this one.
-   * @return the sum among this and the given polynomial.
-   * @throws NullPointerException if {@code q} is {@code null}.
-   */
-  public Poly add(Poly q);
-
-  /**
-   * Performs polynomial multiplication.
-   *
-   * <p>
-   * If \( p \) is this polynomial, returns \( p q \).
-   *
-   * @param q the polynomial to multiply by this one.
-   * @return the product among this and the given polynomial.
-   * @throws NullPointerException if {@code q} is {@code null}.
-   */
-  public Poly mul(Poly q);
-
-  /**
    * Performs polynomial subtraction.
    *
    * <p>
@@ -88,16 +105,6 @@ public interface Poly extends Iterable<Poly.Term> {
   default public Poly sub(Poly q) {
     return this.add(q.minus());
   }
-
-  /**
-   * Returns the negated polynomial.
-   *
-   * <p>
-   * If \( p \) is this polynomial, returns \( -p \).
-   *
-   * @return this polynomial multiplied by \( -1 \).
-   */
-  public Poly minus();
 
   public boolean repOk();
 
