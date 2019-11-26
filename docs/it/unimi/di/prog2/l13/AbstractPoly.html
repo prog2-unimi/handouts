@@ -2,7 +2,7 @@
 <!-- NewPage -->
 <html lang="en">
 <head>
-<title>NutritionFacts.Builder (drafts API)</title>
+<title>AbstractPoly (drafts API)</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="dc.created" content="2019-11-26">
 <link rel="stylesheet" type="text/css" href="../../../../../stylesheet.css" title="Style">
@@ -20,13 +20,13 @@
 <script type="text/javascript"><!--
     try {
         if (location.href.indexOf('is-external=true') == -1) {
-            parent.document.title="NutritionFacts.Builder (drafts API)";
+            parent.document.title="AbstractPoly (drafts API)";
         }
     }
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10};
+var data = {"i0":10,"i1":10,"i2":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -87,7 +87,7 @@ loadScripts(document, 'script');</script>
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li>Nested&nbsp;|&nbsp;</li>
+<li><a href="#nested.class.summary">Nested</a>&nbsp;|&nbsp;</li>
 <li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
@@ -114,15 +114,15 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <!-- ======== START OF CLASS DATA ======== -->
 <main role="main">
 <div class="header">
-<div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html">it.unimi.di.prog2.l07</a></div>
-<h2 title="Class NutritionFacts.Builder" class="title">Class NutritionFacts.Builder</h2>
+<div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html">it.unimi.di.prog2.l13</a></div>
+<h2 title="Class AbstractPoly" class="title">Class AbstractPoly</h2>
 </div>
 <div class="contentContainer">
 <ul class="inheritance">
 <li><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">java.lang.Object</a></li>
 <li>
 <ul class="inheritance">
-<li>it.unimi.di.prog2.l07.NutritionFacts.Builder</li>
+<li>it.unimi.di.prog2.l13.AbstractPoly</li>
 </ul>
 </li>
 </ul>
@@ -130,18 +130,40 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <ul class="blockList">
 <li class="blockList">
 <dl>
-<dt>Enclosing class:</dt>
-<dd><a href="NutritionFacts.html" title="class in it.unimi.di.prog2.l07">NutritionFacts</a></dd>
+<dt>All Implemented Interfaces:</dt>
+<dd><code><a href="Poly.html" title="interface in it.unimi.di.prog2.l13">Poly</a></code>, <code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang" class="externalLink">Iterable</a>&lt;<a href="Poly.Term.html" title="class in it.unimi.di.prog2.l13">Poly.Term</a>&gt;</code></dd>
+</dl>
+<dl>
+<dt>Direct Known Subclasses:</dt>
+<dd><code><a href="DensePoly.html" title="class in it.unimi.di.prog2.l13">DensePoly</a></code>, <code><a href="SparsePoly.html" title="class in it.unimi.di.prog2.l13">SparsePoly</a></code></dd>
 </dl>
 <hr>
-<pre>public static class <span class="typeNameLabel">NutritionFacts.Builder</span>
-extends <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a></pre>
+<pre>public abstract class <span class="typeNameLabel">AbstractPoly</span>
+extends <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a>
+implements <a href="Poly.html" title="interface in it.unimi.di.prog2.l13">Poly</a></pre>
 </li>
 </ul>
 </div>
 <div class="summary">
 <ul class="blockList">
 <li class="blockList">
+<!-- ======== NESTED CLASS SUMMARY ======== -->
+<section role="region">
+<ul class="blockList">
+<li class="blockList"><a id="nested.class.summary">
+<!--   -->
+</a>
+<h3>Nested Class Summary</h3>
+<ul class="blockList">
+<li class="blockList"><a id="nested.classes.inherited.from.class.it.unimi.di.prog2.l13.Poly">
+<!--   -->
+</a>
+<h3>Nested classes/interfaces inherited from interface&nbsp;it.unimi.di.prog2.l13.<a href="Poly.html" title="interface in it.unimi.di.prog2.l13">Poly</a></h3>
+<code><a href="Poly.NegativeExponentException.html" title="class in it.unimi.di.prog2.l13">Poly.NegativeExponentException</a>, <a href="Poly.Term.html" title="class in it.unimi.di.prog2.l13">Poly.Term</a></code></li>
+</ul>
+</li>
+</ul>
+</section>
 <!-- =========== FIELD SUMMARY =========== -->
 <section role="region">
 <ul class="blockList">
@@ -157,33 +179,8 @@ extends <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/ja
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>private int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#calories">calories</a></span></code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>private int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#carbohydrate">carbohydrate</a></span></code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>private int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#fat">fat</a></span></code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>private int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#servings">servings</a></span></code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>private int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#servingSize">servingSize</a></span></code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>private int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#sodium">sodium</a></span></code></th>
+<td class="colFirst"><code>protected int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#degree">degree</a></span></code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 </table>
@@ -200,12 +197,13 @@ extends <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/ja
 <table class="memberSummary">
 <caption><span>Constructors</span><span class="tabEnd">&nbsp;</span></caption>
 <tr>
-<th class="colFirst" scope="col">Constructor</th>
+<th class="colFirst" scope="col">Modifier</th>
+<th class="colSecond" scope="col">Constructor</th>
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr class="altColor">
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(int,int)">Builder</a></span>&#8203;(int&nbsp;servingSize,
-       int&nbsp;servings)</code></th>
+<td class="colFirst"><code>protected </code></td>
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(int)">AbstractPoly</a></span>&#8203;(int&nbsp;degree)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 </table>
@@ -227,28 +225,20 @@ extends <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/ja
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code><a href="NutritionFacts.html" title="class in it.unimi.di.prog2.l07">NutritionFacts</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#build()">build</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colFirst"><code>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#degree()">degree</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Returns the degree of this polynomial.</div>
+</td>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><code><a href="NutritionFacts.Builder.html" title="class in it.unimi.di.prog2.l07">NutritionFacts.Builder</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#calories(int)">calories</a></span>&#8203;(int&nbsp;val)</code></th>
+<td class="colFirst"><code>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#equals(java.lang.Object)">equals</a></span>&#8203;(<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a>&nbsp;other)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i2" class="altColor">
-<td class="colFirst"><code><a href="NutritionFacts.Builder.html" title="class in it.unimi.di.prog2.l07">NutritionFacts.Builder</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#carbohydrate(int)">carbohydrate</a></span>&#8203;(int&nbsp;val)</code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr id="i3" class="rowColor">
-<td class="colFirst"><code><a href="NutritionFacts.Builder.html" title="class in it.unimi.di.prog2.l07">NutritionFacts.Builder</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#fat(int)">fat</a></span>&#8203;(int&nbsp;val)</code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr id="i4" class="altColor">
-<td class="colFirst"><code><a href="NutritionFacts.Builder.html" title="class in it.unimi.di.prog2.l07">NutritionFacts.Builder</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#sodium(int)">sodium</a></span>&#8203;(int&nbsp;val)</code></th>
+<td class="colFirst"><code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toString()">toString</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 </table>
@@ -257,7 +247,21 @@ extends <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/ja
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;java.lang.<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a></h3>
-<code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#clone()" title="class or interface in java.lang" class="externalLink">clone</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#equals(java.lang.Object)" title="class or interface in java.lang" class="externalLink">equals</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#finalize()" title="class or interface in java.lang" class="externalLink">finalize</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#getClass()" title="class or interface in java.lang" class="externalLink">getClass</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#hashCode()" title="class or interface in java.lang" class="externalLink">hashCode</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#notify()" title="class or interface in java.lang" class="externalLink">notify</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#notifyAll()" title="class or interface in java.lang" class="externalLink">notifyAll</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#toString()" title="class or interface in java.lang" class="externalLink">toString</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#wait()" title="class or interface in java.lang" class="externalLink">wait</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#wait(long)" title="class or interface in java.lang" class="externalLink">wait</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#wait(long,int)" title="class or interface in java.lang" class="externalLink">wait</a></code></li>
+<code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#clone()" title="class or interface in java.lang" class="externalLink">clone</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#finalize()" title="class or interface in java.lang" class="externalLink">finalize</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#getClass()" title="class or interface in java.lang" class="externalLink">getClass</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#hashCode()" title="class or interface in java.lang" class="externalLink">hashCode</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#notify()" title="class or interface in java.lang" class="externalLink">notify</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#notifyAll()" title="class or interface in java.lang" class="externalLink">notifyAll</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#wait()" title="class or interface in java.lang" class="externalLink">wait</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#wait(long)" title="class or interface in java.lang" class="externalLink">wait</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#wait(long,int)" title="class or interface in java.lang" class="externalLink">wait</a></code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a id="methods.inherited.from.class.java.lang.Iterable">
+<!--   -->
+</a>
+<h3>Methods inherited from interface&nbsp;java.lang.<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang" class="externalLink">Iterable</a></h3>
+<code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Iterable.html?is-external=true#forEach(java.util.function.Consumer)" title="class or interface in java.lang" class="externalLink">forEach</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Iterable.html?is-external=true#iterator()" title="class or interface in java.lang" class="externalLink">iterator</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Iterable.html?is-external=true#spliterator()" title="class or interface in java.lang" class="externalLink">spliterator</a></code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a id="methods.inherited.from.class.it.unimi.di.prog2.l13.Poly">
+<!--   -->
+</a>
+<h3>Methods inherited from interface&nbsp;it.unimi.di.prog2.l13.<a href="Poly.html" title="interface in it.unimi.di.prog2.l13">Poly</a></h3>
+<code><a href="Poly.html#add(it.unimi.di.prog2.l13.Poly)">add</a>, <a href="Poly.html#coeff(int)">coeff</a>, <a href="Poly.html#minus()">minus</a>, <a href="Poly.html#mul(it.unimi.di.prog2.l13.Poly)">mul</a>, <a href="Poly.html#repOk()">repOk</a>, <a href="Poly.html#sub(it.unimi.di.prog2.l13.Poly)">sub</a></code></li>
 </ul>
 </li>
 </ul>
@@ -275,58 +279,13 @@ extends <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/ja
 <!--   -->
 </a>
 <h3>Field Detail</h3>
-<a id="servingSize">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>servingSize</h4>
-<pre>private final&nbsp;int servingSize</pre>
-</li>
-</ul>
-<a id="servings">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>servings</h4>
-<pre>private final&nbsp;int servings</pre>
-</li>
-</ul>
-<a id="calories">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>calories</h4>
-<pre>private&nbsp;int calories</pre>
-</li>
-</ul>
-<a id="fat">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>fat</h4>
-<pre>private&nbsp;int fat</pre>
-</li>
-</ul>
-<a id="sodium">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>sodium</h4>
-<pre>private&nbsp;int sodium</pre>
-</li>
-</ul>
-<a id="carbohydrate">
+<a id="degree">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>carbohydrate</h4>
-<pre>private&nbsp;int carbohydrate</pre>
+<h4>degree</h4>
+<pre>protected&nbsp;int degree</pre>
 </li>
 </ul>
 </li>
@@ -339,14 +298,13 @@ extends <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/ja
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
-<a id="&lt;init&gt;(int,int)">
+<a id="&lt;init&gt;(int)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>Builder</h4>
-<pre>public&nbsp;Builder&#8203;(int&nbsp;servingSize,
-               int&nbsp;servings)</pre>
+<h4>AbstractPoly</h4>
+<pre>protected&nbsp;AbstractPoly&#8203;(int&nbsp;degree)</pre>
 </li>
 </ul>
 </li>
@@ -359,49 +317,48 @@ extends <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/ja
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a id="calories(int)">
+<a id="degree()">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>calories</h4>
-<pre class="methodSignature">public&nbsp;<a href="NutritionFacts.Builder.html" title="class in it.unimi.di.prog2.l07">NutritionFacts.Builder</a>&nbsp;calories&#8203;(int&nbsp;val)</pre>
+<h4>degree</h4>
+<pre class="methodSignature">public&nbsp;int&nbsp;degree()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="Poly.html#degree()">Poly</a></code></span></div>
+<div class="block">Returns the degree of this polynomial.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="Poly.html#degree()">degree</a></code>&nbsp;in interface&nbsp;<code><a href="Poly.html" title="interface in it.unimi.di.prog2.l13">Poly</a></code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the largest exponent with a non-zero coefficient; returns 0 if this is the zero <code>
+     Poly</code>.</dd>
+</dl>
 </li>
 </ul>
-<a id="fat(int)">
+<a id="equals(java.lang.Object)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>fat</h4>
-<pre class="methodSignature">public&nbsp;<a href="NutritionFacts.Builder.html" title="class in it.unimi.di.prog2.l07">NutritionFacts.Builder</a>&nbsp;fat&#8203;(int&nbsp;val)</pre>
+<h4>equals</h4>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;equals&#8203;(<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a>&nbsp;other)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#equals(java.lang.Object)" title="class or interface in java.lang" class="externalLink">equals</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a></code></dd>
+</dl>
 </li>
 </ul>
-<a id="sodium(int)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>sodium</h4>
-<pre class="methodSignature">public&nbsp;<a href="NutritionFacts.Builder.html" title="class in it.unimi.di.prog2.l07">NutritionFacts.Builder</a>&nbsp;sodium&#8203;(int&nbsp;val)</pre>
-</li>
-</ul>
-<a id="carbohydrate(int)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>carbohydrate</h4>
-<pre class="methodSignature">public&nbsp;<a href="NutritionFacts.Builder.html" title="class in it.unimi.di.prog2.l07">NutritionFacts.Builder</a>&nbsp;carbohydrate&#8203;(int&nbsp;val)</pre>
-</li>
-</ul>
-<a id="build()">
+<a id="toString()">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>build</h4>
-<pre class="methodSignature">public&nbsp;<a href="NutritionFacts.html" title="class in it.unimi.di.prog2.l07">NutritionFacts</a>&nbsp;build()</pre>
+<h4>toString</h4>
+<pre class="methodSignature">public&nbsp;<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;toString()</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#toString()" title="class or interface in java.lang" class="externalLink">toString</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a></code></dd>
+</dl>
 </li>
 </ul>
 </li>
@@ -456,7 +413,7 @@ extends <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/ja
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li>Nested&nbsp;|&nbsp;</li>
+<li><a href="#nested.class.summary">Nested</a>&nbsp;|&nbsp;</li>
 <li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>

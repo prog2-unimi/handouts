@@ -2,7 +2,7 @@
 <!-- NewPage -->
 <html lang="en">
 <head>
-<title>Poly (drafts API)</title>
+<title>DensePoly (drafts API)</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="dc.created" content="2019-11-26">
 <link rel="stylesheet" type="text/css" href="../../../../../stylesheet.css" title="Style">
@@ -20,13 +20,13 @@
 <script type="text/javascript"><!--
     try {
         if (location.href.indexOf('is-external=true') == -1) {
-            parent.document.title="Poly (drafts API)";
+            parent.document.title="DensePoly (drafts API)";
         }
     }
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -87,7 +87,7 @@ loadScripts(document, 'script');</script>
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li>Nested&nbsp;|&nbsp;</li>
+<li><a href="#nested.class.summary">Nested</a>&nbsp;|&nbsp;</li>
 <li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
@@ -114,15 +114,20 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <!-- ======== START OF CLASS DATA ======== -->
 <main role="main">
 <div class="header">
-<div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html">it.unimi.di.prog2.l08</a></div>
-<h2 title="Class Poly" class="title">Class Poly</h2>
+<div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html">it.unimi.di.prog2.l13</a></div>
+<h2 title="Class DensePoly" class="title">Class DensePoly</h2>
 </div>
 <div class="contentContainer">
 <ul class="inheritance">
 <li><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">java.lang.Object</a></li>
 <li>
 <ul class="inheritance">
-<li>it.unimi.di.prog2.l08.Poly</li>
+<li><a href="AbstractPoly.html" title="class in it.unimi.di.prog2.l13">it.unimi.di.prog2.l13.AbstractPoly</a></li>
+<li>
+<ul class="inheritance">
+<li>it.unimi.di.prog2.l13.DensePoly</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -131,22 +136,34 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li class="blockList">
 <dl>
 <dt>All Implemented Interfaces:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Cloneable.html?is-external=true" title="class or interface in java.lang" class="externalLink">Cloneable</a></code></dd>
+<dd><code><a href="Poly.html" title="interface in it.unimi.di.prog2.l13">Poly</a></code>, <code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang" class="externalLink">Iterable</a>&lt;<a href="Poly.Term.html" title="class in it.unimi.di.prog2.l13">Poly.Term</a>&gt;</code></dd>
 </dl>
 <hr>
-<pre>public class <span class="typeNameLabel">Poly</span>
-extends <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a>
-implements <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Cloneable.html?is-external=true" title="class or interface in java.lang" class="externalLink">Cloneable</a></pre>
-<div class="block"><code>Poly</code>s are immutable polynomials with integer coefficients.
-
- <p>
- A typical <code>Poly</code> is \( p = c_0 + c_1 x + c_2 x^2 + \cdots + c_n x^n \).</div>
+<pre>public class <span class="typeNameLabel">DensePoly</span>
+extends <a href="AbstractPoly.html" title="class in it.unimi.di.prog2.l13">AbstractPoly</a></pre>
 </li>
 </ul>
 </div>
 <div class="summary">
 <ul class="blockList">
 <li class="blockList">
+<!-- ======== NESTED CLASS SUMMARY ======== -->
+<section role="region">
+<ul class="blockList">
+<li class="blockList"><a id="nested.class.summary">
+<!--   -->
+</a>
+<h3>Nested Class Summary</h3>
+<ul class="blockList">
+<li class="blockList"><a id="nested.classes.inherited.from.class.it.unimi.di.prog2.l13.Poly">
+<!--   -->
+</a>
+<h3>Nested classes/interfaces inherited from interface&nbsp;it.unimi.di.prog2.l13.<a href="Poly.html" title="interface in it.unimi.di.prog2.l13">Poly</a></h3>
+<code><a href="Poly.NegativeExponentException.html" title="class in it.unimi.di.prog2.l13">Poly.NegativeExponentException</a>, <a href="Poly.Term.html" title="class in it.unimi.di.prog2.l13">Poly.Term</a></code></li>
+</ul>
+</li>
+</ul>
+</section>
 <!-- =========== FIELD SUMMARY =========== -->
 <section role="region">
 <ul class="blockList">
@@ -162,20 +179,20 @@ implements <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>private int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#deg">deg</a></span></code></th>
-<td class="colLast">
-<div class="block">The degree of the polynomial.</div>
-</td>
-</tr>
-<tr class="rowColor">
 <td class="colFirst"><code>private int[]</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#trms">trms</a></span></code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#coeffs">coeffs</a></span></code></th>
 <td class="colLast">
-<div class="block">The array of coefficients, the <code>trms[i]</code> is the coefficient of \( x^i \).</div>
+<div class="block">The array of coefficients, the <code>coeffs[i]</code> is the coefficient of \( x^i \).</div>
 </td>
 </tr>
 </table>
+<ul class="blockList">
+<li class="blockList"><a id="fields.inherited.from.class.it.unimi.di.prog2.l13.AbstractPoly">
+<!--   -->
+</a>
+<h3>Fields inherited from class&nbsp;it.unimi.di.prog2.l13.<a href="AbstractPoly.html" title="class in it.unimi.di.prog2.l13">AbstractPoly</a></h3>
+<code><a href="AbstractPoly.html#degree">degree</a></code></li>
+</ul>
 </li>
 </ul>
 </section>
@@ -195,22 +212,22 @@ implements <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>&nbsp;</code></td>
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E()">Poly</a></span>()</code></th>
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E()">DensePoly</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Initializes this to be the zero polynomial, that is \( p = 0 \).</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>private </code></td>
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(int)">Poly</a></span>&#8203;(int&nbsp;n)</code></th>
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(int)">DensePoly</a></span>&#8203;(int&nbsp;degree)</code></th>
 <td class="colLast">
 <div class="block">Initializes a polynomial of given degree (with all coefficients equal to 0).</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>&nbsp;</code></td>
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(int,int)">Poly</a></span>&#8203;(int&nbsp;c,
-    int&nbsp;n)</code></th>
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(int,int)">DensePoly</a></span>&#8203;(int&nbsp;coeff,
+         int&nbsp;degree)</code></th>
 <td class="colLast">
 <div class="block">Initializes this to be the polynomial \(p = cx^n\).</div>
 </td>
@@ -234,64 +251,71 @@ implements <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code><a href="Poly.html" title="class in it.unimi.di.prog2.l08">Poly</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#add(it.unimi.di.prog2.l08.Poly)">add</a></span>&#8203;(<a href="Poly.html" title="class in it.unimi.di.prog2.l08">Poly</a>&nbsp;q)</code></th>
+<td class="colFirst"><code><a href="DensePoly.html" title="class in it.unimi.di.prog2.l13">DensePoly</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#add(it.unimi.di.prog2.l13.Poly)">add</a></span>&#8203;(<a href="Poly.html" title="interface in it.unimi.di.prog2.l13">Poly</a>&nbsp;q)</code></th>
 <td class="colLast">
 <div class="block">Performs polynomial addition.</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#coeff(int)">coeff</a></span>&#8203;(int&nbsp;d)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#coeff(int)">coeff</a></span>&#8203;(int&nbsp;degree)</code></th>
 <td class="colLast">
 <div class="block">Returns the coefficient of the term of given exponent.</div>
 </td>
 </tr>
 <tr id="i2" class="altColor">
-<td class="colFirst"><code>int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#degree()">degree</a></span>()</code></th>
-<td class="colLast">
-<div class="block">Returns the degree of this polynomial.</div>
-</td>
+<td class="colFirst"><code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Iterator.html?is-external=true" title="class or interface in java.util" class="externalLink">Iterator</a>&lt;<a href="Poly.Term.html" title="class in it.unimi.di.prog2.l13">Poly.Term</a>&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#iterator()">iterator</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i3" class="rowColor">
-<td class="colFirst"><code>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#equals(java.lang.Object)">equals</a></span>&#8203;(<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a>&nbsp;o)</code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr id="i4" class="altColor">
-<td class="colFirst"><code>int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#hashCode()">hashCode</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr id="i5" class="rowColor">
-<td class="colFirst"><code><a href="Poly.html" title="class in it.unimi.di.prog2.l08">Poly</a></code></td>
+<td class="colFirst"><code><a href="DensePoly.html" title="class in it.unimi.di.prog2.l13">DensePoly</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#minus()">minus</a></span>()</code></th>
 <td class="colLast">
-<div class="block">Returns the negate polynomial.</div>
+<div class="block">Returns the negated polynomial.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
-<td class="colFirst"><code><a href="Poly.html" title="class in it.unimi.di.prog2.l08">Poly</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#mul(it.unimi.di.prog2.l08.Poly)">mul</a></span>&#8203;(<a href="Poly.html" title="class in it.unimi.di.prog2.l08">Poly</a>&nbsp;q)</code></th>
+<tr id="i4" class="altColor">
+<td class="colFirst"><code><a href="DensePoly.html" title="class in it.unimi.di.prog2.l13">DensePoly</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#mul(it.unimi.di.prog2.l13.Poly)">mul</a></span>&#8203;(<a href="Poly.html" title="interface in it.unimi.di.prog2.l13">Poly</a>&nbsp;q)</code></th>
 <td class="colLast">
 <div class="block">Performs polynomial multiplication.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
-<td class="colFirst"><code><a href="Poly.html" title="class in it.unimi.di.prog2.l08">Poly</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#sub(it.unimi.di.prog2.l08.Poly)">sub</a></span>&#8203;(<a href="Poly.html" title="class in it.unimi.di.prog2.l08">Poly</a>&nbsp;q)</code></th>
-<td class="colLast">
-<div class="block">Performs polynomial subtraction.</div>
-</td>
+<tr id="i5" class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#repOk()">repOk</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
 </tr>
 </table>
+<ul class="blockList">
+<li class="blockList"><a id="methods.inherited.from.class.it.unimi.di.prog2.l13.AbstractPoly">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;it.unimi.di.prog2.l13.<a href="AbstractPoly.html" title="class in it.unimi.di.prog2.l13">AbstractPoly</a></h3>
+<code><a href="AbstractPoly.html#degree()">degree</a>, <a href="AbstractPoly.html#equals(java.lang.Object)">equals</a>, <a href="AbstractPoly.html#toString()">toString</a></code></li>
+</ul>
 <ul class="blockList">
 <li class="blockList"><a id="methods.inherited.from.class.java.lang.Object">
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;java.lang.<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a></h3>
-<code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#clone()" title="class or interface in java.lang" class="externalLink">clone</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#finalize()" title="class or interface in java.lang" class="externalLink">finalize</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#getClass()" title="class or interface in java.lang" class="externalLink">getClass</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#notify()" title="class or interface in java.lang" class="externalLink">notify</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#notifyAll()" title="class or interface in java.lang" class="externalLink">notifyAll</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#toString()" title="class or interface in java.lang" class="externalLink">toString</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#wait()" title="class or interface in java.lang" class="externalLink">wait</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#wait(long)" title="class or interface in java.lang" class="externalLink">wait</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#wait(long,int)" title="class or interface in java.lang" class="externalLink">wait</a></code></li>
+<code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#clone()" title="class or interface in java.lang" class="externalLink">clone</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#finalize()" title="class or interface in java.lang" class="externalLink">finalize</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#getClass()" title="class or interface in java.lang" class="externalLink">getClass</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#hashCode()" title="class or interface in java.lang" class="externalLink">hashCode</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#notify()" title="class or interface in java.lang" class="externalLink">notify</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#notifyAll()" title="class or interface in java.lang" class="externalLink">notifyAll</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#wait()" title="class or interface in java.lang" class="externalLink">wait</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#wait(long)" title="class or interface in java.lang" class="externalLink">wait</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#wait(long,int)" title="class or interface in java.lang" class="externalLink">wait</a></code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a id="methods.inherited.from.class.java.lang.Iterable">
+<!--   -->
+</a>
+<h3>Methods inherited from interface&nbsp;java.lang.<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang" class="externalLink">Iterable</a></h3>
+<code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Iterable.html?is-external=true#forEach(java.util.function.Consumer)" title="class or interface in java.lang" class="externalLink">forEach</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Iterable.html?is-external=true#spliterator()" title="class or interface in java.lang" class="externalLink">spliterator</a></code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a id="methods.inherited.from.class.it.unimi.di.prog2.l13.Poly">
+<!--   -->
+</a>
+<h3>Methods inherited from interface&nbsp;it.unimi.di.prog2.l13.<a href="Poly.html" title="interface in it.unimi.di.prog2.l13">Poly</a></h3>
+<code><a href="Poly.html#sub(it.unimi.di.prog2.l13.Poly)">sub</a></code></li>
 </ul>
 </li>
 </ul>
@@ -309,24 +333,14 @@ implements <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base
 <!--   -->
 </a>
 <h3>Field Detail</h3>
-<a id="trms">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>trms</h4>
-<pre>private final&nbsp;int[] trms</pre>
-<div class="block">The array of coefficients, the <code>trms[i]</code> is the coefficient of \( x^i \).</div>
-</li>
-</ul>
-<a id="deg">
+<a id="coeffs">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>deg</h4>
-<pre>private final&nbsp;int deg</pre>
-<div class="block">The degree of the polynomial.</div>
+<h4>coeffs</h4>
+<pre>private final&nbsp;int[] coeffs</pre>
+<div class="block">The array of coefficients, the <code>coeffs[i]</code> is the coefficient of \( x^i \).</div>
 </li>
 </ul>
 </li>
@@ -344,8 +358,8 @@ implements <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>Poly</h4>
-<pre>public&nbsp;Poly()</pre>
+<h4>DensePoly</h4>
+<pre>public&nbsp;DensePoly()</pre>
 <div class="block">Initializes this to be the zero polynomial, that is \( p = 0 \).</div>
 </li>
 </ul>
@@ -354,17 +368,17 @@ implements <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>Poly</h4>
-<pre>public&nbsp;Poly&#8203;(int&nbsp;c,
-            int&nbsp;n)
-     throws <a href="../l07/NegativeExponentException.html" title="class in it.unimi.di.prog2.l07">NegativeExponentException</a></pre>
+<h4>DensePoly</h4>
+<pre>public&nbsp;DensePoly&#8203;(int&nbsp;coeff,
+                 int&nbsp;degree)
+          throws <a href="Poly.NegativeExponentException.html" title="class in it.unimi.di.prog2.l13">Poly.NegativeExponentException</a></pre>
 <div class="block">Initializes this to be the polynomial \(p = cx^n\).</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>c</code> - the coefficient.</dd>
-<dd><code>n</code> - the degree.</dd>
+<dd><code>coeff</code> - the coefficient.</dd>
+<dd><code>degree</code> - the degree.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="../l07/NegativeExponentException.html" title="class in it.unimi.di.prog2.l07">NegativeExponentException</a></code> - if <code>n</code> &lt; 0.</dd>
+<dd><code><a href="Poly.NegativeExponentException.html" title="class in it.unimi.di.prog2.l13">Poly.NegativeExponentException</a></code> - if <code>n</code> &lt; 0.</dd>
 </dl>
 </li>
 </ul>
@@ -373,12 +387,12 @@ implements <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>Poly</h4>
-<pre>private&nbsp;Poly&#8203;(int&nbsp;n)</pre>
+<h4>DensePoly</h4>
+<pre>private&nbsp;DensePoly&#8203;(int&nbsp;degree)</pre>
 <div class="block">Initializes a polynomial of given degree (with all coefficients equal to 0).</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>n</code> - the degree.</dd>
+<dd><code>degree</code> - the degree.</dd>
 </dl>
 </li>
 </ul>
@@ -392,45 +406,32 @@ implements <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a id="degree()">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>degree</h4>
-<pre class="methodSignature">public&nbsp;int&nbsp;degree()</pre>
-<div class="block">Returns the degree of this polynomial.</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>the largest exponent with a non-zero coefficient; returns 0 if this is the zero <code>
-     Poly</code>.</dd>
-</dl>
-</li>
-</ul>
 <a id="coeff(int)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>coeff</h4>
-<pre class="methodSignature">public&nbsp;int&nbsp;coeff&#8203;(int&nbsp;d)</pre>
+<pre class="methodSignature">public&nbsp;int&nbsp;coeff&#8203;(int&nbsp;degree)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="Poly.html#coeff(int)">Poly</a></code></span></div>
 <div class="block">Returns the coefficient of the term of given exponent.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>d</code> - the exponent of the term to consider.</dd>
+<dd><code>degree</code> - the exponent of the term to consider.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the coefficient of the considered term.</dd>
 </dl>
 </li>
 </ul>
-<a id="add(it.unimi.di.prog2.l08.Poly)">
+<a id="add(it.unimi.di.prog2.l13.Poly)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>add</h4>
-<pre class="methodSignature">public&nbsp;<a href="Poly.html" title="class in it.unimi.di.prog2.l08">Poly</a>&nbsp;add&#8203;(<a href="Poly.html" title="class in it.unimi.di.prog2.l08">Poly</a>&nbsp;q)
-         throws <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang" class="externalLink">NullPointerException</a></pre>
+<pre class="methodSignature">public&nbsp;<a href="DensePoly.html" title="class in it.unimi.di.prog2.l13">DensePoly</a>&nbsp;add&#8203;(<a href="Poly.html" title="interface in it.unimi.di.prog2.l13">Poly</a>&nbsp;q)
+              throws <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang" class="externalLink">NullPointerException</a></pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="Poly.html#add(it.unimi.di.prog2.l13.Poly)">Poly</a></code></span></div>
 <div class="block">Performs polynomial addition.
 
  <p>
@@ -445,14 +446,15 @@ implements <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base
 </dl>
 </li>
 </ul>
-<a id="mul(it.unimi.di.prog2.l08.Poly)">
+<a id="mul(it.unimi.di.prog2.l13.Poly)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>mul</h4>
-<pre class="methodSignature">public&nbsp;<a href="Poly.html" title="class in it.unimi.di.prog2.l08">Poly</a>&nbsp;mul&#8203;(<a href="Poly.html" title="class in it.unimi.di.prog2.l08">Poly</a>&nbsp;q)
-         throws <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang" class="externalLink">NullPointerException</a></pre>
+<pre class="methodSignature">public&nbsp;<a href="DensePoly.html" title="class in it.unimi.di.prog2.l13">DensePoly</a>&nbsp;mul&#8203;(<a href="Poly.html" title="interface in it.unimi.di.prog2.l13">Poly</a>&nbsp;q)
+              throws <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang" class="externalLink">NullPointerException</a></pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="Poly.html#mul(it.unimi.di.prog2.l13.Poly)">Poly</a></code></span></div>
 <div class="block">Performs polynomial multiplication.
 
  <p>
@@ -467,36 +469,15 @@ implements <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base
 </dl>
 </li>
 </ul>
-<a id="sub(it.unimi.di.prog2.l08.Poly)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>sub</h4>
-<pre class="methodSignature">public&nbsp;<a href="Poly.html" title="class in it.unimi.di.prog2.l08">Poly</a>&nbsp;sub&#8203;(<a href="Poly.html" title="class in it.unimi.di.prog2.l08">Poly</a>&nbsp;q)
-         throws <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang" class="externalLink">NullPointerException</a></pre>
-<div class="block">Performs polynomial subtraction.
-
- <p>
- If \( p \) is this polynomial, returns \( p - q \).</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>q</code> - the polynomial to subtract from this one.</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>the subtraction among this and the given polynomial.</dd>
-<dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang" class="externalLink">NullPointerException</a></code> - if <code>q</code> is <code>null</code>.</dd>
-</dl>
-</li>
-</ul>
 <a id="minus()">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>minus</h4>
-<pre class="methodSignature">public&nbsp;<a href="Poly.html" title="class in it.unimi.di.prog2.l08">Poly</a>&nbsp;minus()</pre>
-<div class="block">Returns the negate polynomial.
+<pre class="methodSignature">public&nbsp;<a href="DensePoly.html" title="class in it.unimi.di.prog2.l13">DensePoly</a>&nbsp;minus()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="Poly.html#minus()">Poly</a></code></span></div>
+<div class="block">Returns the negated polynomial.
 
  <p>
  If \( p \) is this polynomial, returns \( -p \).</div>
@@ -506,30 +487,22 @@ implements <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base
 </dl>
 </li>
 </ul>
-<a id="equals(java.lang.Object)">
+<a id="repOk()">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>equals</h4>
-<pre class="methodSignature">public&nbsp;boolean&nbsp;equals&#8203;(<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a>&nbsp;o)</pre>
-<dl>
-<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#equals(java.lang.Object)" title="class or interface in java.lang" class="externalLink">equals</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a></code></dd>
-</dl>
+<h4>repOk</h4>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;repOk()</pre>
 </li>
 </ul>
-<a id="hashCode()">
+<a id="iterator()">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>hashCode</h4>
-<pre class="methodSignature">public&nbsp;int&nbsp;hashCode()</pre>
-<dl>
-<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#hashCode()" title="class or interface in java.lang" class="externalLink">hashCode</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a></code></dd>
-</dl>
+<h4>iterator</h4>
+<pre class="methodSignature">public&nbsp;<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Iterator.html?is-external=true" title="class or interface in java.util" class="externalLink">Iterator</a>&lt;<a href="Poly.Term.html" title="class in it.unimi.di.prog2.l13">Poly.Term</a>&gt;&nbsp;iterator()</pre>
 </li>
 </ul>
 </li>
@@ -584,7 +557,7 @@ implements <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li>Nested&nbsp;|&nbsp;</li>
+<li><a href="#nested.class.summary">Nested</a>&nbsp;|&nbsp;</li>
 <li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
