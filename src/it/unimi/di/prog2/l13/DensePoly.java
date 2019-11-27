@@ -52,7 +52,7 @@ public class DensePoly extends AbstractPoly {
     int newdeg = degree > q.degree() ? degree : q.degree();
     if (degree == q.degree()) // decrease according to trailing zeros
       for (int k = degree; k > 0; k--)
-        if (coeffs[k] == -q.coeff(k))
+        if (coeffs[k] != -q.coeff(k))
           break;
         else
           newdeg--;
