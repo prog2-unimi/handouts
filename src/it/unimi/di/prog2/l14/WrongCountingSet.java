@@ -28,6 +28,7 @@ public class WrongCountingSet<E> extends HashSet<E> {
   public static void main(String[] args) {
     WrongCountingSet<String> cs = new WrongCountingSet<>();
     cs.addAll(Arrays.asList(args));
+    System.out.println("Elements: " + cs.toString());
     System.out.println("Added elements: " + cs.count());
   }
 }
