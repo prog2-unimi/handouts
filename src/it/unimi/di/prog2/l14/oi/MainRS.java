@@ -1,6 +1,9 @@
-package it.unimi.di.prog2.l14.oi.rs;
+package it.unimi.di.prog2.l14.oi;
 
-public class Main {
+import it.unimi.di.prog2.l14.oi.rs.Histogram;
+import it.unimi.di.prog2.l14.oi.rs.Rectangle;
+
+public class MainRS {
   public static void main(String[] args) {
     Histogram hist = new Histogram();
     Rectangle r1 = new Rectangle(4, 4), r2 = new Rectangle(3, 3);

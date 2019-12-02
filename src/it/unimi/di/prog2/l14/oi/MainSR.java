@@ -1,6 +1,10 @@
-package it.unimi.di.prog2.l14.oi.sr;
+package it.unimi.di.prog2.l14.oi;
 
-public class Main {
+import it.unimi.di.prog2.l14.oi.sr.Histogram;
+import it.unimi.di.prog2.l14.oi.sr.Rectangle;
+import it.unimi.di.prog2.l14.oi.sr.Square;
+
+public class MainSR {
 
   public static void main(String[] args) {
 

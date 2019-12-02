@@ -1,8 +1,8 @@
-package it.unimi.di.prog2.l14.adder;
+package it.unimi.di.prog2.l14.ci.ef;
 
 import java.util.List;
 
-public class AdderImpl implements Adder {
+public class Adder implements AdderInterface {
 
   private int result = 0;
 

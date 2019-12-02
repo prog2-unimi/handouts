@@ -1,9 +1,9 @@
-package it.unimi.di.prog2.l14.adder;
+package it.unimi.di.prog2.l14.ci.ec;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class LogAdderImpl extends AdderImpl {
+public class LogAdderExt extends Adder {
   private final List<Integer> seen = new ArrayList<>();
 
   @Override
