@@ -3,6 +3,11 @@ package it.unimi.di.prog2.l14.oi.sr;
 public class Rectangle {
   private int base, height;
 
+  public Rectangle(int base, int height) {
+    this.base = base;
+    this.height = height;
+  }
+
   public int base() {
     return this.base;
   }
@@ -16,11 +21,6 @@ public class Rectangle {
   }
 
   public void height(int height) {
-    this.height = height;
-  }
-
-  public Rectangle(int base, int height) {
-    this.base = base;
     this.height = height;
   }
 

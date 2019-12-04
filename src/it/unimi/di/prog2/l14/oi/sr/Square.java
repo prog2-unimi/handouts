@@ -1,6 +1,7 @@
 package it.unimi.di.prog2.l14.oi.sr;
 
 public class Square extends Rectangle {
+
   public Square(int base) {
     super(base, base);
   }
