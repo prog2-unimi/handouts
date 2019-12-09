@@ -4,6 +4,7 @@ import java.util.AbstractCollection;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import java.util.Queue;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
@@ -130,8 +131,8 @@ public interface DiGraph<T> {
     };
   }
 
-  default void walk(T start, Consumer<T> consumer, Supplier<? extends Bag<T>> supplier) {
-    Bag<T> bag = Bags.once(supplier.get());
+  default void walk(T start, Consumer<T> consumer, Supplier<? extends Queue<T>> supplier) {
+    Queue<T> bag = Suppliers.once(supplier.get());
     bag.add(start);
     while (!bag.isEmpty()) {
       T curr = bag.remove();

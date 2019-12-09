@@ -1,7 +1,6 @@
 package it.unimi.di.prog2.l17.digraph;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -23,10 +22,10 @@ public class Main {
     System.out.println(g.nodes());
     System.out.println(g.arcs());
 
-    g.walk("mio", Consumers.printConsumer(), Bags.FIFOBagSupplier());
-    g.walk("mio", System.out::println, Bags.LIFOBagSupplier());
+    g.walk("mio", Consumers.printConsumer(), Suppliers.FIFOSupplier());
+    g.walk("mio", System.out::println, Suppliers.LIFOSupplier());
     List<String> result = new ArrayList<>();
-    g.walk("mio", Consumers.collectConsumer(result), Bags.LIFOBagSupplier());
+    g.walk("mio", Consumers.collectConsumer(result), Suppliers.LIFOSupplier());
     System.out.println(result);
 
     System.out.print(DiGraphs.toDot(g));
