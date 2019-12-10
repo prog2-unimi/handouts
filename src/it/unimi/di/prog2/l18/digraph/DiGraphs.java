@@ -1,3 +1,24 @@
+/*
+
+Copyright 2019 Massimo Santini
+
+This file is part of "Programmazione 2 @ UniMI" teaching material.
+
+This is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This material is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this file.  If not, see <https://www.gnu.org/licenses/>.
+
+*/
+
 package it.unimi.di.prog2.l18.digraph;
 
 import java.io.File;
@@ -9,21 +30,18 @@ import java.util.Map;
 /**
  * A collection of utilities related to {@link DiGraph}s.
  *
- * <p>
- * This class provides a few utility methods, mainly related to
- * <a href="https://www.graphviz.org/">Graphviz</a>.
+ * <p>This class provides a few utility methods, mainly related to <a
+ * href="https://www.graphviz.org/">Graphviz</a>.
  */
-
 public class DiGraphs {
 
   private DiGraphs() {}
 
-  public static <T> void fromAdjacencyMap(final Map<T, Collection<T>> adjacency,
-      final DiGraph<T> graph) {
+  public static <T> void fromAdjacencyMap(
+      final Map<T, Collection<T>> adjacency, final DiGraph<T> graph) {
     for (Map.Entry<T, Collection<T>> e : adjacency.entrySet()) {
       T src = e.getKey();
-      for (T dst : e.getValue())
-        graph.addArc(src, dst);
+      for (T dst : e.getValue()) graph.addArc(src, dst);
     }
   }
 
@@ -49,8 +67,7 @@ public class DiGraphs {
   public static <T> String toDot(final DiGraph<T> g, final String extra) {
     StringBuilder b = new StringBuilder();
     b.append("digraph G {\n");
-    if (extra != null)
-      b.append(extra + "\n");
+    if (extra != null) b.append(extra + "\n");
     for (Arc<T> arc : g.arcs())
       b.append(String.format("\t%s -> %s;\n", arc.source.toString(), arc.destination.toString()));
     b.append("}\n");
@@ -76,5 +93,4 @@ public class DiGraphs {
       System.err.println("Something went wrong");
     }
   }
-
 }

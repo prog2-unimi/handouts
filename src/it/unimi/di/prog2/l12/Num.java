@@ -1,3 +1,24 @@
+/*
+
+Copyright 2019 Massimo Santini
+
+This file is part of "Programmazione 2 @ UniMI" teaching material.
+
+This is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This material is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this file.  If not, see <https://www.gnu.org/licenses/>.
+
+*/
+
 package it.unimi.di.prog2.l12;
 
 import java.util.Iterator;
@@ -10,12 +31,10 @@ public class Num {
   /**
    * An {@link Iterator} returning the divisor of the given integer.
    *
-   * <p>
-   * <strong>Implementation details</strong>: this iterator is <em>lazy</em>: given that is
+   * <p><strong>Implementation details</strong>: this iterator is <em>lazy</em>: given that is
    * impossible to know in advance the number of divisors of a given integer, it possibly caches the
-   * next divisor in its state when {@link DivisorIterator#hasNext} is called so that
-   * {@link DivisorIterator#next} can, in case, return it.
-   *
+   * next divisor in its state when {@link DivisorIterator#hasNext} is called so that {@link
+   * DivisorIterator#next} can, in case, return it.
    */
   private static class DivisorIterator implements Iterator<Integer> {
 
@@ -25,16 +44,13 @@ public class Num {
     /**
      * The next divisor to return.
      *
-     * <p>
-     * The representation invariant is that either {@code d} is a divisor of {@code n} and it has
+     * <p>The representation invariant is that either {@code d} is a divisor of {@code n} and it has
      * not yet been returned by {@code next}, or it is not a divisor of {@code n}.
-     *
      */
     private int d;
 
     DivisorIterator(int n) {
-      if (n <= 0)
-        throw new IllegalArgumentException();
+      if (n <= 0) throw new IllegalArgumentException();
       this.n = n;
       d = 1; // the rep. inv. is true: 1 is a divisor and here {@code next} hasn't been called yet.
     }
@@ -62,8 +78,7 @@ public class Num {
 
     @Override
     public Integer next() {
-      if (!hasNext())
-        throw new NoSuchElementException();
+      if (!hasNext()) throw new NoSuchElementException();
       int ret = d;
       // Here {@code d} is a divisor, given the contract of {@code hasNext} and
       // given the rep. inv. it has not yet been returned,
@@ -83,8 +98,7 @@ public class Num {
    * @throws IllegalArgumentException if the parameter is negative, or 0.
    */
   public static Iterator<Integer> divisorIterator(int n) {
-    if (n <= 0)
-      throw new IllegalArgumentException();
+    if (n <= 0) throw new IllegalArgumentException();
     return new DivisorIterator(n);
   }
 }
