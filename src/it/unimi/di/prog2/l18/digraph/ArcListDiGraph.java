@@ -1,13 +1,27 @@
 package it.unimi.di.prog2.l18.digraph;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * A directed graph implementation based on a list of {@link Arc}s and one of nodes.
+ *
+ * @param <T> the type of the graph nodes.
+ */
 public class ArcListDiGraph<T> implements DiGraph<T> {
 
+  /**
+   * The set of graph nodes.
+   *
+   * <p>
+   * Observe that <em>isolated</em> nodes (node not appearing in any arc) belong to this set.
+   */
   private final Set<T> nodes = new HashSet<>();
+
+  /**
+   * The set of graph arcs.
+   */
   private final Set<Arc<T>> arcs = new HashSet<>();
 
   @Override
@@ -23,13 +37,13 @@ public class ArcListDiGraph<T> implements DiGraph<T> {
   }
 
   @Override
-  public Collection<T> nodes() {
-    return Collections.unmodifiableCollection(nodes);
+  public Set<T> nodes() {
+    return Collections.unmodifiableSet(nodes);
   }
 
   @Override
-  public Collection<Arc<T>> arcs() {
-    return Collections.unmodifiableCollection(arcs);
+  public Set<Arc<T>> arcs() {
+    return Collections.unmodifiableSet(arcs);
   }
 
 }

@@ -9,10 +9,23 @@ import java.util.Queue;
 import java.util.Set;
 import java.util.function.Supplier;
 
-public class Suppliers {
+/**
+ * A collection of utilities related to {@link Queues}s needed for graph visits.
+ *
+ * <p>
+ * This class provides {@link Supplier}s and wrappers to {@link Queue}s to be used by the
+ * {@link DiGraph#visit(Object, Consumer, java.util.function.Supplier)} method.
+ */
+public class Queues {
 
-  private Suppliers() {}
+  private Queues() {}
 
+  /**
+   * A {@link Supplier} of LIFO {@link Queue}s.
+   *
+   * @param <T> the type of the graph nodes.
+   * @return the supplier.
+   */
   public static <T> Supplier<Queue<T>> LIFOSupplier() {
     return new Supplier<>() {
       @Override
@@ -22,6 +35,12 @@ public class Suppliers {
     };
   }
 
+  /**
+   * A {@link Supplier} of FIFO {@link Queue}s.
+   *
+   * @param <T> the type of the graph nodes.
+   * @return the supplier.
+   */
   public static <T> Supplier<Queue<T>> FIFOSupplier() {
     return new Supplier<>() {
       @Override
@@ -31,6 +50,16 @@ public class Suppliers {
     };
   }
 
+  /**
+   * Wraps a {@code Queue} making it a <em>once</em> queue.
+   *
+   * <p>
+   * A <em>once</em> queue is a queue where every element can be added just once.
+   *
+   * @param <T> the type of the graph nodes.
+   * @param queue the queue to be wrapped.
+   * @return the wrapped queue.
+   */
   public static <T> Queue<T> once(final Queue<T> queue) {
     return new AbstractQueue<>() {
 

@@ -1,10 +1,10 @@
 package it.unimi.di.prog2.l18.digraph;
 
-import java.util.AbstractCollection;
-import java.util.Collection;
+import java.util.AbstractSet;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Queue;
+import java.util.Set;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
@@ -31,26 +31,26 @@ import java.util.function.Supplier;
  * of these two methods must be overridden. All other methods have default implementations based on
  * {@link #outgoing(Object)} and/or {@link #arcs()}.
  *
- * @param <T> The node type.
+ * @param <T> the type of the graph nodes.
  */
 public interface DiGraph<T> {
 
   /**
-   * Returns a collection of the graph nodes.
+   * Returns the graph nodes.
    *
    * @return the graph nodes.
    */
-  Collection<T> nodes();
+  Set<T> nodes();
 
   /**
    * Returns the set of outgoing nodes of a given node.
    *
    * @param source the source node.
-   * @return the collection of nodes that have an arc with the given {@code source} in this graph
-   *         (the collection is empty if the {@code source} does not belong to this graph).
+   * @return the nodes that have an arc with the given {@code source} in this graph (the collection
+   *         is empty if the {@code source} does not belong to this graph).
    */
-  default Collection<T> outgoing(final T source) {
-    return new AbstractCollection<>() {
+  default Set<T> outgoing(final T source) {
+    return new AbstractSet<>() {
       @Override
       public Iterator<T> iterator() {
         return new Iterator<T>() {
@@ -160,12 +160,12 @@ public interface DiGraph<T> {
   }
 
   /**
-   * Returns a collection of this graph arcs.
+   * Returns this graph arcs.
    *
    * @return the arcs belonging to this graph.
    */
-  default Collection<Arc<T>> arcs() {
-    return new AbstractCollection<>() {
+  default Set<Arc<T>> arcs() {
+    return new AbstractSet<>() {
 
       @Override
       public Iterator<Arc<T>> iterator() {
@@ -222,7 +222,7 @@ public interface DiGraph<T> {
    * @param supplier a {@link Supplier} providing the {@link Queue} to be used to perform the visit.
    */
   default void visit(T start, Consumer<T> consumer, Supplier<? extends Queue<T>> supplier) {
-    Queue<T> bag = Suppliers.once(supplier.get());
+    Queue<T> bag = Queues.once(supplier.get());
     bag.add(start);
     while (!bag.isEmpty()) {
       T curr = bag.remove();

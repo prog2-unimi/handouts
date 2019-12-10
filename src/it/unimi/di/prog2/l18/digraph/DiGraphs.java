@@ -6,6 +6,14 @@ import java.io.OutputStream;
 import java.util.Collection;
 import java.util.Map;
 
+/**
+ * A collection of utilities related to {@link DiGraph}s.
+ *
+ * <p>
+ * This class provides a few utility methods, mainly related to
+ * <a href="https://www.graphviz.org/">Graphviz</a>.
+ */
+
 public class DiGraphs {
 
   private DiGraphs() {}
@@ -19,10 +27,25 @@ public class DiGraphs {
     }
   }
 
+  /**
+   * Returns the <em>dot</em> representation of the given graph.
+   *
+   * @param <T> the type of the graph nodes.
+   * @param g the graph.
+   * @return the <em>dot</em> representation of the given graph.
+   */
   public static <T> String toDot(final DiGraph<T> g) {
     return toDot(g, null);
   }
 
+  /**
+   * Returns the <em>dot</em> representation of the given graph.
+   *
+   * @param <T> the type of the graph nodes.
+   * @param g the graph.
+   * @param extra extra configuration to be added to the <em>dot</em> source.
+   * @return the <em>dot</em> representation of the given graph.
+   */
   public static <T> String toDot(final DiGraph<T> g, final String extra) {
     StringBuilder b = new StringBuilder();
     b.append("digraph G {\n");
@@ -34,6 +57,12 @@ public class DiGraphs {
     return b.toString();
   }
 
+  /**
+   * Renders a <em>dot</em> source to a PDF file (invoking an external command).
+   *
+   * @param dot the <em>dot</em> source
+   * @param path path of the PDF to create.
+   */
   public static void dotToPdf(final String dot, final String path) {
     final ProcessBuilder pb = new ProcessBuilder("sfdp", "-T", "pdf");
     pb.redirectOutput(new File(path));

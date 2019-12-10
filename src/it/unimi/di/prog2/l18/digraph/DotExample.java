@@ -6,6 +6,9 @@ import java.util.Collection;
 import java.util.List;
 import java.util.function.Function;
 
+/**
+ * An example classe creating a {@link ImplicitDiGraph} and rendering it to a PDF file.
+ */
 public class DotExample {
 
   public static void main(String[] args) throws IOException {

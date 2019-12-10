@@ -1,14 +1,26 @@
 package it.unimi.di.prog2.l18.digraph;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * A directed graph implementation based on a {@link Map} between nodes and their <em>outgoing</em>
+ * sets.
+ *
+ * @param <T> the type of the graph nodes.
+ */
 public class AdjacencyMapDiGraph<T> implements DiGraph<T> {
 
+  /**
+   * A {@link Map} between nodes and their outgoing sets.
+   *
+   * <p>
+   * Every node in the graph is a key of this map, and viceversa. Isolated nodes map to
+   * {@link Collections#emptySet()}.
+   */
   private final Map<T, Set<T>> adjacency = new HashMap<>();
 
   @Override
@@ -35,16 +47,16 @@ public class AdjacencyMapDiGraph<T> implements DiGraph<T> {
   }
 
   @Override
-  public Collection<T> outgoing(T src) {
+  public Set<T> outgoing(T src) {
     final Set<T> outgoing = adjacency.get(src);
     if (outgoing == null)
-      return Collections.emptyList();
-    return Collections.unmodifiableCollection(outgoing);
+      return Collections.emptySet();
+    return Collections.unmodifiableSet(outgoing);
   }
 
   @Override
-  public Collection<T> nodes() {
-    return Collections.unmodifiableCollection(adjacency.keySet());
+  public Set<T> nodes() {
+    return Collections.unmodifiableSet(adjacency.keySet());
   }
 
 }
