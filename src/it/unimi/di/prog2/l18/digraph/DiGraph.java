@@ -1,4 +1,4 @@
-package it.unimi.di.prog2.l17.digraph;
+package it.unimi.di.prog2.l18.digraph;
 
 import java.util.AbstractCollection;
 import java.util.Collection;
@@ -8,10 +8,47 @@ import java.util.Queue;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
+/**
+ * An interface representing an <em>directed graph</em> where nodes are of generic type {@code T}.
+ *
+ * <p>
+ * A directed graph \( G = (N, A) \) is a pair where \( N \) is a finite set of <em>nodes</em> (of
+ * type {@code T}) and \(A = \{(x, y) : x, y \in N \} \) is the set of <em>arcs</em> that are
+ * ordered pairs of elements of \( N \); the first element of and arc is called <em>source</em>, and
+ * the second one is called <em>destination</em>. Given a node \( x \in N \), the set of
+ * <em>outgoing</em> nodes of \( x \) is the set \(\{y : (x, y) \in A \} \).
+ *
+ * <p>
+ * Classes implementing this interface can represent both <em>immutable</em> and <em>mutable</em>
+ * directed graphs, default implementations of mutation methods {@link #addNode(Object)} and
+ * {@link #addArc(Object, Object)} rise {@link UnsupportedOperationException} (while the default
+ * implementation of {@link #addArc(Arc)} relies on {@link #addArc(Object, Object)}).
+ *
+ * <p>
+ * Every implementation must at least override {@link #nodes()}; moreover, since {@link #arcs()} has
+ * a default implementation in terms of such method and {@link #outgoing(Object)}, and conversely
+ * {@link #outgoing(Object)} has a default implementation in terms of {@link #arcs()}, at least one
+ * of these two methods must be overridden. All other methods have default implementations based on
+ * {@link #outgoing(Object)} and/or {@link #arcs()}.
+ *
+ * @param <T> The node type.
+ */
 public interface DiGraph<T> {
 
+  /**
+   * Returns a collection of the graph nodes.
+   *
+   * @return the graph nodes.
+   */
   Collection<T> nodes();
 
+  /**
+   * Returns the set of outgoing nodes of a given node.
+   *
+   * @param source the source node.
+   * @return the collection of nodes that have an arc with the given {@code source} in this graph
+   *         (the collection is empty if the {@code source} does not belong to this graph).
+   */
   default Collection<T> outgoing(final T source) {
     return new AbstractCollection<>() {
       @Override
@@ -57,30 +94,76 @@ public interface DiGraph<T> {
     };
   }
 
+  /**
+   * Adds a node to this graph.
+   *
+   * @param node the node to be added.
+   */
   default void addNode(T node) {
     throw new UnsupportedOperationException();
   }
 
+  /**
+   * Adds an arc to this graph.
+   *
+   * <p>
+   * It the source, or destination, node are not present in the graph, they are also added.
+   *
+   * @param source the source of the arc to be added.
+   * @param destination the destination of the arc to be added.
+   */
   default void addArc(T source, T destination) {
     throw new UnsupportedOperationException();
   }
 
+  /**
+   * Adds an arc to this graph.
+   *
+   * <p>
+   * It the source, or destination, node are not present in the graph, they are also added.
+   *
+   * @param arc the arc to be added.
+   */
   default void addArc(Arc<T> arc) {
     addArc(arc.source, arc.destination);
   }
 
+  /**
+   * Tells whether an arc belongs to this graph, or not.
+   *
+   * @param source the source of the arc to be queried.
+   * @param destination the destination of the arc to be queried.
+   * @return whether the arc belongs to the graph, or not.
+   */
   default boolean hasArc(T source, T destination) {
     return outgoing(source).contains(destination);
   }
 
+  /**
+   * Tells whether an arc belongs to this graph, or not.
+   *
+   * @param arc the arc to be queried.
+   * @return whether the arc belongs to the graph, or not.
+   */
   default boolean hasArc(Arc<T> arc) {
     return hasArc(arc.source, arc.destination);
   }
 
+  /**
+   * Tells whether a node belongs to this graph, or not.
+   *
+   * @param node the node to be queried.
+   * @return whether the node belongs to the graph, or not.
+   */
   default boolean hasNode(T node) {
     return nodes().contains(node);
   }
 
+  /**
+   * Returns a collection of this graph arcs.
+   *
+   * @return the arcs belonging to this graph.
+   */
   default Collection<Arc<T>> arcs() {
     return new AbstractCollection<>() {
 
@@ -131,7 +214,14 @@ public interface DiGraph<T> {
     };
   }
 
-  default void walk(T start, Consumer<T> consumer, Supplier<? extends Queue<T>> supplier) {
+  /**
+   * Performs a visit on the graph.
+   *
+   * @param start the not where the visit must start.
+   * @param consumer a {@link Consumer} that will be called on every visited node.
+   * @param supplier a {@link Supplier} providing the {@link Queue} to be used to perform the visit.
+   */
+  default void visit(T start, Consumer<T> consumer, Supplier<? extends Queue<T>> supplier) {
     Queue<T> bag = Suppliers.once(supplier.get());
     bag.add(start);
     while (!bag.isEmpty()) {

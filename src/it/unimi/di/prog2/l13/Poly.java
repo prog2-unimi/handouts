@@ -19,15 +19,10 @@ public interface Poly extends Iterable<Poly.Term> {
     }
   }
 
-  /**
-   * HOMEWORK
-   */
   public static class Term {
 
-    /** HOMEWORK */
     final int coeff, degree;
 
-    /** HOMEWORK */
     public Term(final int coeff, final int degree) {
       if (degree < 0)
         throw new NegativeExponentException();
@@ -42,7 +37,6 @@ public interface Poly extends Iterable<Poly.Term> {
    * @return the largest exponent with a non-zero coefficient; returns 0 if this is the zero {@code
    *     Poly}.
    */
-
   public int degree();
 
   /**

@@ -1,4 +1,4 @@
-package it.unimi.di.prog2.l17.digraph;
+package it.unimi.di.prog2.l18.digraph;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,10 +22,10 @@ public class Main {
     System.out.println(g.nodes());
     System.out.println(g.arcs());
 
-    g.walk("mio", Consumers.printConsumer(), Suppliers.FIFOSupplier());
-    g.walk("mio", System.out::println, Suppliers.LIFOSupplier());
+    g.visit("mio", Consumers.printConsumer(), Suppliers.FIFOSupplier());
+    g.visit("mio", System.out::println, Suppliers.LIFOSupplier());
     List<String> result = new ArrayList<>();
-    g.walk("mio", Consumers.collectConsumer(result), Suppliers.LIFOSupplier());
+    g.visit("mio", Consumers.collectConsumer(result), Suppliers.LIFOSupplier());
     System.out.println(result);
 
     System.out.print(DiGraphs.toDot(g));

@@ -5,7 +5,6 @@ import java.util.Iterator;
 public abstract class AbstractPoly implements Poly {
   protected int degree;
 
-  /** HOMEWORK */
   protected AbstractPoly(final int degree) {
     if (degree < 0)
       throw new NegativeExponentException();
