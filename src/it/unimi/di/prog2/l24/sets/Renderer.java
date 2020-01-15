@@ -78,9 +78,9 @@ public class Renderer {
 
   public String render() {
     final StringBuilder s = new StringBuilder();
-    for (int j = 0; j < h; j++) {
-      for (int i = 0; i < b; i++) {
-        final boolean inCoords = coords.contains(new Coord(j, i));
+    for (int i = 0; i < h; i++) {
+      for (int j = 0; j < b; j++) {
+        final boolean inCoords = coords.contains(new Coord(i, j));
         if (coordsAreOn) s.append(inCoords ? '*' : '.');
         else s.append(!inCoords ? '*' : '.');
       }
