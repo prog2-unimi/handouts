@@ -2,7 +2,7 @@
 
 Copyright 2019 Massimo Santini
 
-This file is part of "Programmazione 2 @ UniMI" teaching material.
+This file is part of "Programmazione 2 @ UniMI" teaching material.
 
 This is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
