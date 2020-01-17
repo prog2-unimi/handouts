@@ -19,7 +19,7 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 
 */
 
-package it.unimi.di.prog2.l24.sets;
+package it.unimi.di.prog2.l23.sets;
 
 import java.util.HashSet;
 import java.util.Set;

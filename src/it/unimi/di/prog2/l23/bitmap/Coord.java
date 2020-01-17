@@ -19,7 +19,7 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 
 */
 
-package it.unimi.di.prog2.l24.bitmap;
+package it.unimi.di.prog2.l23.bitmap;
 
 import java.util.Objects;
 

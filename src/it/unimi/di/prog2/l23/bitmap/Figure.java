@@ -19,33 +19,8 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 
 */
 
-package it.unimi.di.prog2.l23;
+package it.unimi.di.prog2.l23.bitmap;
 
-import java.util.Objects;
-
-// value class
-public class Coord {
-  public final int r, c;
-
-  public Coord(final int r, final int c) {
-    this.r = r;
-    this.c = c;
-  }
-
-  @Override
-  public boolean equals(Object obj) {
-    if (!(obj instanceof Coord)) return false;
-    final Coord other = (Coord) obj;
-    return c == other.c && r == other.r;
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(c, r);
-  }
-
-  @Override
-  public String toString() {
-    return String.format("(%d, %d)", r, c);
-  }
+public interface Figure {
+  public void draw(final Bitmap bitmap);
 }

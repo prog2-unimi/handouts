@@ -19,7 +19,7 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 
 */
 
-package it.unimi.di.prog2.l24.bitmap;
+package it.unimi.di.prog2.l23.bitmap;
 
 /** An immutable (vertical, or horizontal) segment. */
 public class Segment implements Figure {

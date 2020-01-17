@@ -19,7 +19,7 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 
 */
 
-package it.unimi.di.prog2.l24.bitmap;
+package it.unimi.di.prog2.l23.sets;
 
 import java.io.InputStream;
 import java.io.PrintStream;
@@ -31,7 +31,7 @@ public class Interpreter {
   private Interpreter() {}
 
   public static void run(final InputStream in, final PrintStream out) {
-    Bitmap bitmap = new Bitmap(1, 1);
+    Renderer renderer = new Renderer(1, 1);
     final Stamp[] stamps = new Stamp[1000];
     @SuppressWarnings("resource")
     final Scanner s = new Scanner(in);
@@ -44,41 +44,41 @@ public class Interpreter {
           b = s.nextInt();
           h = s.nextInt();
           if (b < 0 || b > 1000 || h < 0 || h > 1000) continue;
-          bitmap = new Bitmap(b, h);
+          renderer = new Renderer(b, h);
           break;
 
         case 'c':
-          bitmap.clear();
+          renderer.clear();
           break;
 
         case 'i':
-          bitmap.invert();
+          renderer.invert();
           break;
 
         case 'x':
           r = s.nextInt();
           c = s.nextInt();
-          bitmap.turnOn(new Coord(r, c));
+          renderer.turnOn(new Coord(r, c));
           break;
 
         case 'o':
           r = s.nextInt();
           c = s.nextInt();
-          bitmap.turnOff(new Coord(r, c));
+          renderer.turnOff(new Coord(r, c));
           break;
 
         case 'h':
           l = s.nextInt();
           r = s.nextInt();
           c = s.nextInt();
-          new Segment(new Coord(r, c), l, false).draw(bitmap);
+          renderer.draw(new Segment(new Coord(r, c), l, false));
           break;
 
         case 'v':
           h = s.nextInt();
           r = s.nextInt();
           c = s.nextInt();
-          new Segment(new Coord(r, c), h, true).draw(bitmap);
+          renderer.draw(new Segment(new Coord(r, c), h, true));
           break;
 
         case 'r':
@@ -86,7 +86,7 @@ public class Interpreter {
           l = s.nextInt();
           r = s.nextInt();
           c = s.nextInt();
-          new Rectangle(new Coord(r, c), l, h).draw(bitmap);
+          renderer.draw(new Rectangle(new Coord(r, c), l, h));
           break;
 
         case 's':
@@ -108,11 +108,11 @@ public class Interpreter {
           m = s.nextInt();
           r = s.nextInt();
           c = s.nextInt();
-          if (0 <= m && m < 1000 && stamps[m] != null) stamps[m].draw(bitmap, r, c);
+          if (0 <= m && m < 1000 && stamps[m] != null) renderer.draw(stamps[m], r, c);
           break;
 
         case 'p':
-          out.print(bitmap.render());
+          out.print(renderer.render());
           break;
       }
     }

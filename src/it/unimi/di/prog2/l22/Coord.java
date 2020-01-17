@@ -19,17 +19,33 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 
 */
 
-package it.unimi.di.prog2.l24.sets;
+package it.unimi.di.prog2.l22;
 
-import java.util.Set;
+import java.util.Objects;
 
-/** A figure, that is a set of coordinates. */
-public interface Figure {
+// value class
+public class Coord {
+  public final int r, c;
 
-  /**
-   * The set of coordinates belonging to the figure.
-   *
-   * @return a set of coordinates.
-   */
-  Set<Coord> coords();
+  public Coord(final int r, final int c) {
+    this.r = r;
+    this.c = c;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (!(obj instanceof Coord)) return false;
+    final Coord other = (Coord) obj;
+    return c == other.c && r == other.r;
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(c, r);
+  }
+
+  @Override
+  public String toString() {
+    return String.format("(%d, %d)", r, c);
+  }
 }

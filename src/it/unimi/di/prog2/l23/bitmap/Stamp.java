@@ -19,7 +19,7 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 
 */
 
-package it.unimi.di.prog2.l24.sets;
+package it.unimi.di.prog2.l23.bitmap;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -43,7 +43,11 @@ public class Stamp implements Figure {
   }
 
   @Override
-  public Set<Coord> coords() {
-    return coords; // this is safe since coordinates are immutable and coords is immutable too
+  public void draw(final Bitmap bitmap) {
+    for (Coord p : coords) bitmap.turnOn(p);
+  }
+
+  public void draw(Bitmap bitmap, final int r, final int c) {
+    for (Coord p : coords) bitmap.turnOn(new Coord(p.r + r, p.c + c));
   }
 }

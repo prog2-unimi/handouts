@@ -19,8 +19,17 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 
 */
 
-package it.unimi.di.prog2.l24.bitmap;
+package it.unimi.di.prog2.l23.sets;
 
+import java.util.Set;
+
+/** A figure, that is a set of coordinates. */
 public interface Figure {
-  public void draw(final Bitmap bitmap);
+
+  /**
+   * The set of coordinates belonging to the figure.
+   *
+   * @return a set of coordinates.
+   */
+  Set<Coord> coords();
 }

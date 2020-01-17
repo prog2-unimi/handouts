@@ -2,4 +2,4 @@
  * Codice relativo alla lezione 23, per maggiori dettagli si veda il <a
  * href="https://prog2.di.unimi.it/diario">diario del corso</a>.
  */
-package it.unimi.di.prog2.l23;
+package it.unimi.di.prog2.l22;
