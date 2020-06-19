@@ -22,6 +22,7 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 package it.unimi.di.prog2.l14.ci.ef;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class LogAdder extends AdderForwarder {
@@ -44,6 +45,6 @@ public class LogAdder extends AdderForwarder {
   }
 
   public List<Integer> log() {
-    return List.copyOf(seen);
+    return Collections.unmodifiableList(seen);
   }
 }
