@@ -36,14 +36,13 @@ per eseguire la *classe* `ComputeFactorial` del *pacchetto*
 
     java -cp dist it.unimi.di.prog2.l04.ComputeFactorial
 
-potete terminare l'esecuzione usando `^C` o `^D` (ossia premendo il tasto `ctrl`
-assieme al tasto `c` o `d`). In fine, se volete **generare la documentazione**
+potete terminare l'esecuzione usando `^C` o `^D` (ossia premendo il tasto `ctrl`
+assieme al tasto `c` o `d`). In fine, se volete **generare la documentazione**
 in formato HTML usate il comando
 
     javadoc -d docs -private src/it/unimi/di/prog2/*/*.java
 
-e quindi aprite nel *browser* il documento `docs/index.html`; è disponibile una
-[versione precompilata della documentazione](https://prog2-unimi.github.io/handouts/).
+e quindi aprite nel *browser* il documento `docs/index.html`.
 
 ### Usare uno strumento di build auotmation
 
