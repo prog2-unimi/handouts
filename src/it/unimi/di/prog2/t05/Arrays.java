@@ -1,6 +1,6 @@
 /*
 
-Copyright 2019 Massimo Santini
+Copyright 2020 Massimo Santini
 
 This file is part of "Programmazione 2 @ UniMI" teaching material.
 
