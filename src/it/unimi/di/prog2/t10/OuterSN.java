@@ -21,6 +21,10 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 
 package it.unimi.di.prog2.t10;
 
+/**
+ * Example of a <a href="https://docs.oracle.com/javase/tutorial/java/javaOO/nested.html">Static
+ * Nested Class</a>.
+ */
 public class OuterSN {
 
   private final String state;
