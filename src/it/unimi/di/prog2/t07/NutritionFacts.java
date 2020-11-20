@@ -21,7 +21,7 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 
 package it.unimi.di.prog2.t07;
 
-/** See EJ 2.1 for a discussion of this class. */
+/** See EJ 2.2 for a discussion of this class. */
 @SuppressWarnings("unused")
 public class NutritionFacts {
 

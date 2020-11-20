@@ -96,9 +96,10 @@ public class Arrays {
   /**
    * Partitions the elements of the given subarray.
    *
-   * <p>More precisely reorders the elements into two contiguous groups, <code>a[i],…, a[res]</code>
-   * and <code>a[res+1],…, a[j]</code>, such that each element in the second group is at least as
-   * large as each element of the first group, where <code>res</code> is the returned value.
+   * <p>More precisely reorders the elements into two contiguous groups, <code>a[i],…, a[res]
+   * </code> and <code>a[res+1],…, a[j]</code>, such that each element in the second group is at
+   * least as large as each element of the first group, where <code>res</code> is the returned
+   * value.
    *
    * @param a a <em>non null</em> array.
    * @param i the lower limit, must be non negative and less than <code>j</code>.
