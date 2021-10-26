@@ -81,7 +81,7 @@ public class IntSet {
   }
 
   /**
-   * Returns an element chosen at random from this set.
+   * Returns an element from this set.
    *
    * @return an arbitrary element from this set.
    * @throws EmptyException if this set is empty.
