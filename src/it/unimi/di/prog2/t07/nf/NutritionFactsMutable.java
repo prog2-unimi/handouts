@@ -19,24 +19,42 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 
 */
 
-package it.unimi.di.prog2.t07;
+package it.unimi.di.prog2.t07.nf;
 
-/** See EJ 2.1 for a discussion of the alternatives presented here. */
-public class UseNutritionFacts {
+/** See EJ 2.1 for a discussion of this class. */
+@SuppressWarnings("unused")
+public class NutritionFactsMutable {
 
-  @SuppressWarnings("unused")
-  public static void main(String[] args) {
+  private int servingSize = -1;
+  private int servings = -1;
+  private int calories = 0;
+  private int fat = 0;
+  private int sodium = 0;
+  private int carbohydrate = 0;
 
-    NutritionFactsImmutable immutableCola = new NutritionFactsImmutable(240, 8, 100, 0, 35, 27);
+  public NutritionFactsMutable() {}
 
-    NutritionFactsMutable mutableCola = new NutritionFactsMutable();
-    mutableCola.setServingSize(240);
-    mutableCola.setServings(8);
-    mutableCola.setCalories(100);
-    mutableCola.setSodium(35);
-    mutableCola.setCarbohydrate(27);
+  public void setServingSize(int val) {
+    servingSize = val;
+  }
 
-    NutritionFacts cocaCola =
-        new NutritionFacts.Builder(240, 8).calories(100).sodium(35).carbohydrate(27).build();
+  public void setServings(int val) {
+    servings = val;
+  }
+
+  public void setCalories(int val) {
+    calories = val;
+  }
+
+  public void setFat(int val) {
+    fat = val;
+  }
+
+  public void setSodium(int val) {
+    sodium = val;
+  }
+
+  public void setCarbohydrate(int val) {
+    carbohydrate = val;
   }
 }
