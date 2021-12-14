@@ -34,7 +34,7 @@ public class DecimalDigitsAG {
   }
 
   /**
-   * Returns a <em>generator<em> on from the least significant to the most significant non zero
+   * Returns a <em>generator</em> on from the least significant to the most significant non zero
    * digits.
    *
    * @return the generator.
