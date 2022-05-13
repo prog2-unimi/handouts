@@ -53,7 +53,7 @@ public class Liste {
     /*
       Usando Vector, casting e convertendo esplicitamente da/a i tipi di
       avvolgimento dei tipi primitivi (secondo quando disponibile quando è stato
-      redattto il libro di testo).
+      redatto il libro di testo).
     */
 
     Vector quadratiOldSchool = new Vector();
