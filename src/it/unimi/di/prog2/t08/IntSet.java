@@ -54,7 +54,7 @@ public class IntSet {
    * @param other the {@code IntSet} to copy from.
    */
   private IntSet(IntSet other) {
-    els = new ArrayList<Integer>(other.els);
+    els = new ArrayList<>(other.els);
   }
 
   // Methods
