@@ -28,35 +28,35 @@ import java.util.NoSuchElementException;
 /** https://en.wikipedia.org/wiki/Heap%27s_algorithm */
 public class PermutationIterator<T> implements Iterator<T[]> {
 
-  private final T[] P;
-  private final int[] C;
+  private final T[] p;
+  private final int[] c;
   private boolean ready;
   private int i;
 
   public PermutationIterator(T[] P) {
-    this.P = P.clone();
-    C = new int[P.length];
+    this.p = P.clone();
+    c = new int[P.length];
     this.i = 0;
     ready = true;
   }
 
   private void exch(int i, int j) {
-    T t = P[i];
-    P[i] = P[j];
-    P[j] = t;
+    T t = p[i];
+    p[i] = p[j];
+    p[j] = t;
   }
 
   @Override
   public boolean hasNext() {
     if (ready) return true;
-    while (i < P.length) {
-      if (C[i] < i) {
-        exch(i % 2 == 0 ? 0 : C[i], i);
+    while (i < p.length) {
+      if (c[i] < i) {
+        exch(i % 2 == 0 ? 0 : c[i], i);
         ready = true;
-        C[i]++;
+        c[i]++;
         i = 0;
         break;
-      } else C[i++] = 0;
+      } else c[i++] = 0;
     }
     return ready;
   }
@@ -65,7 +65,7 @@ public class PermutationIterator<T> implements Iterator<T[]> {
   public T[] next() {
     if (!hasNext()) throw new NoSuchElementException();
     ready = false;
-    return P.clone();
+    return p.clone();
   }
 
   public static void main(String[] args) {
