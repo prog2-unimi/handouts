@@ -23,7 +23,7 @@ package it.unimi.di.prog2.t08;
 
 public class IntSetsClient {
 
-  public static void main(String args[]) {
+  public static void main(String[] args) {
     int[] a = new int[args.length];
     int i = 0;
     for (String s : args) a[i++] = Integer.parseInt(s);
