@@ -126,13 +126,13 @@ public class IntSet {
    * @throws EmptyException if this set is empty.
    */
   public int choose() throws EmptyException {
-    if (els.size() == 0) throw new EmptyException("Can't choose from an empty set");
+    if (els.isEmpty()) throw new EmptyException("Can't choose from an empty set");
     return els.get(els.size() - 1);
   }
 
   @Override
   public String toString() {
-    if (els.size() == 0) return "IntSet: {}";
+    if (els.isEmpty()) return "IntSet: {}";
     String s = "IntSet: {" + els.get(0);
     for (int i = 1; i < els.size(); i++) s = s + ", " + els.get(i);
     return s + "}";
