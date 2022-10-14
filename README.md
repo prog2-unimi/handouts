@@ -64,4 +64,4 @@ trovare il materiale nel
 
 * branch dell'[AA 2019/20](../../tree/aa1920),
 * branch dell'[AA 2020/21](../../tree/aa2021),
-* branch dell'[AA 2021/22](../../tree/aa2122)
+* branch dell'[AA 2021/22](../../tree/aa2122).
