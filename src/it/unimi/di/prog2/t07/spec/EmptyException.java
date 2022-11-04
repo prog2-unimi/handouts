@@ -19,31 +19,21 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 
 */
 
-package it.unimi.di.prog2.t04;
+package it.unimi.di.prog2.t07.spec;
 
-import java.util.Scanner;
+/** Thrown when an application attempts to use extract elements from an empty {@link IntSet}. */
+@SuppressWarnings("serial")
+public class EmptyException extends RuntimeException {
 
-/*
- * Un esempio di programma che legge un elenco di interi dal flusso di
- * ingresso standard (stdin) e ne emette la somma.
- *
- * Una volta compilato, un esempio di esecuzione è
- *
- *  java FlussoIngressoStandard
- *
- * a cui far seguire un elenco di interi terminato da ^D (ossia premendo i
- * tasti ctrl e D contemporaneamente).
- *
- */
+  public EmptyException() {
+    super();
+  }
 
-public class SommaFlussoIngressoStandard {
-  public static void main(String[] args) {
-    int somma = 0;
+  public EmptyException(String message) {
+    super(message);
+  }
 
-    try (Scanner s = new Scanner(System.in)) {
-      while (s.hasNextInt()) somma += s.nextInt();
-    }
-
-    System.out.println(somma);
+  public EmptyException(String message, Throwable cause) {
+    super(message, cause);
   }
 }

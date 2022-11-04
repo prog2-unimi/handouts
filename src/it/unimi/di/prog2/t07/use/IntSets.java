@@ -19,31 +19,26 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 
 */
 
-package it.unimi.di.prog2.t04;
+package it.unimi.di.prog2.t07.use;
 
-import java.util.Scanner;
+import it.unimi.di.prog2.t07.impl.IntSet;
 
-/*
- * Un esempio di programma che legge un elenco di interi dal flusso di
- * ingresso standard (stdin) e ne emette la somma.
- *
- * Una volta compilato, un esempio di esecuzione è
- *
- *  java FlussoIngressoStandard
- *
- * a cui far seguire un elenco di interi terminato da ^D (ossia premendo i
- * tasti ctrl e D contemporaneamente).
- *
- */
+/** A collection of methods for {@link IntSet}s. */
+public class IntSets {
 
-public class SommaFlussoIngressoStandard {
-  public static void main(String[] args) {
-    int somma = 0;
+  // See EJ 2.4
+  private IntSets() {}
 
-    try (Scanner s = new Scanner(System.in)) {
-      while (s.hasNextInt()) somma += s.nextInt();
-    }
-
-    System.out.println(somma);
+  /**
+   * Builds a set from an array of elements.
+   *
+   * @param a and array of integer elements.
+   * @return the set containing an entry for every distinct element of {@code a}.
+   * @throws NullPointerException if {@code a} is {@code null}.
+   */
+  public static IntSet getElements(int[] a) throws NullPointerException {
+    IntSet s = new IntSet();
+    for (int i = 0; i < a.length; i++) s.insert(a[i]);
+    return s;
   }
 }

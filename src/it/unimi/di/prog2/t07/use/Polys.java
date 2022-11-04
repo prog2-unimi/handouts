@@ -19,31 +19,26 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 
 */
 
-package it.unimi.di.prog2.t04;
+package it.unimi.di.prog2.t07.use;
 
-import java.util.Scanner;
+import it.unimi.di.prog2.t07.impl.Poly;
 
-/*
- * Un esempio di programma che legge un elenco di interi dal flusso di
- * ingresso standard (stdin) e ne emette la somma.
- *
- * Una volta compilato, un esempio di esecuzione è
- *
- *  java FlussoIngressoStandard
- *
- * a cui far seguire un elenco di interi terminato da ^D (ossia premendo i
- * tasti ctrl e D contemporaneamente).
- *
- */
+/** A collection of methods for {@link Poly}s. */
+public class Polys {
 
-public class SommaFlussoIngressoStandard {
-  public static void main(String[] args) {
-    int somma = 0;
+  // See EJ 2.4
+  private Polys() {}
 
-    try (Scanner s = new Scanner(System.in)) {
-      while (s.hasNextInt()) somma += s.nextInt();
-    }
-
-    System.out.println(somma);
+  /**
+   * Returns the derivative of the given polynomial.
+   *
+   * @param p the polynomial to differentiate.
+   * @return the derivative of {@code p}.
+   * @throws NullPointerException if {@code p} is {@code null}.
+   */
+  public static Poly diff(Poly p) throws NullPointerException {
+    Poly q = new Poly();
+    for (int i = 1; i <= p.degree(); i++) q = q.add(new Poly(p.coeff(i) * i, i - 1));
+    return q;
   }
 }
