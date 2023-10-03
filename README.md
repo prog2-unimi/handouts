@@ -24,6 +24,21 @@ di questo repository usando il link in questa frase, oppure il bottone verde
 "Clone or download" in altro a destra nella pagina dove state leggendo questo
 `README.md`.
 
+Una volta ottenuta una copia locale, a patto che abbia installato il *Java
+Developer Kit* versione 17, può procedere a *compilare* il codice con il
+comando:
+
+    ./gradlew build
+
+(che provvederà anche ad eseguire tutti i *test* specificati nella directory
+`tests`); quindi potrà eseguire il codice di una specifica classe, ad esempio
+`it.unimi.di.prog2.l01.SalveMondo` con il comando
+
+    ./gradlew runClass -PmainClass=it.unimi.di.prog2.l01.SalveMondo
+
+Maggiori informazioni sul *build automation tool* sono disponibili nell'apposito
+[repository d'esempio](https://github.com/prog2-unimi/build-automation-example).
+
 ## Il materiale degli scorsi anni accademici
 
 Gli studenti che hanno frequentato nei precedenti anno accademici possono

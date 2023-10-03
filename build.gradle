@@ -1,0 +1,37 @@
+plugins {
+  id 'java'
+}
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+  testImplementation('org.junit.jupiter:junit-jupiter:5.9.2')
+  testRuntimeOnly('org.junit.platform:junit-platform-launcher')
+  testImplementation('org.hamcrest:hamcrest:2.2')
+}
+
+test {
+  testLogging {
+    events 'passed', 'skipped', 'failed'
+  }
+}
+
+task runClass(type: JavaExec) {
+  dependsOn build
+  group = 'Execution'
+  description = 'Runs the main method of a class given its fully qualified name.'
+  mainClass = project.hasProperty('mainClass') ? project.getProperty('mainClass') : 'my.pkg.Example'
+  classpath = sourceSets.main.runtimeClasspath
+}
+
+javadoc {
+  options.docTitle = 'Programmazione II @ UniMI'
+  options.overview = 'src/overview.html'
+  options.links = [ 'https://docs.oracle.com/en/java/javase/17/docs/api/' ]
+  options.showFromPrivate()
+  options.header = '<script type=\'text/javascript\' src=\'https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML\'></script>'
+  options.addBooleanOption('-allow-script-in-comments', true)
+  javadoc.options.addStringOption('Xdoclint:none', '-quiet')
+}
