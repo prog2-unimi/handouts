@@ -39,6 +39,10 @@ comando:
 Maggiori informazioni sul *build automation tool* sono disponibili nell'apposito
 [repository d'esempio](https://github.com/prog2-unimi/build-automation-example).
 
+È possibile accedere direttamente alla [documentazione
+Javadoc](https://prog2-unimi.github.io/handouts/) generata a partire dai
+sorgenti di questo repository.
+
 ## Il materiale degli scorsi anni accademici
 
 Gli studenti che hanno frequentato nei precedenti anno accademici possono
