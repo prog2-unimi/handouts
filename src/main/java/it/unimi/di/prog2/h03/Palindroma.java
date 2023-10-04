@@ -19,19 +19,23 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 
 */
 
-package it.unimi.di.prog2.l01;
+package it.unimi.di.prog2.h03;
 
-import it.unimi.di.prog2.BlackBoxTestsGenerator;
-import java.util.stream.Stream;
-import org.junit.jupiter.api.DynamicTest;
-import org.junit.jupiter.api.TestFactory;
+import java.util.Scanner;
 
-public class RunBlackBoxTests {
+/**
+ * Vedi <a
+ * href="https://github.com/mapio/labprog/blob/master/esercizi/palindroma_r/Testo.md">testo</a>,
+ * eliminando la richiesta: "senza fare uso di cicli".
+ */
+public class Palindroma {
 
-  BlackBoxTestsGenerator BBTG = new BlackBoxTestsGenerator("tests");
-
-  @TestFactory
-  public Stream<DynamicTest> testSalveMondo() {
-    return BBTG.test("it.unimi.di.prog2.l01.SalveMondo");
+  public static void main(String[] args) {
+    try (Scanner s = new Scanner(System.in)) {
+      String parola = s.next();
+      int i, len = parola.length();
+      for (i = 0; i < len / 2; i++) if (parola.charAt(i) != parola.charAt(len - i - 1)) break;
+      if (i == len / 2) System.out.println("si");
+    }
   }
 }
