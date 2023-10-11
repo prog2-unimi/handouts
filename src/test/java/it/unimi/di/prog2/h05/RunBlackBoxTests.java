@@ -19,7 +19,7 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 
 */
 
-package it.unimi.di.prog2.h04;
+package it.unimi.di.prog2.h05;
 
 import it.unimi.di.prog2.BlackBoxTestsGenerator;
 import java.util.stream.Stream;
@@ -31,12 +31,22 @@ public class RunBlackBoxTests {
   BlackBoxTestsGenerator BBTG = new BlackBoxTestsGenerator("tests", 2);
 
   @TestFactory
-  public Stream<DynamicTest> testUltimaRipetizione() {
-    return BBTG.test("it.unimi.di.prog2.h04.UltimaRipetizione");
+  public Stream<DynamicTest> testGrigliaIrregolare1() {
+    return BBTG.test("it.unimi.di.prog2.h05.GrigliaIrregolare1");
   }
 
   @TestFactory
-  public Stream<DynamicTest> testGiustificaADestra() {
-    return BBTG.test("it.unimi.di.prog2.h04.GiustificaADestra");
+  public Stream<DynamicTest> testGrigliaIrregolare2() {
+    return BBTG.test("it.unimi.di.prog2.h05.GrigliaIrregolare2");
+  }
+
+  @TestFactory
+  public Stream<DynamicTest> testGrigliaIrregolare3() {
+    return BBTG.test("it.unimi.di.prog2.h05.GrigliaIrregolare3");
+  }
+
+  @TestFactory
+  public Stream<DynamicTest> testGrigliaIrregolare4() {
+    return BBTG.test("it.unimi.di.prog2.h05.GrigliaIrregolare4");
   }
 }

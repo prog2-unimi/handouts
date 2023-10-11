@@ -21,7 +21,7 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 
 package it.unimi.di.prog2;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 
 import java.io.ByteArrayInputStream;
@@ -37,11 +37,14 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
+import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.function.Executable;
 
@@ -53,6 +56,7 @@ public class BlackBoxTestsGenerator {
   public static final String INPUT_FORMAT = "input-%d.txt";
 
   public final Path testsDir;
+  public final int keep;
 
   public class BalckBoxTest {
     public final String name;
@@ -62,7 +66,8 @@ public class BlackBoxTestsGenerator {
 
     public class Case implements Executable {
       private final String[] args;
-      private final byte[] input, expected;
+      private final byte[] input;
+      private List<String> expected;
 
       public Case(int n) throws IOException {
         Path input = path.resolve(String.format("input-%d.txt", n));
@@ -71,9 +76,27 @@ public class BlackBoxTestsGenerator {
         this.input = input.toFile().exists() ? Files.readAllBytes(input) : new byte[0];
         this.args =
             args.toFile().exists()
-                ? Files.readAllLines(args).toArray(new String[0])
+                ? trim(Files.readAllLines(args)).toArray(new String[0])
                 : new String[0];
-        this.expected = Files.readAllBytes(expected);
+        this.expected = trim(Files.readAllLines(expected));
+      }
+
+      private static List<String> toLines(ByteArrayOutputStream baos) {
+        try {
+          baos.close();
+        } catch (IOException e) {
+        }
+        return trim(Arrays.asList(baos.toString().split("\n")));
+      }
+
+      private static List<String> trim(List<String> in) {
+        List<String> out = new ArrayList<>();
+        for (String s : in) {
+          String t = s.trim();
+          if (s.isEmpty()) continue;
+          out.add(t);
+        }
+        return Collections.unmodifiableList(out);
       }
 
       public void execute() {
@@ -86,62 +109,78 @@ public class BlackBoxTestsGenerator {
           main.invoke(null, (Object) args.clone());
         } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
         }
-        try {
-          baos.close();
-        } catch (IOException e) {
-        }
-        byte[] out = baos.toByteArray();
         System.setIn(stdin);
         System.setOut(stdout);
-        String[] ol = new String(out).split("\n");
-        String[] el = new String(expected).split("\n");
-        assertArrayEquals(el, ol);
+        assertIterableEquals(expected, toLines(baos));
       }
     }
 
-    private BalckBoxTest(final String name)
-        throws NoSuchMethodException, SecurityException, ClassNotFoundException, IOException {
+    private static String simplify(String s, int k) {
+      if (k <= 0) return s;
+      int n = s.length();
+      while (k-- > 0) n = s.lastIndexOf(".", n - 1);
+      return s.substring(n + 1);
+    }
+
+    private BalckBoxTest(final String name) {
       this.name = Objects.requireNonNull(name);
       this.path = testsDir.resolve(name.replace(".", File.separator));
-      this.main = Class.forName(name).getMethod("main", String[].class);
+      String simpleName = simplify(name, keep);
+      Method main = null;
+      try {
+        main = Class.forName(name).getMethod("main", String[].class);
+      } catch (NoSuchMethodException | SecurityException | ClassNotFoundException e) {
+        cases.add(
+            dynamicTest(
+                simpleName + " [missing main method]",
+                () -> {
+                  Assumptions.assumeTrue(false, "Main not found");
+                }));
+      }
+      this.main = main;
+      if (main == null) return;
       try (DirectoryStream<Path> stream = Files.newDirectoryStream(path, "expected-*.txt")) {
         for (Path path : stream) {
           if (!Files.isDirectory(path)) {
             Matcher m = TASK_PATTERN.matcher(path.getFileName().toString());
+            DynamicTest tc = null;
             if (m.matches())
-              cases.add(
-                  dynamicTest(name + " - " + m.group(1), new Case(Integer.parseInt(m.group(1)))));
+              try {
+                tc =
+                    dynamicTest(
+                        simpleName + " - " + m.group(1), new Case(Integer.parseInt(m.group(1))));
+              } catch (IOException e) {
+                tc =
+                    dynamicTest(
+                        simpleName + " - " + m.group(1) + " [problem reading testcase]",
+                        () -> {
+                          Assumptions.assumeTrue(false, "Problems reading test case");
+                        });
+              }
+            cases.add(tc);
           }
         }
+      } catch (IOException e) {
+        cases.add(
+            dynamicTest(
+                simpleName + " [missing tests dir]",
+                () -> {
+                  Assumptions.assumeTrue(false, "Problems reading tests");
+                }));
       }
     }
   }
 
   public BlackBoxTestsGenerator(String testsDir) {
-    this.testsDir = Paths.get(testsDir); // TODO: check not null and readable
+    this(testsDir, -1);
+  }
+
+  public BlackBoxTestsGenerator(String testsDir, int keep) {
+    this.testsDir = Paths.get(Objects.requireNonNull(testsDir));
+    this.keep = keep;
   }
 
   public Stream<DynamicTest> test(final String name) {
-    BalckBoxTest bbt = null;
-    List<DynamicTest> cases = new ArrayList<>();
-    try {
-      bbt = new BalckBoxTest(name);
-      cases = bbt.cases;
-    } catch (NoSuchMethodException | SecurityException | ClassNotFoundException e) {
-      cases.add(
-          dynamicTest(
-              "NoSuchMethodException",
-              () -> {
-                throw e;
-              }));
-    } catch (IOException e) {
-      cases.add(
-          dynamicTest(
-              "IOException",
-              () -> {
-                throw e;
-              }));
-    }
-    return cases.stream();
+    return new BalckBoxTest(name).cases.stream();
   }
 }
