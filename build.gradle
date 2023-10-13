@@ -29,6 +29,10 @@ test {
   defaultCharacterEncoding = 'UTF-8'
 }
 
+tasks.withType(JavaExec) {
+  enableAssertions = project.hasProperty('enableAssertions') ? project.getProperty('enableAssertions') : false
+}
+
 task runClass(type: JavaExec) {
   dependsOn build
   group = 'Execution'
