@@ -141,24 +141,22 @@ public class BlackBoxTestsGenerator {
       if (main == null) return;
       try (DirectoryStream<Path> stream = Files.newDirectoryStream(path, "expected-*.txt")) {
         for (Path path : stream) {
-          if (!Files.isDirectory(path)) {
-            Matcher m = TASK_PATTERN.matcher(path.getFileName().toString());
-            DynamicTest tc = null;
-            if (m.matches())
-              try {
-                tc =
-                    dynamicTest(
-                        simpleName + " - " + m.group(1), new Case(Integer.parseInt(m.group(1))));
-              } catch (IOException e) {
-                tc =
-                    dynamicTest(
-                        simpleName + " - " + m.group(1) + " [problem reading testcase]",
-                        () -> {
-                          Assumptions.assumeTrue(false, "Problems reading test case");
-                        });
-              }
-            cases.add(tc);
-          }
+          Matcher m = TASK_PATTERN.matcher(path.getFileName().toString());
+          DynamicTest tc = null;
+          if (m.matches())
+            try {
+              tc =
+                  dynamicTest(
+                      simpleName + " - " + m.group(1), new Case(Integer.parseInt(m.group(1))));
+            } catch (IOException e) {
+              tc =
+                  dynamicTest(
+                      simpleName + " - " + m.group(1) + " [problem reading testcase]",
+                      () -> {
+                        Assumptions.assumeTrue(false, "Problems reading test case");
+                      });
+            }
+          cases.add(tc);
         }
       } catch (IOException e) {
         cases.add(
@@ -182,5 +180,13 @@ public class BlackBoxTestsGenerator {
 
   public Stream<DynamicTest> test(final String name) {
     return new BalckBoxTest(name).cases.stream();
+  }
+
+  public static void main(String[] args) throws IOException {
+    Files.find(
+            Paths.get("tests/it/unimi/di/prog2/h03"),
+            Integer.MAX_VALUE,
+            (p, a) -> a.isDirectory() && p.resolve("expected-1.txt").toFile().exists())
+        .forEach(System.out::println);
   }
 }

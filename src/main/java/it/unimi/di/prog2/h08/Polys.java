@@ -19,19 +19,24 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 
 */
 
-package it.unimi.di.prog2.h06;
+package it.unimi.di.prog2.h08;
 
-import it.unimi.di.prog2.BlackBoxTestsGenerator;
-import java.util.stream.Stream;
-import org.junit.jupiter.api.DynamicTest;
-import org.junit.jupiter.api.TestFactory;
+/** A collection of methods for {@link Poly}s. */
+public class Polys {
 
-public class RunBlackBoxTests {
+  // See EJ 2.4
+  private Polys() {}
 
-  BlackBoxTestsGenerator BBTG = new BlackBoxTestsGenerator("tests", 2);
-
-  @TestFactory
-  public Stream<DynamicTest> testRadici() {
-    return BBTG.test("it.unimi.di.prog2.h06.RadiciClient");
+  /**
+   * Returns the derivative of the given polynomial.
+   *
+   * @param p the polynomial to differentiate.
+   * @return the derivative of {@code p}.
+   * @throws NullPointerException if {@code p} is {@code null}.
+   */
+  public static Poly diff(Poly p) throws NullPointerException {
+    Poly q = new Poly();
+    for (int i = 1; i <= p.degree(); i++) q = q.add(new Poly(p.coeff(i) * i, i - 1));
+    return q;
   }
 }

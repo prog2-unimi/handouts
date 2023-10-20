@@ -19,19 +19,23 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 
 */
 
-package it.unimi.di.prog2.h06;
+package it.unimi.di.prog2.h08.impl;
 
-import it.unimi.di.prog2.BlackBoxTestsGenerator;
-import java.util.stream.Stream;
-import org.junit.jupiter.api.DynamicTest;
-import org.junit.jupiter.api.TestFactory;
+/**
+ * Thrown when an application attempts to use a negative exponent in a {@link
+ * it.unimi.di.prog2.h08.Poly}.
+ */
+public class NegativeExponentException extends IllegalArgumentException {
 
-public class RunBlackBoxTests {
+  public NegativeExponentException() {
+    super();
+  }
 
-  BlackBoxTestsGenerator BBTG = new BlackBoxTestsGenerator("tests", 2);
+  public NegativeExponentException(String message) {
+    super(message);
+  }
 
-  @TestFactory
-  public Stream<DynamicTest> testRadici() {
-    return BBTG.test("it.unimi.di.prog2.h06.RadiciClient");
+  public NegativeExponentException(String message, Throwable cause) {
+    super(message, cause);
   }
 }

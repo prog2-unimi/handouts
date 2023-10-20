@@ -19,7 +19,7 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 
 */
 
-package it.unimi.di.prog2.h06;
+package it.unimi.di.prog2.h07;
 
 import it.unimi.di.prog2.BlackBoxTestsGenerator;
 import java.util.stream.Stream;
@@ -32,6 +32,6 @@ public class RunBlackBoxTests {
 
   @TestFactory
   public Stream<DynamicTest> testRadici() {
-    return BBTG.test("it.unimi.di.prog2.h06.RadiciClient");
+    return BBTG.test("it.unimi.di.prog2.h07.RadiciClient");
   }
 }

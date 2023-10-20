@@ -19,19 +19,27 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 
 */
 
-package it.unimi.di.prog2.h06;
+package it.unimi.di.prog2.h08;
 
-import it.unimi.di.prog2.BlackBoxTestsGenerator;
-import java.util.stream.Stream;
-import org.junit.jupiter.api.DynamicTest;
-import org.junit.jupiter.api.TestFactory;
+import java.util.Objects;
 
-public class RunBlackBoxTests {
+/** A collection of methods for {@link IntSet}s. */
+public class IntSets {
 
-  BlackBoxTestsGenerator BBTG = new BlackBoxTestsGenerator("tests", 2);
+  // See EJ 2.4
+  private IntSets() {}
 
-  @TestFactory
-  public Stream<DynamicTest> testRadici() {
-    return BBTG.test("it.unimi.di.prog2.h06.RadiciClient");
+  /**
+   * Builds a set from an array of elements.
+   *
+   * @param a and array of integer elements.
+   * @return the set containing an entry for every distinct element of {@code a}.
+   * @throws NullPointerException if {@code a} is {@code null}.
+   */
+  public static IntSet getElements(int[] a) throws NullPointerException {
+    Objects.requireNonNull(a, "L'array non può essere null");
+    IntSet s = new IntSet();
+    for (int i = 0; i < a.length; i++) s.insert(a[i]);
+    return s;
   }
 }

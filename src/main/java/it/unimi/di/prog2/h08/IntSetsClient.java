@@ -19,19 +19,15 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 
 */
 
-package it.unimi.di.prog2.h06;
+package it.unimi.di.prog2.h08;
 
-import it.unimi.di.prog2.BlackBoxTestsGenerator;
-import java.util.stream.Stream;
-import org.junit.jupiter.api.DynamicTest;
-import org.junit.jupiter.api.TestFactory;
+public class IntSetsClient {
 
-public class RunBlackBoxTests {
-
-  BlackBoxTestsGenerator BBTG = new BlackBoxTestsGenerator("tests", 2);
-
-  @TestFactory
-  public Stream<DynamicTest> testRadici() {
-    return BBTG.test("it.unimi.di.prog2.h06.RadiciClient");
+  public static void main(String[] args) {
+    int[] a = new int[args.length];
+    int i = 0;
+    for (String s : args) a[i++] = Integer.parseInt(s);
+    IntSet S = IntSets.getElements(a);
+    System.out.println(S);
   }
 }
