@@ -28,7 +28,7 @@ import org.junit.jupiter.api.TestFactory;
 
 public class RunBlackBoxTests {
 
-  BlackBoxTestsGenerator BBTG = new BlackBoxTestsGenerator("tests");
+  BlackBoxTestsGenerator BBTG = new BlackBoxTestsGenerator("tests", 2);
 
   @TestFactory
   public Stream<DynamicTest> testFascePEGI() {

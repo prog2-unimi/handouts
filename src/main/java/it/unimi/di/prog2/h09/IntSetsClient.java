@@ -19,19 +19,31 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 
 */
 
-package it.unimi.di.prog2.h02;
+package it.unimi.di.prog2.h09;
 
-import it.unimi.di.prog2.BlackBoxTestsGenerator;
-import java.util.stream.Stream;
-import org.junit.jupiter.api.DynamicTest;
-import org.junit.jupiter.api.TestFactory;
+import it.unimi.di.prog2.h08.IntSets;
+import java.util.ArrayList;
+import java.util.List;
 
-public class RunBlackBoxTests {
+public class IntSetsClient {
 
-  BlackBoxTestsGenerator BBTG = new BlackBoxTestsGenerator("tests", 2);
-
-  @TestFactory
-  public Stream<DynamicTest> testSalveMondo() {
-    return BBTG.test("it.unimi.di.prog2.h02.SalveMondo");
+  public static void main(String args[]) {
+    int[] a = new int[args.length];
+    List<Integer> asList = new ArrayList<>(a.length);
+    IntSet S = new IntSet();
+    int i = 0;
+    for (String s : args) {
+      int x = Integer.parseInt(s);
+      a[i++] = x;
+      asList.add(x);
+      S.insert(x);
+    }
+    IntSets.getElements(a);
+    for (int x : a) if (S.isIn(x)) System.out.println('A');
+    while (S.size() > 0) {
+      int x = S.choose();
+      if (asList.indexOf(x) != -1) System.out.println('S');
+      S.remove(x);
+    }
   }
 }
