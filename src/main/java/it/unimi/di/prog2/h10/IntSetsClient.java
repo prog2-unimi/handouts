@@ -19,29 +19,21 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 
 */
 
-package it.unimi.di.prog2.h09;
-
-import java.util.ArrayList;
-import java.util.List;
+package it.unimi.di.prog2.h10;
 
 public class IntSetsClient {
 
   public static void main(String args[]) {
-    int[] a = new int[args.length];
-    List<Integer> asList = new ArrayList<>(a.length);
-    IntSet S = new IntSet();
-    int i = 0;
+    IntSet C, S = new IntSet(), T = new IntSet();
+    C = S;
     for (String s : args) {
+      if (s.equals("-")) {
+        C = T;
+        continue;
+      }
       int x = Integer.parseInt(s);
-      a[i++] = x;
-      asList.add(x);
-      S.insert(x);
+      C.insert(x);
     }
-    for (int x : a) if (S.isIn(x)) System.out.println('A');
-    while (S.size() > 0) {
-      int x = S.choose();
-      if (asList.indexOf(x) != -1) System.out.println('S');
-      S.remove(x);
-    }
+    System.out.println(S.equals(T));
   }
 }

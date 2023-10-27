@@ -19,29 +19,29 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 
 */
 
-package it.unimi.di.prog2.h09;
+package it.unimi.di.prog2.h10;
 
-import java.util.ArrayList;
-import java.util.List;
+import it.unimi.di.prog2.BlackBoxTestsGenerator;
+import java.util.stream.Stream;
+import org.junit.jupiter.api.DynamicTest;
+import org.junit.jupiter.api.TestFactory;
 
-public class IntSetsClient {
+public class RunBlackBoxTests {
 
-  public static void main(String args[]) {
-    int[] a = new int[args.length];
-    List<Integer> asList = new ArrayList<>(a.length);
-    IntSet S = new IntSet();
-    int i = 0;
-    for (String s : args) {
-      int x = Integer.parseInt(s);
-      a[i++] = x;
-      asList.add(x);
-      S.insert(x);
-    }
-    for (int x : a) if (S.isIn(x)) System.out.println('A');
-    while (S.size() > 0) {
-      int x = S.choose();
-      if (asList.indexOf(x) != -1) System.out.println('S');
-      S.remove(x);
-    }
+  BlackBoxTestsGenerator BBTG = new BlackBoxTestsGenerator("tests", 2);
+
+  @TestFactory
+  public Stream<DynamicTest> testIntSetsClient() {
+    return BBTG.test("it.unimi.di.prog2.h10.IntSetsClient");
+  }
+
+  @TestFactory
+  public Stream<DynamicTest> testPolyClient() {
+    return BBTG.test("it.unimi.di.prog2.h10.PolyClient");
+  }
+
+  @TestFactory
+  public Stream<DynamicTest> testSparsePolyClient() {
+    return BBTG.test("it.unimi.di.prog2.h10.SparsePolyClient");
   }
 }

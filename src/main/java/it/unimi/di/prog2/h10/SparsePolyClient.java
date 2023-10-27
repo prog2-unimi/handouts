@@ -19,29 +19,21 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 
 */
 
-package it.unimi.di.prog2.h09;
+package it.unimi.di.prog2.h10;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Scanner;
 
-public class IntSetsClient {
-
-  public static void main(String args[]) {
-    int[] a = new int[args.length];
-    List<Integer> asList = new ArrayList<>(a.length);
-    IntSet S = new IntSet();
-    int i = 0;
-    for (String s : args) {
-      int x = Integer.parseInt(s);
-      a[i++] = x;
-      asList.add(x);
-      S.insert(x);
-    }
-    for (int x : a) if (S.isIn(x)) System.out.println('A');
-    while (S.size() > 0) {
-      int x = S.choose();
-      if (asList.indexOf(x) != -1) System.out.println('S');
-      S.remove(x);
+public class SparsePolyClient {
+  public static void main(String[] args) {
+    Poly result = null;
+    Poly xp1 = new Poly(1, 1).add(new Poly(-1, 0));
+    try (Scanner s = new Scanner(System.in)) {
+      while (s.hasNextInt()) {
+        Poly term = new Poly(s.nextInt(), s.nextInt());
+        if (result == null) result = term;
+        else result = result.mul(xp1).add(term);
+      }
+      System.out.println(result);
     }
   }
 }

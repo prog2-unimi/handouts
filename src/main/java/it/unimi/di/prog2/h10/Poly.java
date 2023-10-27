@@ -19,9 +19,11 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 
 */
 
-package it.unimi.di.prog2.h09;
+package it.unimi.di.prog2.h10;
 
 import it.unimi.di.prog2.h08.impl.NegativeExponentException;
+import java.util.Arrays;
+import java.util.Objects;
 
 /**
  * {@code Poly}s are immutable polynomials with integer coefficients.
@@ -30,20 +32,12 @@ import it.unimi.di.prog2.h08.impl.NegativeExponentException;
  */
 public class Poly { // we don't extend Cloneable, see EJ 3.13
 
-  // Fields
-
-  /** The array of coefficients, the {@code trms[i]} is the coefficient of \( x^i \). */
-  private final int[] trms;
-
-  /** The degree of the polynomial. */
-  private final int deg;
-
-  // Constructors
+  /** The array of coefficients, the {@code coeff[i]} is the coefficient of \( x^i \). */
+  private final int[] coeff;
 
   /** Initializes this to be the zero polynomial, that is \( p = 0 \). */
   public Poly() {
-    trms = new int[1];
-    deg = 0;
+    coeff = new int[1];
   }
 
   /**
@@ -56,10 +50,8 @@ public class Poly { // we don't extend Cloneable, see EJ 3.13
   public Poly(int c, int n) throws NegativeExponentException {
     if (n < 0)
       throw new NegativeExponentException("Can't create a monomial with negative exponent");
-    if (c == 0) deg = 0;
-    else deg = n;
-    trms = new int[deg + 1];
-    trms[deg] = c;
+    coeff = new int[n + 1];
+    coeff[n] = c;
   }
 
   /**
@@ -68,11 +60,8 @@ public class Poly { // we don't extend Cloneable, see EJ 3.13
    * @param n the degree.
    */
   private Poly(int n) {
-    deg = n;
-    trms = new int[deg + 1];
+    coeff = new int[n + 1];
   }
-
-  // Methods
 
   /**
    * Returns the degree of this polynomial.
@@ -81,7 +70,7 @@ public class Poly { // we don't extend Cloneable, see EJ 3.13
    *     Poly}.
    */
   public int degree() {
-    return deg;
+    return coeff.length - 1;
   }
 
   /**
@@ -91,8 +80,8 @@ public class Poly { // we don't extend Cloneable, see EJ 3.13
    * @return the coefficient of the considered term.
    */
   public int coeff(int d) {
-    if (d < 0 || d > deg) return 0;
-    else return trms[d];
+    if (d < 0 || d >= coeff.length) return 0;
+    else return coeff[d];
   }
 
   /**
@@ -105,24 +94,24 @@ public class Poly { // we don't extend Cloneable, see EJ 3.13
    * @throws NullPointerException if {@code q} is {@code null}.
    */
   public Poly add(Poly q) throws NullPointerException {
-    if (q == null) throw new NullPointerException();
+    Objects.requireNonNull(q);
     Poly la, sm;
-    if (deg > q.deg) {
+    if (degree() > q.degree()) {
       la = this;
       sm = q;
     } else {
       la = q;
       sm = this;
     }
-    int newdeg = la.deg; // new degree is the larger degree
-    if (deg == q.deg) // unless there are trailing zeros
-    for (int k = deg; k > 0; k--)
-        if (trms[k] + q.trms[k] != 0) break;
+    int newdeg = la.degree(); // new degree is the larger degree
+    if (degree() == q.degree()) // unless there are trailing zeros
+    for (int k = degree(); k > 0; k--)
+        if (coeff[k] + q.coeff[k] != 0) break;
         else newdeg--;
     Poly r = new Poly(newdeg); // get a new Poly
     int i;
-    for (i = 0; i <= sm.deg && i <= newdeg; i++) r.trms[i] = sm.trms[i] + la.trms[i];
-    for (int j = i; j <= newdeg; j++) r.trms[j] = la.trms[j];
+    for (i = 0; i <= sm.degree() && i <= newdeg; i++) r.coeff[i] = sm.coeff[i] + la.coeff[i];
+    for (int j = i; j <= newdeg; j++) r.coeff[j] = la.coeff[j];
     return r;
   }
 
@@ -136,11 +125,11 @@ public class Poly { // we don't extend Cloneable, see EJ 3.13
    * @throws NullPointerException if {@code q} is {@code null}.
    */
   public Poly mul(Poly q) throws NullPointerException {
-    if (q == null) throw new NullPointerException();
-    if ((q.deg == 0 && q.trms[0] == 0) || (deg == 0 && trms[0] == 0)) return new Poly();
-    Poly r = new Poly(deg + q.deg);
-    for (int i = 0; i <= deg; i++)
-      for (int j = 0; j <= q.deg; j++) r.trms[i + j] = r.trms[i + j] + trms[i] * q.trms[j];
+    Objects.requireNonNull(q);
+    if ((q.degree() == 0 && q.coeff[0] == 0) || (degree() == 0 && coeff[0] == 0)) return new Poly();
+    Poly r = new Poly(degree() + q.degree());
+    for (int i = 0; i <= degree(); i++)
+      for (int j = 0; j <= q.degree(); j++) r.coeff[i + j] = r.coeff[i + j] + coeff[i] * q.coeff[j];
     return r;
   }
 
@@ -154,7 +143,7 @@ public class Poly { // we don't extend Cloneable, see EJ 3.13
    * @throws NullPointerException if {@code q} is {@code null}.
    */
   public Poly sub(Poly q) throws NullPointerException {
-    if (q == null) throw new NullPointerException();
+    Objects.requireNonNull(q);
     return add(q.minus());
   }
 
@@ -166,8 +155,47 @@ public class Poly { // we don't extend Cloneable, see EJ 3.13
    * @return this polynomial multiplied by \( -1 \).
    */
   public Poly minus() {
-    Poly r = new Poly(deg);
-    for (int i = 0; i <= deg; i++) r.trms[i] = -trms[i];
+    Poly r = new Poly(degree());
+    for (int i = 0; i <= degree(); i++) r.coeff[i] = -coeff[i];
     return r;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (o == this) return true;
+    if (!(o instanceof Poly)) return false;
+    Poly q = (Poly) o;
+    if (degree() != q.degree()) return false;
+    return Arrays.equals(coeff, q.coeff);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(degree(), coeff);
+  }
+
+  @Override
+  public String toString() {
+    if (degree() > 0) {
+      StringBuilder sb = new StringBuilder("Poly: ");
+      int c = coeff[degree()];
+      if (c < -1) sb.append("-" + (-c));
+      else if (c == -1) sb.append("-");
+      else if (c > 1) sb.append(c);
+      sb.append("x" + (degree() > 1 ? "^" + degree() : ""));
+      for (int d = degree() - 1; d > 0; d--) {
+        c = coeff[d];
+        if (c == 0) continue;
+        if (c < -1) sb.append(" - " + (-c));
+        else if (c == -1) sb.append(" - ");
+        else if (c == 1) sb.append(" + ");
+        else sb.append(" + " + c);
+        sb.append("x" + (d > 1 ? "^" + d : ""));
+      }
+      c = coeff[0];
+      if (c > 0) sb.append(" + " + c);
+      else if (c < 0) sb.append(" - " + (-c));
+      return sb.toString();
+    } else return "Poly: " + coeff[0];
   }
 }
