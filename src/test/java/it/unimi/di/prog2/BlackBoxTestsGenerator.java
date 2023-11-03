@@ -22,6 +22,9 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 package it.unimi.di.prog2;
 
 import static org.junit.jupiter.api.Assertions.assertIterableEquals;
+import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
+import static org.junit.jupiter.api.DynamicContainer.dynamicContainer;
 import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 
 import java.io.ByteArrayInputStream;
@@ -39,54 +42,52 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Stream;
-import org.junit.jupiter.api.Assumptions;
+import org.junit.jupiter.api.DynamicContainer;
+import org.junit.jupiter.api.DynamicNode;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.function.Executable;
 
 public class BlackBoxTestsGenerator {
 
-  public static final Pattern TASK_PATTERN = Pattern.compile("expected-(\\d+).txt");
-  public static final String EXPECTED_FORMAT = "expected-%d.txt";
-  public static final String ARGS_FORMAT = "args-%d.txt";
-  public static final String INPUT_FORMAT = "input-%d.txt";
-
   public final Path testsDir;
-  public final int keep;
+  public final boolean generateActualFiles = System.getenv("GENERATE_ACTUAL_FILES") != null;
 
-  public class BalckBoxTest {
-    public final String name;
+  public class BlackBoxTest {
+
+    public static final String ARGS_FORMAT = "args-%d.txt";
+    public static final String INPUT_FORMAT = "input-%d.txt";
+    public static final String EXPECTED_FORMAT = "expected-%d.txt";
+    public static final String ACTUAL_FORMAT = "actual-%d.txt";
+    public static final Pattern TASK_PATTERN = Pattern.compile("expected-(\\d+).txt");
+
     private final Method main;
     private final Path path;
-    final List<DynamicTest> cases = new ArrayList<>();
+    private final List<DynamicTest> cases;
 
-    public class Case implements Executable {
+    private class Case implements Executable {
+      private final int num;
       private final String[] args;
       private final byte[] input;
-      private List<String> expected;
+      private final List<String> expected;
 
-      public Case(int n) throws IOException {
-        Path input = path.resolve(String.format("input-%d.txt", n));
-        Path args = path.resolve(String.format("args-%d.txt", n));
-        Path expected = path.resolve(String.format("expected-%d.txt", n));
+      private Case(int num) throws IOException {
+        this.num = num;
+        Path args = path.resolve(String.format(ARGS_FORMAT, num));
+        Path input = path.resolve(String.format(INPUT_FORMAT, num));
+        Path expected = path.resolve(String.format(EXPECTED_FORMAT, num));
         this.input = input.toFile().exists() ? Files.readAllBytes(input) : new byte[0];
         this.args =
             args.toFile().exists()
                 ? trim(Files.readAllLines(args)).toArray(new String[0])
                 : new String[0];
         this.expected = trim(Files.readAllLines(expected));
-      }
-
-      private static List<String> toLines(ByteArrayOutputStream baos) {
-        try {
-          baos.close();
-        } catch (IOException e) {
-        }
-        return trim(Arrays.asList(baos.toString().split("\n")));
       }
 
       private static List<String> trim(List<String> in) {
@@ -107,86 +108,116 @@ public class BlackBoxTestsGenerator {
         System.setOut(new PrintStream(baos));
         try {
           main.invoke(null, (Object) args.clone());
-        } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+          baos.close();
+          if (generateActualFiles)
+            Files.write(path.resolve(String.format(ACTUAL_FORMAT, num)), baos.toByteArray());
+        } catch (IllegalAccessException
+            | IllegalArgumentException
+            | InvocationTargetException
+            | IOException e) {
+          fail("Error executing tests", e);
         }
         System.setIn(stdin);
         System.setOut(stdout);
-        assertIterableEquals(expected, toLines(baos));
+        assertIterableEquals(expected, trim(Arrays.asList(baos.toString().split("\n"))));
       }
     }
 
-    private static String simplify(String s, int k) {
-      if (k <= 0) return s;
-      int n = s.length();
-      while (k-- > 0) n = s.lastIndexOf(".", n - 1);
-      return s.substring(n + 1);
+    private DynamicContainer container() {
+      return dynamicContainer(path.getFileName().toString(), cases);
     }
 
-    private BalckBoxTest(final String name) {
-      this.name = Objects.requireNonNull(name);
-      this.path = testsDir.resolve(name.replace(".", File.separator));
-      String simpleName = simplify(name, keep);
+    private List<DynamicTest> cases() {
+      return cases;
+    }
+
+    private BlackBoxTest(final Path fClsPath) {
+      this.path = testsDir.resolve(Objects.requireNonNull(fClsPath));
+      String fqClsName = fClsPath.toString().replace(File.separator, ".");
       Method main = null;
+      List<DynamicTest> cases = new ArrayList<>();
       try {
-        main = Class.forName(name).getMethod("main", String[].class);
+        main = Class.forName(fqClsName).getMethod("main", String[].class);
       } catch (NoSuchMethodException | SecurityException | ClassNotFoundException e) {
         cases.add(
             dynamicTest(
-                simpleName + " [missing main method]",
+                fqClsName + " [missing main method]",
                 () -> {
-                  Assumptions.assumeTrue(false, "Main not found");
+                  assumeTrue(false, "Main not found");
                 }));
       }
       this.main = main;
-      if (main == null) return;
-      try (DirectoryStream<Path> stream = Files.newDirectoryStream(path, "expected-*.txt")) {
-        for (Path path : stream) {
-          Matcher m = TASK_PATTERN.matcher(path.getFileName().toString());
-          DynamicTest tc = null;
-          if (m.matches())
-            try {
-              tc =
-                  dynamicTest(
-                      simpleName + " - " + m.group(1), new Case(Integer.parseInt(m.group(1))));
-            } catch (IOException e) {
-              tc =
-                  dynamicTest(
-                      simpleName + " - " + m.group(1) + " [problem reading testcase]",
-                      () -> {
-                        Assumptions.assumeTrue(false, "Problems reading test case");
-                      });
-            }
-          cases.add(tc);
+      if (main != null)
+        try (DirectoryStream<Path> stream = Files.newDirectoryStream(path, "expected-*.txt")) {
+          for (Path path : stream) {
+            Matcher m = TASK_PATTERN.matcher(path.getFileName().toString());
+            DynamicTest tc = null;
+            if (m.matches())
+              try {
+                tc =
+                    dynamicTest(
+                        fqClsName + " - " + m.group(1), new Case(Integer.parseInt(m.group(1))));
+              } catch (IOException e) {
+                tc =
+                    dynamicTest(
+                        fqClsName + " - " + m.group(1) + " [problem reading testcase]",
+                        () -> {
+                          fail("Problems reading test case", e);
+                        });
+              }
+            cases.add(tc);
+          }
+        } catch (IOException e) {
+          cases.add(
+              dynamicTest(
+                  fqClsName + " [missing tests dir]",
+                  () -> {
+                    fail("Problems reading tests", e);
+                  }));
         }
-      } catch (IOException e) {
-        cases.add(
-            dynamicTest(
-                simpleName + " [missing tests dir]",
-                () -> {
-                  Assumptions.assumeTrue(false, "Problems reading tests");
-                }));
-      }
+      this.cases = Collections.unmodifiableList(cases);
     }
   }
 
   public BlackBoxTestsGenerator(String testsDir) {
-    this(testsDir, -1);
-  }
-
-  public BlackBoxTestsGenerator(String testsDir, int keep) {
     this.testsDir = Paths.get(Objects.requireNonNull(testsDir));
-    this.keep = keep;
   }
 
-  public Stream<DynamicTest> test(final String name) {
-    return new BalckBoxTest(name).cases.stream();
+  private List<DynamicContainer> wrap(List<BlackBoxTest> tc) {
+    return tc.stream().map(t -> t.container()).toList();
   }
 
-  public static void main(String[] args) throws IOException {
-    Files.find(
-            Paths.get("tests/it/unimi/di/prog2/h03"),
-            Integer.MAX_VALUE,
-            (p, a) -> a.isDirectory() && p.resolve("expected-1.txt").toFile().exists())
-        .forEach(System.out::println);
+  public List<? extends DynamicNode> test(final String pkgName) {
+    Objects.requireNonNull(pkgName);
+    Path subDir = Paths.get(pkgName.replace(".", File.separator));
+    Map<Path, List<BlackBoxTest>> p2t = new HashMap<>();
+    try {
+      Files.find(
+              testsDir.resolve(subDir),
+              Integer.MAX_VALUE,
+              (p, a) -> a.isDirectory() && p.resolve("expected-1.txt").toFile().exists())
+          .forEach(
+              p ->
+                  p2t.computeIfAbsent(
+                          testsDir.resolve(subDir).relativize(p.getParent()),
+                          k -> new LinkedList<>())
+                      .add(new BlackBoxTest(testsDir.relativize(p))));
+    } catch (IOException e) {
+      return List.of(
+          dynamicTest(
+              pkgName + " [missing tests dir]",
+              () -> {
+                fail("Problems reading tests", e);
+              }));
+    }
+    if (p2t.size() == 1) {
+      List<BlackBoxTest> lt = p2t.entrySet().iterator().next().getValue();
+      if (lt.size() == 1) return lt.get(0).cases();
+      else return wrap(lt);
+    } else {
+      return p2t.entrySet().stream()
+          .map(e -> dynamicContainer(e.getKey().toString(), wrap(e.getValue())))
+          .toList();
+    }
   }
 }

@@ -22,31 +22,31 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 package it.unimi.di.prog2.h05;
 
 import it.unimi.di.prog2.BlackBoxTestsGenerator;
-import java.util.stream.Stream;
-import org.junit.jupiter.api.DynamicTest;
+import java.util.List;
+import org.junit.jupiter.api.DynamicNode;
 import org.junit.jupiter.api.TestFactory;
 
 public class RunBlackBoxTests {
 
-  BlackBoxTestsGenerator BBTG = new BlackBoxTestsGenerator("tests", 2);
+  BlackBoxTestsGenerator BBTG = new BlackBoxTestsGenerator("tests");
 
   @TestFactory
-  public Stream<DynamicTest> testGrigliaIrregolare1() {
+  public List<? extends DynamicNode> testGrigliaIrregolare1() {
     return BBTG.test("it.unimi.di.prog2.h05.GrigliaIrregolare1");
   }
 
   @TestFactory
-  public Stream<DynamicTest> testGrigliaIrregolare2() {
+  public List<? extends DynamicNode> testGrigliaIrregolare2() {
     return BBTG.test("it.unimi.di.prog2.h05.GrigliaIrregolare2");
   }
 
   @TestFactory
-  public Stream<DynamicTest> testGrigliaIrregolare3() {
+  public List<? extends DynamicNode> testGrigliaIrregolare3() {
     return BBTG.test("it.unimi.di.prog2.h05.GrigliaIrregolare3");
   }
 
   @TestFactory
-  public Stream<DynamicTest> testGrigliaIrregolare4() {
+  public List<? extends DynamicNode> testGrigliaIrregolare4() {
     return BBTG.test("it.unimi.di.prog2.h05.GrigliaIrregolare4");
   }
 }

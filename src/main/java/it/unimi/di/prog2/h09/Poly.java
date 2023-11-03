@@ -170,4 +170,10 @@ public class Poly { // we don't extend Cloneable, see EJ 3.13
     for (int i = 0; i <= deg; i++) r.trms[i] = -trms[i];
     return r;
   }
+
+  public static void main(String[] args) {
+    Poly p = new Poly(1, 0).add(new Poly(1, 2));
+    Poly q = new Poly(1, 2).add(new Poly(1, 0));
+    System.out.println(p.equals(q));
+  }
 }

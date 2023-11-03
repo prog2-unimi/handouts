@@ -22,16 +22,16 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 package it.unimi.di.prog2.h02;
 
 import it.unimi.di.prog2.BlackBoxTestsGenerator;
-import java.util.stream.Stream;
-import org.junit.jupiter.api.DynamicTest;
+import java.util.List;
+import org.junit.jupiter.api.DynamicNode;
 import org.junit.jupiter.api.TestFactory;
 
 public class RunBlackBoxTests {
 
-  BlackBoxTestsGenerator BBTG = new BlackBoxTestsGenerator("tests", 2);
+  BlackBoxTestsGenerator BBTG = new BlackBoxTestsGenerator("tests");
 
   @TestFactory
-  public Stream<DynamicTest> testSalveMondo() {
+  public List<? extends DynamicNode> testSalveMondo() {
     return BBTG.test("it.unimi.di.prog2.h02.SalveMondo");
   }
 }
