@@ -44,6 +44,57 @@ public class Frazione {
    */
 
   /**
+   * Costruisce una frazione dati numeratore e denominatore (parziale).
+   *
+   * @param num il numeratore.
+   * @param den il denominatore (deve essere diverso da 0).
+   */
+  private Frazione(int num, int den) {
+    // Il metodo di fabbricazione numDen consente di restituire i singoletti
+    // UNO e ZERO per i casi particolari di tali frazioni, non sarebbe stato
+    // possibile garantirlo usando un costruttore pubblico.
+    this.num = num;
+    this.den = den;
+  }
+
+  /**
+   * Fabbrica una frazione dati numeratore e denominatore.
+   *
+   * <p>Nel caso in cui {@code num == 0} verrà restituito il singoletto {@link #ZERO}, similmente
+   * nel caso in cui {@code num == den} verrà restituito il singoletto {@link #UNO}.
+   *
+   * @param num il numeratore.
+   * @param den il denominatore.
+   * @return la frazione num/den.
+   * @throws IllegalArgumentException se {@code den == 0}.
+   */
+  public static Frazione numDen(int num, int den) throws IllegalArgumentException {
+    return norm(num, den);
+  }
+
+  /**
+   * Fabbrica una frazione dati numeratore e denominatore.
+   *
+   * <p>Nel caso in cui {@code num == 0} verrà restituito il singoletto {@link #ZERO}, similmente
+   * nel caso in cui {@code num == den} verrà restituito il singoletto {@link #UNO}.
+   *
+   * @param num il numeratore.
+   * @param den il denominatore.
+   * @return la frazione num/den.
+   * @throws IllegalArgumentException se {@code den == 0}.
+   */
+  private static Frazione norm(long num, long den) throws IllegalArgumentException {
+    if (den == 0) throw new IllegalArgumentException("Il denominatore non può essere 0");
+    if (num == 0) return ZERO;
+    if (num == den) return UNO;
+    long gcd = gcd(num, den);
+    num /= gcd;
+    den /= gcd;
+    if (den < 0) return new Frazione((int) -num, (int) -den);
+    return new Frazione((int) num, (int) den);
+  }
+
+  /**
    * Restituisce il numeratore.
    *
    * @return il numeratore (se la frazione è negativa, sarà negativo).
@@ -59,51 +110,6 @@ public class Frazione {
    */
   public int den() {
     return den;
-  }
-
-  /**
-   * Fabbrica una frazione dati numeratore e denominatore.
-   *
-   * @param num il numeratore.
-   * @param den il denominatore.
-   * @return la frazione num/den.
-   * @throws IllegalArgumentException se den == 0.
-   */
-  public static Frazione numDen(int num, int den) throws IllegalArgumentException {
-    return norm(num, den);
-  }
-
-  /**
-   * Costruisce una frazione dati numeratore e denominatore (parziale).
-   *
-   * @param num il numeratore.
-   * @param den il denominatore (deve essere diverso da 0).
-   */
-  private Frazione(int num, int den) {
-    // Il metodo di fabbricazione numDen consente di restituire i singoletti
-    // UNO e ZERO per i casi particolari di tali frazioni, non sarebbe stato
-    // possibile garantirlo usando un costruttore pubblico.
-    this.num = num;
-    this.den = den;
-  }
-
-  /**
-   * Costruisce una frazione dati numeratore e denominatore.
-   *
-   * @param num il numeratore.
-   * @param den il denominatore.
-   * @return la frazione num/den.
-   * @throws IllegalArgumentException se den == 0.
-   */
-  private static Frazione norm(long num, long den) throws IllegalArgumentException {
-    if (den == 0) throw new IllegalArgumentException("Il denominatore non può essere 0");
-    if (num == 0) return ZERO;
-    if (num == den) return UNO;
-    long gcd = gcd(num, den);
-    num /= gcd;
-    den /= gcd;
-    if (den < 0) return new Frazione((int) -num, (int) -den);
-    return new Frazione((int) num, (int) den);
   }
 
   /**

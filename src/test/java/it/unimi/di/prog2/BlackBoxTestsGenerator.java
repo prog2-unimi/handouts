@@ -22,6 +22,7 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 package it.unimi.di.prog2;
 
 import static org.junit.jupiter.api.Assertions.assertIterableEquals;
+import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 import static org.junit.jupiter.api.DynamicContainer.dynamicContainer;
@@ -39,6 +40,7 @@ import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -61,6 +63,7 @@ public class BlackBoxTestsGenerator {
 
   public class BlackBoxTest {
 
+    public static final Duration TIMEOUT = Duration.ofSeconds(10);
     public static final String ARGS_FORMAT = "args-%d.txt";
     public static final String INPUT_FORMAT = "input-%d.txt";
     public static final String EXPECTED_FORMAT = "expected-%d.txt";
@@ -151,21 +154,25 @@ public class BlackBoxTestsGenerator {
         try (DirectoryStream<Path> stream = Files.newDirectoryStream(path, "expected-*.txt")) {
           for (Path path : stream) {
             Matcher m = TASK_PATTERN.matcher(path.getFileName().toString());
-            DynamicTest tc = null;
-            if (m.matches())
+            if (m.matches()) {
+              String name = fqClsName + " - " + m.group(1);
               try {
-                tc =
+                final Case tc = new Case(Integer.parseInt(m.group(1)));
+                cases.add(
                     dynamicTest(
-                        fqClsName + " - " + m.group(1), new Case(Integer.parseInt(m.group(1))));
+                        name,
+                        () -> {
+                          assertTimeoutPreemptively(TIMEOUT, tc);
+                        }));
               } catch (IOException e) {
-                tc =
+                cases.add(
                     dynamicTest(
-                        fqClsName + " - " + m.group(1) + " [problem reading testcase]",
+                        name + " [problem reading testcase]",
                         () -> {
                           fail("Problems reading test case", e);
-                        });
+                        }));
               }
-            cases.add(tc);
+            }
           }
         } catch (IOException e) {
           cases.add(

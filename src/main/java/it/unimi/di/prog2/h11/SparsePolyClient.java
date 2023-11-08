@@ -25,11 +25,11 @@ import java.util.Scanner;
 
 public class SparsePolyClient {
   public static void main(String[] args) {
-    Poly result = null;
-    Poly xp1 = new Poly(1, 1).add(new Poly(-1, 0));
+    SparsePoly result = null;
+    SparsePoly xp1 = new SparsePoly(1, 1).add(new SparsePoly(-1, 0));
     try (Scanner s = new Scanner(System.in)) {
       while (s.hasNextInt()) {
-        Poly term = new Poly(s.nextInt(), s.nextInt());
+        SparsePoly term = new SparsePoly(s.nextInt(), s.nextInt());
         if (result == null) result = term;
         else result = result.mul(xp1).add(term);
       }

@@ -1,1 +1,1 @@
-Poly: 6x^2 - 4x + 1
+SparsePoly: 6x^2 - 4x + 1

@@ -22,8 +22,8 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 package it.unimi.di.prog2.h11;
 
 import it.unimi.di.prog2.h08.impl.NegativeExponentException;
+import java.util.ArrayList;
 import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
@@ -42,7 +42,7 @@ public class SparsePoly {
      *
      * @param coeff the coefficient.
      * @param degree the degree.
-     * @throws NegativeExponentException if if {@code n} &lt; 0.
+     * @throws IllegalArgumentException if {@code n} &lt; 0 or {@code c} is 0.
      */
 
     /*
@@ -50,23 +50,22 @@ public class SparsePoly {
      * RI: degree >= 0, coeff != 0
      */
 
-    public Term { // using the compact contructor
-      if (degree < 0)
-        throw new NegativeExponentException("A term cannot have a negative exponent.");
+    public Term { // using the compact contructor, cannot declare throws
+      if (degree < 0) throw new IllegalArgumentException("A term cannot have a negative exponent.");
       if (coeff == 0) throw new IllegalArgumentException("A term cannot have a zero coefficient.");
     }
   }
 
-  /** The array of terms (in increasing non-zero degree). */
+  /** The array of terms (in increasing degree). */
   private final List<Term> terms;
 
   /*
    * AF: associa a terms il polinomio dato dalla somma dei monomi in terms.
    * RI: terms != null
-   *     terms non deve contenere null
-   *     terms non contiene due termini diversi col medesimo grado; detto
-   *     altrimenti, 0 <= i, j < terms.size() e i != j allora
-   *     terms.get(i).degree != terms.get(j).degree
+   * terms non deve contenere null
+   * terms non contiene due termini diversi col medesimo grado; detto
+   * altrimenti, 0 <= i < j < terms.size() allora
+   * terms.get(i).degree < terms.get(j).degree
    */
 
   /** Initializes this to be the zero polynomial, that is \( p = 0 \). */
@@ -81,7 +80,7 @@ public class SparsePoly {
    * @param n the degree.
    * @throws NegativeExponentException if {@code n} &lt; 0.
    */
-  public SparsePoly(int c, int n) throws NegativeExponentException {
+  public SparsePoly(final int c, final int n) throws IllegalArgumentException {
     terms = c == 0 ? Collections.emptyList() : List.of(new Term(c, n));
   }
 
@@ -101,9 +100,8 @@ public class SparsePoly {
    * @param d the degree.
    * @return the index of a term of given degree, or -1 if none is present.
    */
-  private int findByDegree(int d) {
-    for (int i = 0; i < terms.size(); i++) if (terms.get(i).degree == d) return i;
-    return -1;
+  private int findByDegree(final int d) {
+    return findByDegree(terms, d);
   }
 
   /**
@@ -112,10 +110,10 @@ public class SparsePoly {
    * @param d the exponent of the term to consider.
    * @return the coefficient of the considered term.
    */
-  public int coeff(int d) {
+  public int coeff(final int d) {
     if (d > degree()) return 0;
-    int i = findByDegree(d);
-    return i != -1 ? terms.get(i).coeff : 0;
+    final int i = findByDegree(d);
+    return i >= 0 ? terms.get(i).coeff : 0;
   }
 
   /**
@@ -129,15 +127,31 @@ public class SparsePoly {
   }
 
   /**
-   * Finds the index of a term of given degree in a list of terms.
+   * Finds the index (or insertion point) of a term of given degree in a list of terms in increasing
+   * degree order.
    *
-   * @param lst the not {@code null} list of not {@code null} terms.
+   * <p>If the list contains a term of given degree, returns its index. Otherwise, returns {@code
+   * -(insertion_point) - 1} where {@code insertion_point} is the index of the first term with
+   * degree greater than {@code d}; note that this implies that the return value is non-negative iff
+   * the list contains a term of given degree.
+   *
+   * @see Collections#binarySearch(List, Object)
+   * @param lst the not {@code null} list of not {@code null} terms in increasing degree order.
    * @param d the degree.
-   * @return the index of a term of given degree, or -1 if none is present.
+   * @return the index of the term of given degree, or {@code -insertion_point - 1} if none is
+   *     present.
    */
-  private static int findByDegree(List<Term> lst, int d) {
-    for (int i = 0; i < lst.size(); i++) if (lst.get(i).degree == d) return i;
-    return -1;
+  private static int findByDegree(final List<Term> lst, final int d) {
+    int lo = 0;
+    int hi = lst.size() - 1;
+    while (lo <= hi) {
+      int mid = lo + (hi - lo) / 2;
+      int midDegree = lst.get(mid).degree;
+      if (d < midDegree) hi = mid - 1;
+      else if (d > midDegree) lo = mid + 1;
+      else return mid;
+    }
+    return -lo - 1;
   }
 
   /**
@@ -149,17 +163,14 @@ public class SparsePoly {
    * @param lst the not {@code null} list of not {@code null} terms in increasing degree order.
    * @param term the not {@code null} term.
    */
-  private static void addTerm(List<Term> lst, Term term) {
+  private static void addTerm(final List<Term> lst, final Term term) {
     if (term.coeff == 0) return;
-    int i = findByDegree(lst, term.degree);
-    if (i != -1) {
-      int c = lst.get(i).coeff + term.coeff;
+    final int i = findByDegree(lst, term.degree);
+    if (i >= 0) {
+      final int c = lst.get(i).coeff + term.coeff;
       if (c != 0) lst.set(i, new Term(c, term.degree));
       else lst.remove(i);
-    } else {
-      for (i = 0; i < lst.size(); i++) if (lst.get(i).degree > term.degree) break;
-      lst.add(i, term);
-    }
+    } else lst.add(-i - 1, term);
   }
 
   /**
@@ -173,7 +184,7 @@ public class SparsePoly {
    */
   public SparsePoly add(SparsePoly q) throws NullPointerException {
     Objects.requireNonNull(q);
-    List<Term> result = new LinkedList<>(this.terms);
+    final List<Term> result = new ArrayList<>(this.terms);
     for (Term t : q.terms) addTerm(result, t);
     return new SparsePoly(result);
   }
@@ -189,7 +200,7 @@ public class SparsePoly {
    */
   public SparsePoly mul(SparsePoly q) throws NullPointerException {
     Objects.requireNonNull(q);
-    List<Term> lst = new LinkedList<>();
+    final List<Term> lst = new ArrayList<>();
     for (Term tq : q.terms)
       for (Term tt : terms) addTerm(lst, new Term(tq.coeff * tt.coeff, tq.degree + tt.degree));
     return new SparsePoly(lst);
@@ -217,7 +228,7 @@ public class SparsePoly {
    * @return this polynomial multiplied by \( -1 \).
    */
   public SparsePoly minus() {
-    List<Term> lst = new LinkedList<>();
+    final List<Term> lst = new ArrayList<>();
     for (Term t : terms) lst.add(new Term(-t.coeff, t.degree));
     return new SparsePoly(lst);
   }
@@ -226,7 +237,7 @@ public class SparsePoly {
   public boolean equals(Object obj) {
     if (this == obj) return true;
     if (!(obj instanceof SparsePoly)) return false;
-    SparsePoly other = (SparsePoly) obj;
+    final SparsePoly other = (SparsePoly) obj;
     return terms.equals(other.terms);
   }
 
@@ -238,7 +249,7 @@ public class SparsePoly {
   @Override
   public String toString() {
     if (degree() > 0) {
-      StringBuilder sb = new StringBuilder("SparsePoly: ");
+      final StringBuilder sb = new StringBuilder("SparsePoly: ");
       int pos = terms.size() - 1;
       Term t = terms.get(pos);
       if (t.coeff < -1) sb.append("-" + (-t.coeff));
