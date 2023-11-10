@@ -1,5 +1,6 @@
 /*
 
+Copyright 2021 Luca Prigioniero, Massimo Santini
 Copyright 2023 Massimo Santini
 
 This file is part of "Programmazione 2 @ UniMI" teaching material.

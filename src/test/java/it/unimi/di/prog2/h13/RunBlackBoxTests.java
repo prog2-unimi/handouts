@@ -20,24 +20,19 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 
 */
 
-package it.unimi.di.prog2.h08;
+package it.unimi.di.prog2.h13;
 
-/** A collection of methods for {@link Poly}s. */
-public class Polys {
+import it.unimi.di.prog2.BlackBoxTestsGenerator;
+import java.util.List;
+import org.junit.jupiter.api.DynamicNode;
+import org.junit.jupiter.api.TestFactory;
 
-  // See EJ 2.4
-  private Polys() {}
+public class RunBlackBoxTests {
 
-  /**
-   * Returns the derivative of the given polynomial.
-   *
-   * @param p the polynomial to differentiate.
-   * @return the derivative of {@code p}.
-   * @throws NullPointerException if {@code p} is {@code null}.
-   */
-  public static Poly diff(Poly p) throws NullPointerException {
-    Poly q = new Poly();
-    for (int i = 1; i <= p.degree(); i++) q = q.add(new Poly(p.coeff(i) * i, i - 1));
-    return q;
+  BlackBoxTestsGenerator BBTG = new BlackBoxTestsGenerator("tests");
+
+  @TestFactory
+  public List<? extends DynamicNode> testIntQueueClient() {
+    return BBTG.test("it.unimi.di.prog2.h13.IntQueueClient");
   }
 }
