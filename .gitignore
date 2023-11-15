@@ -17,3 +17,4 @@ __pycache__/
 src/main/java/it/unimi/di/prog2/scratch/
 src/scratch/java/it/unimi/di/prog2/stud/
 words.txt
+actual-*.txt

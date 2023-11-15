@@ -218,7 +218,14 @@ public class BlackBoxTestsGenerator {
                 fail("Problems reading tests", e);
               }));
     }
-    if (p2t.size() == 1) {
+    if (p2t.size() == 0)
+      return List.of(
+          dynamicTest(
+              pkgName + " [missing testcases]",
+              () -> {
+                fail("No testcases found");
+              }));
+    else if (p2t.size() == 1) {
       List<BlackBoxTest> lt = p2t.entrySet().iterator().next().getValue();
       if (lt.size() == 1) return lt.get(0).cases();
       else return wrap(lt);
