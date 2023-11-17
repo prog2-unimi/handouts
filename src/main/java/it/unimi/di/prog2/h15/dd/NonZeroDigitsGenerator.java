@@ -20,39 +20,30 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 
 */
 
-package it.unimi.di.prog2.h14;
+package it.unimi.di.prog2.h15.dd;
 
 import java.util.Iterator;
-import java.util.List;
 import java.util.NoSuchElementException;
 
-/** Generator (in Liskov parlance) of the ints contained in a {@link List}. */
-public class IntGenerator implements Iterator<Integer> {
+public class NonZeroDigitsGenerator implements Iterator<Integer> {
 
-  /** The list elements. */
-  private final List<Integer> els;
+  private long remaining;
 
-  /** The position of the next element to return (if {@code idx < els.size()}. */
-  private int idx;
-
-  /**
-   * Builds an iterator (partial constructor, used just in {@link IntSet}).
-   *
-   * @param els the list of elements, must not be, or contain, {@code null}.
-   */
-  public IntGenerator(List<Integer> els) {
-    this.els = els;
-    this.idx = 0;
+  protected NonZeroDigitsGenerator(final long remaining) {
+    this.remaining = remaining;
   }
 
   @Override
   public boolean hasNext() {
-    return idx < els.size();
+    while (remaining != 0 && remaining % 10 == 0) remaining /= 10;
+    return remaining != 0;
   }
 
   @Override
   public Integer next() {
     if (!hasNext()) throw new NoSuchElementException();
-    return els.get(idx++);
+    int digit = (int) (remaining % 10);
+    remaining /= 10;
+    return digit;
   }
 }

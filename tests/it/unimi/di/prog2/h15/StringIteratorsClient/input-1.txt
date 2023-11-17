@@ -1,0 +1,12 @@
+uno
+due
+tre
+quattro
+cinque
+sei
+sette
+otto
+nove
+dieci
+unidici
+dodici

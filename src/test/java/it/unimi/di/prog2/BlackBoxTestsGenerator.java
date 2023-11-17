@@ -231,7 +231,11 @@ public class BlackBoxTestsGenerator {
       else return wrap(lt);
     } else {
       return p2t.entrySet().stream()
-          .map(e -> dynamicContainer(e.getKey().toString(), wrap(e.getValue())))
+          .map(
+              e ->
+                  dynamicContainer(
+                      e.getKey().toString().isEmpty() ? "[pkg]" : e.getKey().toString(),
+                      wrap(e.getValue())))
           .toList();
     }
   }
