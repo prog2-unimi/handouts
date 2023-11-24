@@ -35,6 +35,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.io.UncheckedIOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.nio.file.DirectoryStream;
@@ -45,11 +46,11 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.junit.jupiter.api.DynamicContainer;
@@ -118,7 +119,8 @@ public class BlackBoxTestsGenerator {
         } catch (IllegalAccessException
             | IllegalArgumentException
             | InvocationTargetException
-            | IOException e) {
+            | IOException
+            | UncheckedIOException e) {
           fail("Error executing tests", e);
         }
         System.setIn(stdin);
@@ -139,51 +141,57 @@ public class BlackBoxTestsGenerator {
       this.path = testsDir.resolve(Objects.requireNonNull(fClsPath));
       String fqClsName = fClsPath.toString().replace(File.separator, ".");
       Method main = null;
-      List<DynamicTest> cases = new ArrayList<>();
       try {
         main = Class.forName(fqClsName).getMethod("main", String[].class);
       } catch (NoSuchMethodException | SecurityException | ClassNotFoundException e) {
-        cases.add(
-            dynamicTest(
-                fqClsName + " [missing main method]",
-                () -> {
-                  assumeTrue(false, "Main not found");
-                }));
+        this.main = null;
+        cases =
+            List.of(
+                dynamicTest(
+                    fqClsName + " [missing main method]",
+                    () -> {
+                      assumeTrue(false, "Main not found");
+                    }));
+        return;
       }
       this.main = main;
-      if (main != null)
-        try (DirectoryStream<Path> stream = Files.newDirectoryStream(path, "expected-*.txt")) {
-          for (Path path : stream) {
-            Matcher m = TASK_PATTERN.matcher(path.getFileName().toString());
-            if (m.matches()) {
-              String name = fqClsName + " - " + m.group(1);
-              try {
-                final Case tc = new Case(Integer.parseInt(m.group(1)));
-                cases.add(
-                    dynamicTest(
-                        name,
-                        () -> {
-                          assertTimeoutPreemptively(TIMEOUT, tc);
-                        }));
-              } catch (IOException e) {
-                cases.add(
-                    dynamicTest(
-                        name + " [problem reading testcase]",
-                        () -> {
-                          fail("Problems reading test case", e);
-                        }));
-              }
+      Map<Integer, DynamicTest> casesMap = new TreeMap<>();
+      try (DirectoryStream<Path> stream = Files.newDirectoryStream(path, "expected-*.txt")) {
+        for (Path path : stream) {
+          Matcher m = TASK_PATTERN.matcher(path.getFileName().toString());
+          if (m.matches()) {
+            int num = Integer.parseInt(m.group(1));
+            String name = fqClsName + " - " + num;
+            try {
+              final Case tc = new Case(num);
+              casesMap.put(
+                  num,
+                  dynamicTest(
+                      name,
+                      () -> {
+                        assertTimeoutPreemptively(TIMEOUT, tc);
+                      }));
+            } catch (IOException | UncheckedIOException e) {
+              casesMap.put(
+                  num,
+                  dynamicTest(
+                      name + " [problem reading testcase]",
+                      () -> {
+                        fail("Problems reading test case", e);
+                      }));
             }
           }
-        } catch (IOException e) {
-          cases.add(
-              dynamicTest(
-                  fqClsName + " [missing tests dir]",
-                  () -> {
-                    fail("Problems reading tests", e);
-                  }));
         }
-      this.cases = Collections.unmodifiableList(cases);
+      } catch (IOException | UncheckedIOException e) {
+        casesMap.put(
+            -1,
+            dynamicTest(
+                fqClsName + " [missing tests dir]",
+                () -> {
+                  fail("Problems reading tests", e);
+                }));
+      }
+      this.cases = Collections.unmodifiableList(new ArrayList<>(casesMap.values()));
     }
   }
 
@@ -191,14 +199,14 @@ public class BlackBoxTestsGenerator {
     this.testsDir = Paths.get(Objects.requireNonNull(testsDir));
   }
 
-  private List<DynamicContainer> wrap(List<BlackBoxTest> tc) {
+  private static List<DynamicContainer> wrap(List<BlackBoxTest> tc) {
     return tc.stream().map(t -> t.container()).toList();
   }
 
   public List<? extends DynamicNode> test(final String pkgName) {
     Objects.requireNonNull(pkgName);
     Path subDir = Paths.get(pkgName.replace(".", File.separator));
-    Map<Path, List<BlackBoxTest>> p2t = new HashMap<>();
+    Map<Path, List<BlackBoxTest>> p2t = new TreeMap<>();
     try {
       Files.find(
               testsDir.resolve(subDir),
@@ -210,7 +218,7 @@ public class BlackBoxTestsGenerator {
                           testsDir.resolve(subDir).relativize(p.getParent()),
                           k -> new LinkedList<>())
                       .add(new BlackBoxTest(testsDir.relativize(p))));
-    } catch (IOException e) {
+    } catch (IOException | UncheckedIOException e) {
       return List.of(
           dynamicTest(
               pkgName + " [missing tests dir]",

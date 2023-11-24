@@ -45,8 +45,8 @@ public class IntQueue {
    * RI:
    *      - elements != null,
    *      - elements.length = capacità,
-   *      - 0 <= head < capacità,
-   *      - 0 < tail < capacità,
+   *      - -1 <= head < capacità,
+   *      - 0 <= tail < capacità,
    *      - head == -1 => tail = 0
    *
    * AF:
