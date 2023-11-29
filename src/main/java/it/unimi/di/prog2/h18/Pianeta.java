@@ -36,8 +36,15 @@ import java.util.Objects;
  */
 public class Pianeta extends CorpoCeleste {
 
-  /** La posizione e velocità di questo pianeta. */
-  private Punto posizione, velocità;
+  /** La velocità di questo pianeta. */
+  private Punto velocità;
+
+  /*-
+   * RI: - velocità non deve essere null;
+   *     - gli attributi della superclasse sono private quindi non riguardano questo RI;
+   *
+   * AF: - la velocità del pianeta è contenuta nel campo omonimo, per il resto vale l'AF del supertipo.
+   */
 
   /**
    * Costruisce un pianeta.
@@ -53,26 +60,9 @@ public class Pianeta extends CorpoCeleste {
    * @throws IllegalArgumentException se il nomoe è composto di soli spazi, o vuoto.
    */
   public Pianeta(final String nome, final int x, final int y, final int z) {
-    super(nome);
-    posizione = new Punto(x, y, z);
+    super(nome, x, y, z);
     velocità = Punto.ZERO;
-  }
-
-  @Override
-  public void aggiornaPosizione() {
-    posizione = posizione.somma(velocità);
-  }
-
-  @Override
-  public void aggiornaVelocità(final CorpoCeleste c) {
-    Objects.requireNonNull(c);
-    final Punto ds = c.posizione().sottrai(posizione).segno();
-    velocità = velocità.somma(ds);
-  }
-
-  @Override
-  public String toString() {
-    return String.format("Pianeta, nome: %s, pos: %s, vel: %s", nome, posizione, velocità);
+    assert repOk();
   }
 
   @Override
@@ -81,7 +71,25 @@ public class Pianeta extends CorpoCeleste {
   }
 
   @Override
-  public Punto posizione() {
-    return posizione;
+  public void aggiornaPosizione() {
+    posizione(posizione().somma(velocità));
+    assert repOk();
+  }
+
+  @Override
+  public void aggiornaVelocità(final CorpoCeleste c) {
+    Objects.requireNonNull(c);
+    final Punto dv = c.posizione().sottrai(posizione()).segno();
+    velocità = velocità.somma(dv);
+    assert repOk();
+  }
+
+  @Override
+  public String toString() {
+    return String.format("Pianeta, nome: %s, pos: %s, vel: %s", nome(), posizione(), velocità());
+  }
+
+  private boolean repOk() {
+    return velocità != null;
   }
 }

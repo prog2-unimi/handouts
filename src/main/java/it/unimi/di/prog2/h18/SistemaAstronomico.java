@@ -58,6 +58,11 @@ public class SistemaAstronomico {
   /** L'insieme dei corpi celesti. */
   private final SortedSet<CorpoCeleste> corpiCelesti = new TreeSet<>();
 
+  /*-
+   * RI: - corpiCelesti non deve o contenere null;
+   * AF: - il copri celesti del sistema sono contenuti in corpiCelesti.
+   */
+
   /**
    * Aggiunge un corpo celeste al sistema.
    *
@@ -69,7 +74,9 @@ public class SistemaAstronomico {
    * @throws NullPointerException se c è null.
    */
   public boolean aggiungi(final CorpoCeleste c) {
-    return corpiCelesti.add(Objects.requireNonNull(c));
+    final boolean added = corpiCelesti.add(Objects.requireNonNull(c));
+    assert repOk();
+    return added;
   }
 
   /**
@@ -84,6 +91,7 @@ public class SistemaAstronomico {
         p.aggiornaVelocità(c);
       }
     for (final CorpoCeleste c : corpiCelesti) c.aggiornaPosizione();
+    assert repOk();
   }
 
   /**
@@ -95,6 +103,7 @@ public class SistemaAstronomico {
   public void simula(final int passi) {
     if (passi <= 0) throw new IllegalArgumentException();
     for (int i = 0; i < passi; i++) passo();
+    assert repOk();
   }
 
   /**
@@ -117,5 +126,12 @@ public class SistemaAstronomico {
       if (it.hasNext()) sb.append('\n');
     }
     return sb.toString();
+  }
+
+  private boolean repOk() {
+    // non c'è bisogno di controllare che corpiCelesti non contenga null, perché
+    // essendo un TreeSet (basato sul natural order) non può conenerli, visto che
+    // TreeSet.add solleverebbe eccezione all'aggiunta di un null
+    return corpiCelesti != null;
   }
 }

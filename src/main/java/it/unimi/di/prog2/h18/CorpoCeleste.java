@@ -45,7 +45,17 @@ import java.util.Objects;
 public abstract class CorpoCeleste implements Comparable<CorpoCeleste> {
 
   /** Il nome del corpo celeste. */
-  public final String nome;
+  private final String nome;
+
+  /** La posizione del corpo celeste. */
+  private Punto posizione;
+
+  /*-
+   * RI: - nome non deve essere null e non deve essere vuoto o composto di soli spazi;
+   *     - posizione non deve essere null;
+   *
+   * AF: - il nome e posizione del corpo celeste sono contenuti negli omonimi campi.
+   */
 
   /**
    * Costruisce un corpo celeste con il nome dato.
@@ -54,18 +64,37 @@ public abstract class CorpoCeleste implements Comparable<CorpoCeleste> {
    * @throws NullPointerException se il nome è {@code null}.
    * @throws IllegalArgumentException se il nomoe è composto di soli spazi, o vuoto.
    */
-  public CorpoCeleste(final String nome) {
+  protected CorpoCeleste(final String nome, int x, int y, int z) {
     if (Objects.requireNonNull(nome).isBlank()) throw new IllegalArgumentException();
     this.nome = nome;
+    posizione = new Punto(x, y, z);
+    assert repOk();
+  }
+
+  /** Restituisce il nome di questo corpo celeste. */
+  public String nome() {
+    return nome;
   }
 
   /**
-   * Restituisce l'energia totale di questo corpo celeste.
+   * Restituisce la posizione di questo corpo celeste.
    *
-   * @return l'energia.
+   * @return la posizione (non {@code null}}).
    */
-  public long energia() {
-    return posizione().norma() * velocità().norma();
+  public Punto posizione() {
+    return posizione;
+  }
+  ;
+
+  /**
+   * Imposta la posizione di questo corpo celeste.
+   *
+   * @param posizione la nuova posizione.
+   * @throws NullPointerException se la posizione è {@code null}.
+   */
+  protected void posizione(Punto posizione) {
+    this.posizione = Objects.requireNonNull(posizione);
+    assert repOk();
   }
 
   /**
@@ -76,11 +105,13 @@ public abstract class CorpoCeleste implements Comparable<CorpoCeleste> {
   public abstract Punto velocità();
 
   /**
-   * Restituisce la posizione di questo corpo celeste.
+   * Restituisce l'energia totale di questo corpo celeste.
    *
-   * @return la posizione (non {@code null}}).
+   * @return l'energia.
    */
-  public abstract Punto posizione();
+  public long energia() {
+    return posizione().norma() * velocità().norma();
+  }
 
   /**
    * Aggiorna la posizione di questo corpo celeste (usualmente a seguito di un cambiamento della sua
@@ -113,5 +144,9 @@ public abstract class CorpoCeleste implements Comparable<CorpoCeleste> {
   @Override
   public int hashCode() {
     return nome.hashCode();
+  }
+
+  private boolean repOk() {
+    return nome != null && !nome.isBlank() && posizione != null;
   }
 }

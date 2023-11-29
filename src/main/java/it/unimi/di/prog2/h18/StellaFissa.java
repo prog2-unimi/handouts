@@ -30,8 +30,12 @@ package it.unimi.di.prog2.h18;
  */
 public class StellaFissa extends CorpoCeleste {
 
-  /** La posizione di questa stella fissa. */
-  private final Punto posizione;
+  /*-
+   * RI: - sempre vero: non ha stato e gli attributi della superclasse sono private
+   *       quindi non riguardano questo RI;
+   *
+   * AF: - vale l'AF del supertipo.
+   */
 
   /**
    * Costruisce una stella fissa.
@@ -46,8 +50,18 @@ public class StellaFissa extends CorpoCeleste {
    * @throws IllegalArgumentException se il nomoe è composto di soli spazi, o vuoto.
    */
   public StellaFissa(final String nome, final int x, final int y, final int z) {
-    super(nome);
-    posizione = new Punto(x, y, z);
+    super(nome, x, y, z);
+    assert repOk();
+  }
+
+  @Override
+  public Punto velocità() {
+    return Punto.ZERO;
+  }
+
+  @Override
+  public long energia() {
+    return 0;
   }
 
   @Override
@@ -58,21 +72,10 @@ public class StellaFissa extends CorpoCeleste {
 
   @Override
   public String toString() {
-    return String.format("Stella fissa, nome: %s, pos: %s", nome, posizione);
+    return String.format("Stella fissa, nome: %s, pos: %s", nome(), posizione());
   }
 
-  @Override
-  public Punto velocità() {
-    return Punto.ZERO;
-  }
-
-  @Override
-  public Punto posizione() {
-    return posizione;
-  }
-
-  @Override
-  public long energia() {
-    return 0;
+  private boolean repOk() {
+    return true;
   }
 }
