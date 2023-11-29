@@ -1,0 +1,4 @@
+P Marte -8 -10 0
+P Giove 5 5 10
+P Saturno 2 -7 3
+P Venere 9 -8 -3

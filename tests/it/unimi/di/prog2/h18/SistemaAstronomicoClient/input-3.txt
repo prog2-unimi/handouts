@@ -1,0 +1,4 @@
+S Sole 0 0 0
+P Giove 1 0 0
+P Marte 0 1 0
+P Saturno 0 0 1
