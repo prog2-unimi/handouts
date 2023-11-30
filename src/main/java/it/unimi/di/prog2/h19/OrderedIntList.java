@@ -281,10 +281,9 @@ public class OrderedIntList {
 
   @Override
   public int hashCode() {
-    if (isEmpty) return 0;
     int result = 0;
     final Iterator<Integer> it = smallToBig();
     while (it.hasNext()) result = 31 * result + it.next().hashCode();
-    return 0;
+    return result;
   }
 }
