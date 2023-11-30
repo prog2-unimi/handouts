@@ -44,19 +44,19 @@ public class IntQueue {
   /*-
    * RI:
    *      - elements != null,
-   *      - elements.length = capacità,
-   *      - -1 <= head < capacità,
-   *      - 0 <= tail < capacità,
+   *      - -1 <= head < elements.length,
+   *      - 0 <= tail < elements.length,
    *      - head == -1 => tail = 0
    *
    * AF:
-   *      gli elementi [x_1, ..., x_k] della coda sono contenuti in elements, più precisamente:
-   *      - se head == -1, la coda è vuota
-   *      - se head <= tail la coda è
-   *          [elements[head], elements[head + 1], …, elements[tail - 1]]
-   *      - se tail < head la coda è
-   *          [elements[head], elements[head + 1], …, elements[capacità - 1]] seguita da
-   *            [elements[0], elements[1], …, elements[tail - 1]]
+   *      - la capacità della coda è data da elements.length;
+   *      - gli elementi [x_1, ..., x_k] della coda sono contenuti in elements, più precisamente:
+   *        - se head == -1, la coda è vuota,
+   *        - se head <= tail la coda è:
+   *            [elements[head], elements[head + 1], …, elements[tail - 1]];
+   *        - se tail < head la coda è:
+   *            [elements[head], elements[head + 1], …, elements[capacità - 1]] seguita da
+   *            [elements[0], elements[1], …, elements[tail - 1]].
    */
 
   /**
@@ -66,6 +66,7 @@ public class IntQueue {
    * @throws IllegalArgumentException se la <i>capacità</i> non è positiva.
    */
   public IntQueue(final int capacità) {
+    if (capacità <= 0) throw new IllegalArgumentException();
     elements = new int[capacità];
     head = -1;
     tail = 0;
@@ -153,5 +154,32 @@ public class IntQueue {
     }
     sb.append(elements[i] + "]");
     return sb.toString();
+  }
+
+  @Override
+  public int hashCode() {
+    int result = 0;
+    int i = head, n = 0;
+    while (n < size()) {
+      result = 31 * result + Integer.hashCode(elements[i]);
+      i = (i + 1) % elements.length;
+      n += 1;
+    }
+    return result;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (!(obj instanceof IntQueue)) return false;
+    final IntQueue other = (IntQueue) obj;
+    if (size() != other.size()) return false;
+    int i = head, j = other.head, n = 0;
+    while (n < size()) {
+      if (elements[i] != other.elements[j]) return false;
+      i = (i + 1) % elements.length;
+      j = (j + 1) % other.elements.length;
+      n += 1;
+    }
+    return true;
   }
 }
