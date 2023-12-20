@@ -20,7 +20,7 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 
 */
 
-package it.unimi.di.prog2.h21;
+package it.unimi.di.prog2.h22;
 
 import it.unimi.di.prog2.h08.impl.EmptyException;
 import java.util.ArrayList;

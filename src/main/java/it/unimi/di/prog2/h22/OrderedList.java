@@ -20,7 +20,7 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 
 */
 
-package it.unimi.di.prog2.h21;
+package it.unimi.di.prog2.h22;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
