@@ -12,23 +12,32 @@ compileJava.options.encoding = 'UTF-8'
 compileTestJava.options.encoding = 'UTF-8'
 
 repositories {
+  mavenLocal()
   mavenCentral()
+  maven {
+    url = uri("https://maven.pkg.github.com/prog2-unimi/jubbiot")
+    credentials {
+      username = 'mapio'
+      password = project.github_token
+    }
+  }
 }
 
 dependencies {
+  testImplementation 'it.unimi.di.prog2:jubbiot:0.3a0'
   testImplementation 'org.junit.jupiter:junit-jupiter:5.11.0'
-  testImplementation 'org.hamcrest:hamcrest:3.0'
   testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
-test {
-  useJUnitPlatform {
-    if (project.hasProperty('tags')) {
-        includeTags project.tags
-    }
-  }
+tasks.named('test') {
+  useJUnitPlatform()
   testLogging {
     events 'skipped', 'failed'
+    afterSuite { desc, result ->
+      if (!desc.parent) {
+        println "Results: ${result.resultType} (${result.testCount} tests, ${result.successfulTestCount} successes, ${result.failedTestCount} failures, ${result.skippedTestCount} skipped)"
+      }
+    }
   }
   defaultCharacterEncoding = 'UTF-8'
 }
