@@ -15,16 +15,12 @@ repositories {
   mavenLocal()
   mavenCentral()
   maven {
-    url = uri("https://maven.pkg.github.com/prog2-unimi/jubbiot")
-    credentials {
-      username = 'mapio'
-      password = project.github_token
-    }
+    url = uri('https://gitlab.di.unimi.it/api/v4/projects/7715/packages/maven')
   }
 }
 
 dependencies {
-  testImplementation 'it.unimi.di.prog2:jubbiot:0.3a0'
+  testImplementation 'it.unimi.di.prog2:jubbiot:0.4a0'
   testImplementation 'org.junit.jupiter:junit-jupiter:5.11.0'
   testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
