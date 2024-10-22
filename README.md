@@ -29,10 +29,12 @@ Al fine di consentire l'automazione di alcuni compiti, tra i quali la
 documentazione**, questo materiale fa uso di un *build automation tool*
 denominato [Gradle](https://gradle.org/) unitamente al *testing framework*
 [Jubbiot](https://github.com/prog2-unimi/jubbiot) basato su
-[JUnit](https://junit.org/junit5/). Una *conoscenza approfondita del
-funzionamento di tali strumenti non è affatto necessaria per lo svolgimento
-degli esercizi, o per il superamento dell'esame*, perché sono qui completamente
-configurati e predisposti dal docente.
+[JUnit](https://junit.org/junit5/). 
+
+Una *conoscenza approfondita del funzionamento di tali strumenti non è affatto
+necessaria per lo svolgimento degli esercizi, o per il superamento dell'esame*,
+perché sono qui completamente configurati e predisposti dal docente, come
+illustrato nelle sezioni seguenti.
 
 ### Come compilare ed eseguire i test e il codice
 
