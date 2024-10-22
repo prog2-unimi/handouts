@@ -71,6 +71,10 @@ tale comando è configurato per riportare un errore in caso di *warning*, al fin
 di aiutarla nel comprendere se la documentazione è, almeno dal punto di vista
 sintattico, completa.
 
+È possibile accedere direttamente alla [documentazione
+Javadoc](https://prog2-unimi.github.io/handouts/) generata a partire dai
+sorgenti di questo repository.
+
 ### Uso diretto del JDK
 
 Chi non intendesse usare Gradle può comunque compilare ed eseguire il codice,
