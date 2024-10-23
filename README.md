@@ -14,7 +14,7 @@ forma in cui si trova al termine di ciascuna lezione. Per questa ragione il suo
 contenuto **non è assolutamente inteso come sostituivo dei libri di testo e
 della documentazione suggerita** e in nessun caso è da ritenersi *esaustivo* e
 *privo di errori*, ma **è provvisto al solo scopo di consentire agli studenti di
-ripercorrere i passi visti a lezione** e di eseguire **alcuni esercizi**.
+ripercorrere i passi visti a lezione e suggerire alcuni esercizi**.
 
 ## Come ottenere ed utilizzare questo materiale sul proprio computer
 
@@ -33,37 +33,38 @@ denominato [Gradle](https://gradle.org/) unitamente al *testing framework*
 
 Una *conoscenza approfondita del funzionamento di tali strumenti non è affatto
 necessaria per lo svolgimento degli esercizi, o per il superamento dell'esame*,
-perché sono qui completamente configurati e predisposti dal docente, come
-illustrato nelle sezioni seguenti.
+perché sono completamente predisposti e configurati dal docente, come illustrato
+nelle sezioni seguenti.
+
+L'unica cosa che è necessario fare è **installare il *Java Developer Kit*
+(JDK)** in una versione sufficientemente recente (la configurazione provvederà
+poi ad installre automaticamente sia la versione 21 del JDK che Gradle e
+Jubbiot/JUnit).
 
 ### Come compilare ed eseguire i test e il codice
 
-Una volta ottenuta una copia locale, a patto che abbia installato il *Java
-Developer Kit* versione 21, può procedere a **compilare** il codice con il
-comando:
+Una volta ottenuta una copia locale può procedere a **compilare** il codice con
+il comando:
 
     ./gradlew build
 
-se usa una ragionevole versione di GNU/Linux, oppure, se usa Windows:
-
-    gradlew.bat build
-
-questo comando provvederà anche ad eseguire tutti i **test** specificati nella
-directory `tests`.
+se usa una ragionevole versione di GNU/Linux, oppure se usa Windows (qui e di
+seguito) può sostituire `./gradlew` con `gradlew.bat`; questo comando provvederà
+anche ad eseguire tutti i **test** specificati nella directory `tests`.
 
 Può eseguire il codice di una specifica classe, ad esempio
-`it.unimi.di.prog2.l01.SalveMondo` con il comando
+`it.unimi.di.prog2.h02.SalveMondo` con il comando
 
-    ./gradlew runClass -PmainClass=it.unimi.di.prog2.l01.SalveMondo
+    ./gradlew runClass -PmainClass=it.unimi.di.prog2.h02.SalveMondo
 
-Per maggiori informazioni sulle modalità di testing consulti l'[esempio d'uso di
+Per maggiori informazioni sul **funzionamento dei test** consulti l'[esempio d'uso di
 Jubbiot](https://github.com/prog2-unimi/jubbiot/blob/master/README.md#example);
-in particolare presti attenzione alla sezione sulla [generazione dell'output
+in particolare presti attenzione alla sezione sulla [generazione degli output
 dello studente](https://github.com/prog2-unimi/jubbiot/blob/master/README.md#generating-actual-outputs).
 
 ### Come generare la documentazione
 
-Può generare la documentazione con il comando:
+Può generare la documentazione in locale con il comando:
 
     ./gradlew javadoc
 
@@ -71,22 +72,27 @@ tale comando è configurato per riportare un errore in caso di *warning*, al fin
 di aiutarla nel comprendere se la documentazione è, almeno dal punto di vista
 sintattico, completa.
 
-È possibile accedere direttamente alla [documentazione
-Javadoc](https://prog2-unimi.github.io/handouts/) generata a partire dai
-sorgenti di questo repository.
+È possibile accedere direttamente ad una copia già compilata della
+[documentazione del codice in questo repository](https://prog2-unimi.github.io/handouts/).
 
-### Uso diretto del JDK
+### Approcci alternativi
 
-Chi non intendesse usare Gradle può comunque compilare ed eseguire il codice,
-nonché generare la documentazione (ad esempio con un IDE di sua scelta). Osservi
-però che *nel caso del progetto* non sarà valutato alcun codice che presenti
-*errori* (o *warning*) di compilazione (sia nella parte di *Java* che di
-*Javadoc*).
+Chi non intendesse usare il *build automation tool* può comunque compilare ed
+eseguire il codice e i test, nonché generare la documentazione, usando la linea
+di comando, oppure un IDE a sua scelta.  
 
-Per questa ragione si consiglia, qualora si decida di usare gli usuali comandi
-del JDK, di aggiungere sempre le opzioni `-Xlint:all -Werror` al comando `javac`
-e `-Xdoclint:all -Werror` al comando `javadoc` (o di configurare analogamente il
-proprio IDE).
+> **NOTA BENE**: *nel caso del progetto* non sarà valutato alcun codice che
+> presenti *errori* (o *warning*) di compilazione (sia nella parte di *Java* che
+> di *Javadoc*).
+>
+> Per questa ragione si consiglia, qualora si decida di usare gli usuali comandi
+> del JDK, di aggiungere sempre le opzioni `-Xlint:all -Werror` al comando
+> `javac` e `-Xdoclint:all -Werror` al comando `javadoc` (sia da riga di comando
+> che attraverso l'IDE scelto).
+
+È del tutto evidente che **il docente non fornirà alcun supporto per l'uso di
+approcci differenti** da quello basato sul *build automation tool*. suggerito e
+preconfigurato.
 
 ## Il materiale degli scorsi anni accademici
 
