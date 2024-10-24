@@ -1,7 +1,6 @@
 /*
 
-Copyright 2021 Luca Prigioniero, Massimo Santini
-Copyright 2023 Massimo Santini
+Copyright 2024 Massimo Santini
 
 This file is part of "Programmazione 2 @ UniMI" teaching material.
 
@@ -24,6 +23,9 @@ package it.unimi.di.prog2.s06;
 
 /** Classe di utilità per il calcolo delle radici quadrate. */
 public class Radici {
+
+  /** . */
+  private Radici() {}
 
   /** La costante che descrive l'approssimazione delle funzioni di questa classe. */
   public static final double EPSILON = .001;

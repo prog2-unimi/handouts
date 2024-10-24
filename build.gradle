@@ -1,5 +1,10 @@
 plugins {
   id 'java'
+  id 'jacoco'
+  id 'pmd'
+  id 'checkstyle'
+  id 'com.diffplug.spotless' version '6.25.0'
+  id 'org.cthing.locc' version '1.0.1'
 }
 
 java {
@@ -19,10 +24,31 @@ repositories {
   }
 }
 
+sourceSets {
+  scratch {
+    java { srcDirs = [ 'src/scratch/java' ] }
+    compileClasspath += sourceSets.main.output
+    runtimeClasspath += sourceSets.main.output
+  }
+}
+
+configurations {
+  scratchImplementation.extendsFrom implementation
+  scratchRuntimeOnly.extendsFrom runtimeOnly
+  umlDoclet
+}
+
 dependencies {
   testImplementation 'it.unimi.di.prog2:jubbiot:0.4a0'
-  testImplementation 'org.junit.jupiter:junit-jupiter:5.11.0'
+  testImplementation 'org.junit.jupiter:junit-jupiter-api:5.11.3'
   testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+  umlDoclet 'nl.talsmasoftware:umldoclet:2.2.0'
+}
+
+tasks.withType(JavaCompile) {
+  options.encoding = 'UTF-8'
+  options.compilerArgs.add('-Xlint:all')
+  options.compilerArgs.add('-Werror') 
 }
 
 tasks.named('test') {
@@ -36,31 +62,90 @@ tasks.named('test') {
     }
   }
   defaultCharacterEncoding = 'UTF-8'
+  finalizedBy jacocoTestReport
 }
 
 tasks.withType(JavaExec) {
   enableAssertions = project.hasProperty('enableAssertions') ? project.getProperty('enableAssertions') : false
 }
 
-tasks.register("runClass", JavaExec) {
+tasks.register('runClass', JavaExec) {
   dependsOn build
   group = 'Execution'
   description = 'Runs the main method of a class given its fully qualified name.'
   mainClass = project.hasProperty('mainClass') ? project.getProperty('mainClass') : 'my.pkg.Example'
+  classpath = sourceSets.main.runtimeClasspath + sourceSets.scratch.runtimeClasspath
   defaultCharacterEncoding = 'UTF-8'
 }
 
 javadoc {
+  exclude('utils/**', 'clients/**')
   options {
+    description = 'Generates Javadoc API documentation and UML diagrams for the main source code.'
     encoding = 'UTF-8'
     charSet = 'UTF-8'
     links = [ 'https://docs.oracle.com/en/java/javase/17/docs/api/' ]
     docTitle = 'Programmazione II @ UniMI'
     overview = 'src/overview.html'
     header = '<script type=\'text/javascript\' src=\'https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML\'></script>'
+    docletpath = configurations.umlDoclet.files.asType(List)
+    doclet = 'nl.talsmasoftware.umldoclet.UMLDoclet'
     showFromPrivate()
-    addStringOption 'Xdoclint:all,-missing', '-quiet'
+    addBooleanOption 'Xdoclint:all', true
     addBooleanOption 'Werror', true
     addBooleanOption '-allow-script-in-comments', true
   }
 }
+
+spotless {
+  enforceCheck false
+  java {
+    googleJavaFormat('1.24.0')
+    removeUnusedImports()
+    indentWithSpaces(2)
+    endWithNewline()
+    licenseHeaderFile 'src/licenseHeaderFile.txt'
+  }
+}
+
+tasks.register('cleanActual', Delete) {
+  delete fileTree('ztests').matching {
+    include '**/actual-*.txt'
+  }
+}
+
+clean {
+  dependsOn cleanActual
+}
+
+pmd {
+  toolVersion = '7.6.0'
+  consoleOutput = false
+  ignoreFailures = true
+  rulesMinimumPriority = 5
+  ruleSetFiles = files('pmd.xml')
+}
+
+configurations {
+  checkstyleConfig
+}
+
+dependencies {
+  checkstyleConfig 'com.puppycrawl.tools:checkstyle:9.3'
+}
+
+checkstyle {
+  toolVersion = '10.18.2'
+  ignoreFailures = true
+  maxWarnings = 0
+  config = resources.text.fromArchiveEntry(configurations.checkstyleConfig[0], 'google_checks.xml')
+}
+  
+tasks.register('consegna', Zip) {
+  group = 'Exam'
+  description = 'Creates a ZIP archive with the main source code of the project to be uploaded to the exam platform.'
+  archiveFileName = project.name + '-src.zip'
+  destinationDirectory = layout.projectDir
+  from sourceSets.main.allJava
+}
+
