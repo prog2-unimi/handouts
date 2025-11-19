@@ -1,3 +1,5 @@
+// plugins, versions, repositories, source sets, configurations and dependencies
+
 plugins {
   id 'java'
   id 'application'
@@ -30,6 +32,34 @@ dependencies {
   umlDoclet 'nl.talsmasoftware:umldoclet:2.2.3'
 }
 
+// plugin configurations
+
+def defaultMain = 'it.unimi.di.prog2.h02.SalveMondo'
+application {
+  mainClass = providers.gradleProperty('mainClass').getOrElse(defaultMain)
+}
+
+spotless {
+  enforceCheck = false
+  java {
+    googleJavaFormat('1.28.0')
+    removeUnusedImports()
+    leadingTabsToSpaces(2)
+    endWithNewline()
+    licenseHeaderFile('src/licenseHeaderFile.txt')
+  }
+}
+
+// custom tasks
+
+tasks.register('cleanActual', Delete) {
+  delete fileTree('tests').matching {
+    include '**/actual-*.txt'
+  }
+}
+
+// general task configurations (by type)
+
 tasks.withType(JavaCompile).configureEach {
   options.encoding = 'UTF-8'
   options.compilerArgs += ['-Xlint:all', '-Werror']
@@ -42,29 +72,21 @@ tasks.withType(JavaExec).configureEach {
   enableAssertions = !providers.gradleProperty('disableAssertions').isPresent()
 }
 
-tasks.named('test', Test) {
+tasks.withType(Test).configureEach {
   systemProperty 'user.language', 'ROOT'
   systemProperty 'file.encoding', 'UTF-8'
   defaultCharacterEncoding = 'UTF-8'
   useJUnitPlatform()
-  testLogging {
-    events 'skipped', 'failed'
-    afterSuite { desc, result ->
-      if (!desc.parent) {
-        println "Results: ${result.resultType} (${result.testCount} tests, ${result.successfulTestCount} successes, ${result.failedTestCount} failures, ${result.skippedTestCount} skipped)"
-      }
-    }
-  }
-  finalizedBy jacocoTestReport
+  testLogging { events 'skipped', 'failed' }
 }
 
-def defaultMain = 'it.unimi.di.prog2.h02.SalveMondo'
+// specific task configurations (by name and type)
 
-application {
-  mainClass = providers.gradleProperty('mainClass').getOrElse(defaultMain)
+tasks.named('clean', Delete).configure {
+  dependsOn(tasks.named('cleanActual'))
 }
 
-tasks.named('javadoc', Javadoc) {
+tasks.withType(Javadoc).configureEach {
   options {
     description = 'Generates Javadoc API documentation and UML diagrams for the main source code.'
     encoding = 'UTF-8'
@@ -80,25 +102,20 @@ tasks.named('javadoc', Javadoc) {
     addBooleanOption('Werror', true)
     addBooleanOption('-allow-script-in-comments', true)
   }
+  (options as StandardJavadocDocletOptions).tags(
+    "apiNote:a:API Note:", 
+    "implSpec:a:Implementation Requirements:", 
+    "implNote:a:Implementation Note:"
+  )
 }
 
-spotless {
-  enforceCheck = false
-  java {
-    googleJavaFormat('1.28.0')
-    removeUnusedImports()
-    leadingTabsToSpaces(2)
-    endWithNewline()
-    licenseHeaderFile('src/licenseHeaderFile.txt')
+tasks.named('test', Test).configure {
+  finalizedBy(jacocoTestReport)
+  testLogging {
+    afterSuite { desc, result ->
+      if (!desc.parent) {
+        println "Results: ${result.resultType} (${result.testCount} tests, ${result.successfulTestCount} successes, ${result.failedTestCount} failures, ${result.skippedTestCount} skipped)"
+      }
+    }
   }
-}
-
-tasks.register('cleanActual', Delete) {
-  delete fileTree('tests').matching {
-    include '**/actual-*.txt'
-  }
-}
-
-tasks.named('clean') {
-  dependsOn cleanActual
 }
