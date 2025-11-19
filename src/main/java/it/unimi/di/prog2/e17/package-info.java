@@ -29,8 +29,8 @@
  * addition to position, planets are characterized by their <em>velocity</em>, also described by a
  * three-dimensional point. Each celestial body has an <em>energy</em> given by the product of the
  * <em>potential energy</em>, corresponding to the norm of its position, and the <em>kinetic
- * energy</em>, corresponding to the norm of its velocity (obviously this energy is zero in the case
- * of fixed stars).
+ * energy</em>, corresponding to the norm of its velocity (obviously the kinetic energy is zero in
+ * the case of fixed stars).
  *
  * <p>Celestial bodies are subject to mutual <em>gravitational attraction</em> which modifies their
  * velocity and, indirectly, their position as follows:
@@ -38,24 +38,23 @@
  * <ul>
  *   <li>
  *       <p>first, each planet <em>modifies its velocity</em> based on the attraction towards all
- *       other celestial bodies: given the planet <code>p</code> and the celestial body <code>c
- *       </code>, independently for each of the three coordinates, the velocity of <code>p</code>
- *       changes by +1 or -1 depending on whether that coordinate is, respectively, less than or
- *       greater than that of <code>c</code>;
+ *       other celestial bodies: given the planet {@code p} and the celestial body {@code c},
+ *       independently for each of the three coordinates, the velocity of {@code p} changes by +1 or
+ *       -1 depending on whether that coordinate is, respectively, less than or greater than that of
+ *       {@code c};
  *   <li>
  *       <p>once the new velocity for all planets has been calculated, each planet <em>modifies its
  *       position</em> by adding the value of its velocity to that of its position (as if the planet
  *       were subject to uniform motion for one unit of time).
  * </ul>
  *
- * <p>For example, if the system included only two planets and initially the <code>x</code>
- * coordinate of Mars' position was 3 and that of Jupiter was 5, then the <code>x</code> coordinate
- * of Mars' velocity would change by +1 (because 3 &lt; 5) while that of Jupiter would change by -1
- * (because 5 &gt; 3). Since initially the velocities are zero, after this update the <code>x</code>
- * coordinate of Mars' velocity would be 1, while that of Jupiter would be -1 and updating the
- * position of the two planets would bring the <code>x</code> coordinate of both positions to 4.
- * Consequently, in the next update their two velocities (but not their positions) would remain
- * unchanged.
+ * <p>For example, if the system included only two planets and initially the {@code x} coordinate of
+ * Mars position was 3 and that of Jupiter was 5, then the {@code x} coordinate of Mars' velocity
+ * would change by +1 (because 3 &lt; 5) while that of Jupiter would change by -1 (because 5 &gt;
+ * 3). Since initially the velocities are zero, after this update the {@code x} coordinate of Mars
+ * velocity would be 1, while that of Jupiter would be -1 and updating the position of the two
+ * planets would bring the {@code x} coordinate of both positions to 4. Consequently, in the next
+ * update their two velocities (but not their positions) would remain unchanged.
  *
  * <p>An <strong>astronomical system</strong> is a collection of planets and fixed stars. It is
  * characterized by a <em>state</em> that evolves in <em>discrete time</em>: at time 0 the state is
@@ -80,8 +79,8 @@
  * bodies; each quintuple is given by:
  *
  * <ul>
- *   <li>a character that can be <code>S</code> or <code>P</code> to indicate, respectively, that
- *       the celestial body is a star or a planet,
+ *   <li>a character that can be {@code S} or {@code P} to indicate, respectively, that the
+ *       celestial body is a star or a planet,
  *   <li>a string (which does not contain spaces) indicating the name of the celestial body,
  *   <li>three integers indicating the initial coordinates of the celestial body.
  * </ul>
@@ -92,12 +91,12 @@
  * data related to position and velocity) should be printed, and finally the total energy of the
  * system should be printed.
  *
- * <h2 id="constraints">Constraints</h2>
+ * <h2 id="input">Input</h2>
  *
  * <p>You can assume that the input has the specified format, that all numbers involved in the
- * execution of the code are integers (and can be represented by variables of type <code>int</code>
- * for position and velocity, and of type <code>long</code> for energies). Therefore, a plausible
- * way to read the information provided in input is as follows:
+ * execution of the code are integers (and can be represented by variables of type {@code int} for
+ * position and velocity, and of type {@code long} for energies). Therefore, a plausible way to read
+ * the information provided in input is as follows:
  *
  * <pre><code>
  * Scanner s = new Scanner(System.in);
@@ -111,9 +110,9 @@
  * }
  * </code></pre>
  *
- * <h2 id="example">Example</h2>
+ * <h2 id="example">Examples</h2>
  *
- * <p>Running <code>solution 1</code> and having
+ * <p>Running {@code solution 1} and having
  *
  * <pre><code>
  * P Mars -8 -10 0
@@ -132,7 +131,7 @@
  * Total Energy: 312
  * </code></pre>
  *
- * <p>Similarly, with the same input, running <code>solution 100</code> outputs
+ * <p>Similarly, with the same input, running {@code solution 100} outputs
  *
  * <pre><code>
  * Planet, name: Jupiter, pos: (13, 16, -3), vel: (3, -11, -5)
@@ -142,7 +141,7 @@
  * Total Energy: 1940
  * </code></pre>
  *
- * <p>in the output stream. Similarly, running <code>solution 21</code> and having
+ * <p>in the output stream. Similarly, running {@code solution 21} and having
  *
  * <pre><code>
  * S Sun 0 0 0
