@@ -1,0 +1,4 @@
+S Sun 0 0 0
+P Jupiter 1 0 0
+P Mars 0 1 0
+P Saturn 0 0 1

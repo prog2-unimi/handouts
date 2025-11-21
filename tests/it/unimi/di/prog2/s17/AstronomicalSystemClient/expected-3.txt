@@ -1,0 +1,5 @@
+Planet, name: Jupiter, pos: (-2, 0, 0), vel: (-3, 2, 2)
+Planet, name: Mars, pos: (0, -2, 0), vel: (2, -3, 2)
+Planet, name: Saturn, pos: (0, 0, -2), vel: (2, 2, -3)
+Star, name: Sun, pos: (0, 0, 0)
+Total Energy: 42

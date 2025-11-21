@@ -1,0 +1,4 @@
+P Mars -8 -10 0
+P Jupiter 5 5 10
+P Saturn 2 -7 3
+P Venus 9 -8 -3
