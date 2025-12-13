@@ -21,18 +21,23 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 
 package it.unimi.di.prog2.h18;
 
+import static it.unimi.di.prog2.h18.Poly.term;
+
+/** A simple client for {@link Poly}s. */
 public class PolyClient {
 
+  /** . */
+  private PolyClient() {}
+
+  /**
+   * A simple client for {@link Poly}s.
+   *
+   * @param args not used.
+   */
   public static void main(String[] args) {
     Poly a, b;
-    a = DensePoly.ofCoefficients(new int[] {0, 2, 0, 3}); // 2x + 3x^3
-    b =
-        SparsePoly.ofTerms(
-            java.util.List.of(
-                new Poly.Term(1, 0),
-                new Poly.Term(-2, 3),
-                new Poly.Term(4, 2),
-                new Poly.Term(-1, 3))); // 1 + 4x^2 - 3x^3
+    a = DensePoly.ofCoefficients(new int[] {0, 2, 0, 3});
+    b = SparsePoly.ofTerms(term(1, 0), term(-2, 3), term(4, 2), term(-1, 3));
     System.out.println("a(x) = " + a);
     System.out.println("b(x) = " + b);
     System.out.println("a(x) + b(x) = " + a.add(b));

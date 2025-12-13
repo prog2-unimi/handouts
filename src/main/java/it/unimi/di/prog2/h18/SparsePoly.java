@@ -51,6 +51,7 @@ public class SparsePoly extends AbstractPoly {
    * Copies the sparse polynomial.
    *
    * @param poly the polynomial to copy.
+   * @return the copy of the polynomial.
    * @throws NullPointerException if {@code poly} is {@code null}.
    */
   public static SparsePoly copyOf(SparsePoly poly) throws NullPointerException {
@@ -61,6 +62,7 @@ public class SparsePoly extends AbstractPoly {
    * Copies the polynomial.
    *
    * @param poly the polynomial to copy.
+   * @return the copy of the polynomial.
    * @throws NullPointerException if {@code poly} is {@code null}.
    */
   public static SparsePoly copyOf(Poly poly) throws NullPointerException {
@@ -83,6 +85,24 @@ public class SparsePoly extends AbstractPoly {
   public static Poly ofTerms(final List<Term> terms) {
     Objects.requireNonNull(terms, "The terms list must not be null.");
     List<Term> reduced = new ArrayList<>(terms.size());
+    for (Term t : terms) addTerm(reduced, Objects.requireNonNull(t));
+    return reduced.isEmpty() ? ZERO : new SparsePoly(reduced);
+  }
+
+  /**
+   * Creates a polynomial given its terms.
+   *
+   * <p>The array of terms can be empty, and can contain terms in any order (even with the same
+   * degree). Terms with the same degree are added and, if the resulting list is empty, the zero
+   * polynomial is returned.
+   *
+   * @param terms the array of terms.
+   * @return the polynomial.
+   * @throws NullPointerException if {@code terms} is or contains {@code null}.
+   */
+  public static Poly ofTerms(final Term... terms) {
+    Objects.requireNonNull(terms, "The terms list must not be null.");
+    List<Term> reduced = new ArrayList<>(terms.length);
     for (Term t : terms) addTerm(reduced, Objects.requireNonNull(t));
     return reduced.isEmpty() ? ZERO : new SparsePoly(reduced);
   }

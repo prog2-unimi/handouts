@@ -100,6 +100,18 @@ public interface Poly extends Iterable<Poly.Term> {
       };
 
   /**
+   * Creates a term with given coefficient and degree.
+   *
+   * @param c the coefficient.
+   * @param d the degree.
+   * @return the term \( cx^d \).
+   * @throws IllegalArgumentException if the degree is negative or the coefficient is zero.
+   */
+  static Term term(int c, int d) {
+    return new Term(c, d);
+  }
+
+  /**
    * Checks whether this polynomial is the zero polynomial.
    *
    * @return {@code true} if this polynomial is the zero polynomial, {@code false} otherwise.
